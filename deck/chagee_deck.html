@@ -83,6 +83,20 @@ svg.chart text{font-family:Calibri,Carlito,"Segoe UI",system-ui,sans-serif}
 .printonly{display:none}
 .pnote{margin:4px 0 0;font-size:10.5px;color:var(--muted);font-style:italic}
 
+/* builds: a hidden point or risk shows only an arrow to click */
+.point,.risk{transition:opacity .3s}
+.point > div{transition:opacity .3s,transform .3s}
+.point.hidden{cursor:pointer}
+.point.hidden > div{opacity:0;transform:translateX(-6px)}
+.point.hidden .ico{background:#fff;border:2px dashed #c5cad3;color:var(--muted)}
+.point.hidden .ico svg{display:none}
+.point.hidden .ico::after,.risk.hidden .rn::after{content:"›";font-size:20px;font-weight:700;line-height:1;margin-top:-3px}
+.risk.hidden .rt{cursor:pointer}
+.risk.hidden .rt > :not(.rn){opacity:0}
+.risk.hidden .rn{border:2px dashed #c5cad3;color:var(--muted);background:#fff;font-size:0}
+.risk.hidden .rn::after{font-size:17px}
+@media (prefers-reduced-motion:reduce){.point,.risk,.point > div{transition:none}}
+
 /* slide 1: where uncertainty lands */
 .scens{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .scen{border:1px solid var(--line);border-radius:7px;padding:7px 10px;opacity:.45;transition:opacity .25s}
@@ -176,6 +190,11 @@ body.idle:not(.editing) #toolbar{opacity:0}
   .printonly{display:block}
   .scen{opacity:1!important}
   .risk .rb{display:block!important;margin-bottom:5px}
+  .point.hidden > div,.risk.hidden .rt > *{opacity:1!important;transform:none!important}
+  .point.hidden .ico{background:var(--navy)!important;border:0!important;color:#fff!important}
+  .point.hidden .ico svg{display:block!important}
+  .point.hidden .ico::after,.risk.hidden .rn::after{content:none!important}
+  .risk.hidden .rn{border:2px solid var(--red)!important;font-size:11px!important}
   .risk .rt{padding:5px 0}
   .risk .rn{background:var(--red)!important;color:#fff!important}
   body:not(.printnotes) .notespage{display:none!important}
@@ -600,14 +619,35 @@ addEventListener("resize",fit); document.addEventListener("fullscreenchange",()=
 if(window.ResizeObserver) new ResizeObserver(fit).observe(document.documentElement);
 fit();
 
-function go(i){
+/* ---------- builds: reasoning points and risks appear one at a time ---------- */
+const STEPS=slides.map(s=>[...s.querySelectorAll(".point,.risk")]);
+const shown=slides.map(()=>0);
+function setShown(k,n){
+  const els=STEPS[k], all=document.body.classList.contains("editing");
+  shown[k]=Math.max(0,Math.min(els.length,n));
+  els.forEach((el,i)=>el.classList.toggle("hidden",!all && i>=shown[k]));
+  // risks: the newest one opens, earlier ones fold back to their title
+  if(!all) els.forEach((el,i)=>{ if(!el.classList.contains("risk")) return;
+    const open=i===shown[k]-1; el.classList.toggle("on",open); el.querySelector(".rt").setAttribute("aria-expanded",open); });
+}
+STEPS.forEach((els,k)=>els.forEach((el,i)=>el.addEventListener("click",e=>{
+  if(!el.classList.contains("hidden")) return;
+  e.preventDefault(); e.stopImmediatePropagation(); setShown(k,i+1);   // clicking an arrow reveals up to that point
+},true)));
+slides.forEach((_,k)=>setShown(k,0));
+
+function go(i,dir=0){
   cur=Math.max(0,Math.min(slides.length-1,i));
   slides.forEach((s,k)=>s.classList.toggle("on",k===cur));
+  if(dir) setShown(cur,dir>0?0:STEPS[cur].length);              // forward: start empty; back: everything shown
   document.getElementById("count").textContent=`${cur+1} / ${slides.length}`;
   try{ history.replaceState(null,"",location.search+"#"+(cur+1)); }catch(e){}   // sandboxed previews block this
 }
-document.getElementById("next").onclick=()=>go(cur+1);
-document.getElementById("prev").onclick=()=>go(cur-1);
+const editingNow=()=>document.body.classList.contains("editing");
+function next(){ if(!editingNow() && shown[cur]<STEPS[cur].length) setShown(cur,shown[cur]+1); else if(cur<slides.length-1) go(cur+1,1); }
+function prev(){ if(!editingNow() && shown[cur]>0) setShown(cur,shown[cur]-1); else if(cur>0) go(cur-1,-1); }
+document.getElementById("next").onclick=next;
+document.getElementById("prev").onclick=prev;
 const toggleFS=()=>{ try{ const p=document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.(); p&&p.catch&&p.catch(()=>{}); }catch(e){} };
 document.getElementById("fs").onclick=toggleFS;
 if(!document.fullscreenEnabled) document.getElementById("fs").style.display="none";   // not allowed in embedded previews
@@ -626,6 +666,7 @@ function setEditing(on){
   document.getElementById("editb").classList.toggle("on",on);
   document.querySelectorAll("[data-k]").forEach(el=>{ if(on) el.setAttribute("contenteditable","true"); else el.removeAttribute("contenteditable"); });
   if(!on && document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  slides.forEach((_,k)=>setShown(k,on?STEPS[k].length:shown[k]));   // edit mode shows every point
   toast(on?"Edit mode: click any text to change it":"Edits saved in this browser");
 }
 document.getElementById("editb").onclick=()=>setEditing(!document.body.classList.contains("editing"));
@@ -665,9 +706,9 @@ addEventListener("beforeprint",buildNotesPages);
 document.addEventListener("keydown",e=>{
   if(e.target.isContentEditable) return;
   if(e.target.tagName==="INPUT" && ["ArrowLeft","ArrowRight"].includes(e.key)) return;
-  if(["ArrowRight","PageDown"," "].includes(e.key) && e.target.tagName!=="BUTTON"){e.preventDefault();go(cur+1);}
-  else if(["ArrowLeft","PageUp"].includes(e.key)){e.preventDefault();go(cur-1);}
-  else if(e.key==="Home")go(0); else if(e.key==="End")go(slides.length-1);
+  if(["ArrowRight","PageDown"," "].includes(e.key) && e.target.tagName!=="BUTTON"){e.preventDefault();next();}
+  else if(["ArrowLeft","PageUp"].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==="Home")go(0,1); else if(e.key==="End")go(slides.length-1,-1);
   else if((e.key==="f"||e.key==="F") && document.fullscreenEnabled)toggleFS();
   else if(e.key==="e"||e.key==="E") document.getElementById("editb").click();
   else if(e.key==="n"||e.key==="N") document.getElementById("notesb").click();
