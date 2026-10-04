@@ -97,6 +97,39 @@ test("same seed gives identical results", () => {
   assert.deepEqual(a, b);
 });
 
+// ---------------------------------------------------------------- slide 2: demand band
+test("signal strength maps linearly between the approved band end points", () => {
+  assert.ok(Math.abs(S.band(P, 0, true).u - RAW.demand.uncertainty_no_signal.value) < 1e-12);
+  assert.ok(Math.abs(S.band(P, 1, true).u - RAW.demand.uncertainty_strong_signal.value) < 1e-12);
+  const b = S.band(P, 0.5, true);
+  assert.ok(Math.abs(b.high - b.low - 2 * b.u * b.base) < 1e-9);
+  assert.ok(Math.abs(b.base - 7 * S.dailyBase(P)) < 1e-9, "weekly base");
+});
+
+test("keeping opening hype in scales the band by the hype multiplier", () => {
+  const off = S.band(P, 0.5, true), on = S.band(P, 0.5, false);
+  assert.ok(Math.abs(on.base / off.base - RAW.demand.opening_hype_multiplier.value) < 1e-9);
+});
+
+// ---------------------------------------------------------------- slide 3: opening stock
+test("with no uncertainty the cost-minimising stock is one shelf life and costs nothing", () => {
+  const r = S.provision(P, 0, 3, S.dailyBase(P));
+  assert.ok(Math.abs(r.optDays - RAW.provision.milk_shelf_life_days.value) < 1e-9);
+  assert.ok(r.optTotal < 1e-9);
+});
+
+test("a wider band never makes the best opening-stock decision cheaper", () => {
+  const c = [0, 0.15, 0.3, 0.5].map(u => S.provision(P, u, 3, S.dailyBase(P)).optTotal);
+  for (let i = 1; i < c.length; i++) assert.ok(c[i] >= c[i - 1] - 1e-9, c.join(" > "));
+});
+
+test("expected cost at the optimum is no higher than at any slider position", () => {
+  for (const d of [1, 3, 7, 10, 14]) {
+    const r = S.provision(P, 0.3, d, S.dailyBase(P));
+    assert.ok(r.optTotal <= r.total + 1e-6, `days ${d}: ${r.optTotal} > ${r.total}`);
+  }
+});
+
 // ---------------------------------------------------------------- crossover rule
 test("crossover follows the pre-registered definition", () => {
   const u = [0, 0.1, 0.2, 0.3];

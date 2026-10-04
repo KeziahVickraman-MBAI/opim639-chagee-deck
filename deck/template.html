@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chagee Overseas Openings · OPIM639</title>
+<script id="baked-edits" type="application/json">{}</script>
+<style>
+:root{
+  --navy:#1f2a44; --amber:#e8a33d; --amber-soft:#fbe9d0; --amber-ink:#9a6b1e; --ink:#23272f; --body:#374151;
+  --muted:#6b7280; --line:#e5e7eb; --soft:#f3f4f6; --red:#b93a3a; --blue:#2563eb; --green:#2f855a;
+  --c-human:#2a9d8f; --c-mixed:#d4892a; --c-machine:#2563eb;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#15171c;overflow:hidden;
+  font:15px/1.4 Calibri,Carlito,"Segoe UI",system-ui,sans-serif;color:var(--body)}
+#viewport{position:fixed;inset:0}
+#stage{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;background:#fff;overflow:hidden;
+  box-shadow:0 10px 40px rgba(0,0,0,.45)}
+.slide{position:absolute;inset:0;display:none;background:#fff}
+.slide.on{display:block}
+
+/* ---------- title slide ---------- */
+.title{background:var(--navy);color:#fff}
+.title .ttext{position:absolute;left:96px;top:50%;transform:translateY(-50%);max-width:780px}
+.title .course{margin:0;font-size:18px;font-weight:700;letter-spacing:.1em;color:var(--amber)}
+.title h1{margin:10px 0 0;font-size:54px;line-height:1.1;font-weight:700}
+.title .topic{margin:14px 0 0;font-size:22px;color:#cbd2e0}
+.title .rule{width:96px;height:4px;background:var(--amber);margin:30px 0 26px}
+.title .group{margin:0 0 8px;font-size:22px;font-weight:700;color:#cbd2e0}
+.title .names{list-style:none;margin:0;padding:0;font-size:24px;line-height:1.45}
+.title .art{position:absolute;right:0;top:0;bottom:0;width:430px;opacity:.95}
+
+/* ---------- content slides ---------- */
+.content{padding:16px 40px 0}
+.kicker{margin:0;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-ink)}
+h2{font-size:25px;line-height:1.14;color:var(--ink);margin:3px 0 3px;max-width:1180px}
+.sub{margin:0;font-size:13.5px;color:var(--body);font-style:italic}
+.grid{display:grid;grid-template-columns:410px 1fr;gap:24px;align-items:start;margin-top:10px}
+.points{display:flex;flex-direction:column;gap:20px}
+.point{display:flex;gap:11px}
+.point .ico{flex:none;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center}
+.point .ico svg{width:16px;height:16px}
+.point h3{margin:0 0 3px;font-size:16.5px;line-height:1.2;color:var(--ink)}
+.point p{margin:0;font-size:14px;line-height:1.4}
+.s4 .points{gap:16px}.s4 .point p{font-size:13.5px}
+
+.explainer{background:#fff;border:1px solid var(--line);border-left:4px solid var(--navy);padding:8px 13px 9px;position:relative}
+.exhead{display:flex;gap:10px;align-items:center;margin-bottom:4px}
+.tag{flex:none;background:var(--navy);color:#fff;font-size:10.5px;font-weight:700;border-radius:999px;padding:2px 10px}
+.ex-title{font-weight:700;letter-spacing:.05em;color:var(--muted);font-size:12px;text-transform:uppercase}
+.caption{margin:0 0 5px;font-size:12px;color:var(--body);line-height:1.3}
+.variants{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-bottom:5px}
+.variants button,.seg button{font:inherit;font-size:12px;padding:2px 9px;border:1px solid var(--navy);background:#fff;color:var(--navy);border-radius:5px;cursor:pointer}
+.variants button.on,.seg button.on{background:var(--navy);color:#fff}
+.seg button:disabled{opacity:.35;cursor:default}
+button:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.exgrid{display:grid;grid-template-columns:1fr 196px;gap:12px}
+.out{border-left:1px solid var(--line);padding-left:11px;font-size:12px;line-height:1.3}
+.out h4,.shift h4,.risks h4,.next h4{margin:0 0 3px;font-size:10.5px;letter-spacing:.05em;color:var(--muted);font-weight:700}
+.out hr{border:0;border-top:1px solid var(--line);margin:5px 0}
+.big{font:700 20px var(--mono);color:var(--ink)}
+.big small{font:400 12px Calibri,Carlito,sans-serif;color:var(--muted)}
+.stat{display:flex;justify-content:space-between;align-items:baseline;margin:2px 0;gap:6px}
+.stat b{font:600 12.5px var(--mono);color:var(--ink);white-space:nowrap}
+.stat.best b,.stat.best span{color:var(--green);font-weight:700}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.note{font-size:11px;color:var(--muted);margin:4px 0 0;line-height:1.3}
+.handoff{margin-top:5px;background:var(--amber-soft);border-radius:5px;padding:4px 7px;font-size:11.5px;color:#4a3410}
+.handoff b{color:#3d2a08}
+.controls{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;align-items:center;margin-top:5px;font-size:12px}
+.controls label{color:var(--ink);font-weight:600;white-space:nowrap}
+.rng{display:flex;gap:8px;align-items:center}
+.rng input[type=range]{flex:1;accent-color:var(--amber);height:16px;margin:0;min-width:0}
+.rng .val{font:11.5px var(--mono);min-width:86px;text-align:right;color:var(--ink)}
+svg.chart{width:100%;display:block;background:var(--soft);border-radius:6px;overflow:visible}
+svg.chart text{font-family:Calibri,Carlito,"Segoe UI",system-ui,sans-serif}
+.chartwrap{position:relative}
+.tip{position:absolute;pointer-events:none;background:#fff;border:1px solid var(--line);border-radius:6px;padding:5px 8px;
+  font-size:11.5px;line-height:1.35;box-shadow:0 4px 14px rgba(0,0,0,.12);display:none;z-index:2;white-space:nowrap}
+.tip b{font-family:var(--mono);font-weight:600}
+.printonly{display:none}
+.pnote{margin:4px 0 0;font-size:10.5px;color:var(--muted);font-style:italic}
+
+/* slide 1: where uncertainty lands */
+.scens{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.scen{border:1px solid var(--line);border-radius:7px;padding:7px 10px;opacity:.45;transition:opacity .25s}
+.scen.on{opacity:1;border-color:var(--navy);box-shadow:inset 0 3px 0 var(--amber)}
+.scen h5{margin:0 0 6px;font-size:14.5px;color:var(--ink)}
+.scen h5 small{font-weight:400;color:var(--muted);font-size:11.5px}
+.step{display:grid;grid-template-columns:104px 54px 1fr;gap:6px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:13px}
+.step .sname{font-weight:700;color:var(--ink)}
+.step .sdesc{color:var(--body)}
+.dots{display:inline-flex;gap:3px}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--line);display:inline-block}
+.dots i.on{background:var(--amber)}
+.dlegend{display:flex;gap:16px;font-size:11px;color:var(--muted);margin-top:6px;align-items:center}
+.dlegend .dots i{width:9px;height:9px}
+@media (prefers-reduced-motion:reduce){.scen{transition:none}}
+
+/* slide 4: shift panel */
+.shift{margin-top:7px;border-top:1px solid var(--line);padding-top:6px}
+.srow{display:grid;grid-template-columns:200px auto 1fr;gap:10px;align-items:center;font-size:12px;margin:3px 0}
+.srow > span:first-child{color:var(--ink);font-weight:600}
+.seg{display:inline-flex;gap:4px}
+.srow .sval{font:11px var(--mono);color:var(--muted)}
+
+/* slide 5 */
+.grid.g5{grid-template-columns:1fr 430px}
+.formula{margin:8px 0 2px;font-size:14px;line-height:1.5;background:var(--soft);border-radius:6px;padding:6px 9px;color:var(--ink)}
+.formula b{font-family:var(--mono);font-weight:600}
+.formula .term{white-space:nowrap}
+.formula small{display:block;color:var(--muted);font-size:11.5px;line-height:1.3}
+.s5 .controls{font-size:13px;gap:7px 10px}
+.s5 .big{font-size:28px}
+.risks{border:1px solid var(--line);border-left:4px solid var(--red);padding:8px 12px}
+.risk{border-top:1px solid var(--line)}
+.risk:first-of-type{border-top:0}
+.risk .rt{all:unset;cursor:pointer;display:flex;gap:8px;align-items:center;width:100%;padding:8px 0;font-size:14.5px;font-weight:700;color:var(--ink)}
+.risk .rt:focus-visible{outline:2px solid var(--blue)}
+.risk .rn{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid var(--red);color:var(--red);display:grid;place-items:center;font-size:11px}
+.risk.on .rn{background:var(--red);color:#fff}
+.risk .rb{display:none;margin:0 0 8px 28px;font-size:13.5px;line-height:1.38}
+.risk.on .rb{display:block}
+.next{margin-top:10px;background:var(--soft);border-radius:9px;padding:8px 12px}
+.next ul{margin:2px 0 0;padding-left:18px;font-size:13.5px;line-height:1.4}
+.next li{margin:2px 0}
+
+.view{margin-top:9px;background:var(--navy);color:#fff;border-radius:9px;padding:9px 15px 10px;font-size:12.5px;line-height:1.36}
+.view .vk{margin:0 0 2px;color:var(--amber);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:11.5px}
+.view .vl{margin:0 0 3px;font-size:14.5px;font-weight:700;line-height:1.28}
+.view .vb{margin:0;color:#dfe4ee}
+.foot{position:absolute;left:40px;right:40px;bottom:9px;display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.assume{font-style:italic}
+
+/* ---------- speaker notes ---------- */
+.notes{display:none;position:absolute;left:0;right:0;bottom:0;max-height:48%;overflow:auto;background:rgba(20,22,28,.96);color:#e5e7eb;
+  padding:14px 40px 34px;font-size:14px;line-height:1.5;z-index:3}
+.notes .nk{margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--amber)}
+.notes p{margin:0;white-space:pre-wrap}
+.notes .src{margin-top:8px;font-size:12px;color:#aab2c0}
+body.shownotes .notes{display:block}
+.notespage{display:none}
+
+/* ---------- edit mode ---------- */
+body.editing [data-k]{outline:1px dashed rgba(37,99,235,.55);outline-offset:2px;cursor:text;border-radius:2px}
+body.editing [data-k]:hover{background:rgba(37,99,235,.06)}
+body.editing [data-k]:focus{outline:2px solid var(--blue);background:rgba(37,99,235,.08)}
+body.editing .title [data-k]:hover,body.editing .view [data-k]:hover,body.editing .notes [data-k]:hover{background:rgba(255,255,255,.08)}
+
+/* ---------- presenter toolbar (outside the slide) ---------- */
+#toolbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);display:flex;gap:4px;align-items:center;
+  background:rgba(20,22,28,.86);color:#fff;border-radius:999px;padding:5px 8px;font-size:13px;transition:opacity .3s;z-index:5;white-space:nowrap}
+#toolbar button{all:unset;cursor:pointer;padding:4px 10px;border-radius:999px}
+#toolbar button:hover,#toolbar button:focus-visible{background:rgba(255,255,255,.18)}
+#toolbar button.on{background:var(--amber);color:#1f2a44;font-weight:700}
+#toolbar .count{min-width:44px;text-align:center;font-variant-numeric:tabular-nums}
+#toolbar .sep{width:1px;height:16px;background:rgba(255,255,255,.25);margin:0 4px}
+#toolbar .editonly{display:none}
+body.editing #toolbar .editonly{display:inline-block}
+body.idle:not(.editing) #toolbar{opacity:0}
+#toast{position:fixed;left:50%;top:14px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:6px 14px;border-radius:8px;font-size:13px;
+  opacity:0;transition:opacity .3s;pointer-events:none;z-index:6}
+#toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){#toolbar,#toast{transition:none}}
+
+/* ---------- print: every slide is a static 1280 x 720 page ---------- */
+@page{size:1280px 720px;margin:0}
+@media print{
+  html,body{height:auto;overflow:visible;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #viewport{position:static}
+  #stage{position:static!important;transform:none!important;width:1280px;height:auto;overflow:visible;box-shadow:none}
+  .slide{display:block!important;position:relative;width:1280px;height:720px;overflow:hidden;break-after:page;page-break-after:always}
+  #toolbar,#toast,.notes,.tip,.screenonly{display:none!important}
+  .printonly{display:block}
+  .scen{opacity:1!important}
+  .risk .rb{display:block!important;margin-bottom:5px}
+  .risk .rt{padding:5px 0}
+  .risk .rn{background:var(--red)!important;color:#fff!important}
+  body:not(.printnotes) .notespage{display:none!important}
+  body.editing [data-k]{outline:none!important;background:none!important}
+}
+.notespage{padding:48px 72px;background:#fff}
+.notespage .nk{margin:0;font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--amber-ink)}
+.notespage h3{margin:6px 0 18px;font-size:24px;color:var(--ink)}
+.notespage .np{margin:0;font-size:17px;line-height:1.55;white-space:pre-wrap;color:var(--ink)}
+.notespage .src{margin-top:18px;font-size:13.5px;color:var(--muted);line-height:1.45}
+</style>
+</head>
+<body>
+<div id="viewport"><div id="stage">__SLIDES__</div></div>
+<div id="toolbar" role="toolbar" aria-label="Slide controls">
+  <button id="prev" aria-label="Previous slide">◀</button><span class="count" id="count"></span>
+  <button id="next" aria-label="Next slide">▶</button><span class="sep"></span>
+  <button id="notesb" title="Speaker notes (N)">Notes</button>
+  <button id="editb" title="Edit text (E)">✎ Edit</button>
+  <button id="dl" class="editonly" title="Save a copy with your edits built in">⤓ Download</button>
+  <button id="reset" class="editonly" title="Undo all edits made in this browser">Reset</button>
+  <span class="sep"></span><button id="printb" title="Print or save as PDF (each slide is one page)">⎙ Print</button>
+  <button id="fs" aria-label="Full screen">⛶ Full screen</button>
+</div>
+<div id="toast" role="status"></div>
+<script>
+const RAW = __ASSUMPTIONS__;
+const DATA = __DATA__;
+</script>
+<script>
+__SIMJS__
+</script>
+<script>
+const PRISTINE = "<!doctype html>\n" + document.documentElement.outerHTML;   // all scripts parsed, nothing rendered yet
+const Sim = window.ChageeSim, P = Sim.params(RAW);
+const slides=[...document.querySelectorAll(".slide")];
+const stage=document.getElementById("stage");
+let cur=0, SCALE=1;
+
+function fit(){
+  // scale the fixed 1280x720 slide to the largest size that fits, and centre it
+  const W=document.documentElement.clientWidth||innerWidth, H=document.documentElement.clientHeight||innerHeight;
+  SCALE=Math.min(W/1280, H/720);
+  stage.style.transform=`scale(${SCALE})`;
+  stage.style.left=((W-1280*SCALE)/2)+"px";
+  stage.style.top=((H-720*SCALE)/2)+"px";
+}
+addEventListener("resize",fit); document.addEventListener("fullscreenchange",()=>setTimeout(fit,50));
+if(window.ResizeObserver) new ResizeObserver(fit).observe(document.documentElement);
+fit();
+
+function go(i){
+  cur=Math.max(0,Math.min(slides.length-1,i));
+  slides.forEach((s,k)=>s.classList.toggle("on",k===cur));
+  document.getElementById("count").textContent=`${cur+1} / ${slides.length}`;
+  try{ history.replaceState(null,"",location.search+"#"+(cur+1)); }catch(e){}   // sandboxed previews block this
+}
+document.getElementById("next").onclick=()=>go(cur+1);
+document.getElementById("prev").onclick=()=>go(cur-1);
+const toggleFS=()=>{ try{ const p=document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.(); p&&p.catch&&p.catch(()=>{}); }catch(e){} };
+document.getElementById("fs").onclick=toggleFS;
+if(!document.fullscreenEnabled) document.getElementById("fs").style.display="none";   // not allowed in embedded previews
+document.getElementById("printb").onclick=()=>window.print();
+
+/* ---------- editing: click any text in edit mode; saved per browser, Download bakes it in ---------- */
+const STORE="opim639-chagee-deck-edits";
+const toast=m=>{const t=document.getElementById("toast"); t.textContent=m; t.classList.add("on"); clearTimeout(toast.h); toast.h=setTimeout(()=>t.classList.remove("on"),2200);};
+let edits={};
+try{ edits=JSON.parse(document.getElementById("baked-edits").textContent||"{}"); }catch(e){}
+try{ Object.assign(edits, JSON.parse(localStorage.getItem(STORE)||"{}")); }catch(e){}
+function applyEdits(){ document.querySelectorAll("[data-k]").forEach(el=>{ if(edits[el.dataset.k]!=null) el.textContent=edits[el.dataset.k]; }); }
+function saveEdits(){ try{ localStorage.setItem(STORE, JSON.stringify(edits)); }catch(e){} }
+function setEditing(on){
+  document.body.classList.toggle("editing",on);
+  document.getElementById("editb").classList.toggle("on",on);
+  document.querySelectorAll("[data-k]").forEach(el=>{ if(on) el.setAttribute("contenteditable","true"); else el.removeAttribute("contenteditable"); });
+  if(!on && document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  toast(on?"Edit mode: click any text to change it":"Edits saved in this browser");
+}
+document.getElementById("editb").onclick=()=>setEditing(!document.body.classList.contains("editing"));
+document.addEventListener("input",e=>{ const el=e.target.closest&&e.target.closest("[data-k]"); if(!el) return; edits[el.dataset.k]=el.innerText.replace(/\n+$/,""); saveEdits(); });
+document.addEventListener("paste",e=>{ if(!e.target.closest||!e.target.closest("[data-k]")) return; e.preventDefault();
+  document.execCommand("insertText",false,(e.clipboardData||window.clipboardData).getData("text/plain")); });
+document.addEventListener("keydown",e=>{ const el=e.target.closest&&e.target.closest("[data-k]");
+  if(el && e.key==="Enter" && !el.closest(".notes")){ e.preventDefault(); el.blur(); }
+  if(el && e.key==="Escape") el.blur(); }, true);
+document.getElementById("dl").onclick=()=>{
+  const json=JSON.stringify(edits).replace(/</g,"\\u003c");
+  const out=PRISTINE.replace(/(<script id="baked-edits" type="application\/json">)[\s\S]*?(<\/script>)/, (m,a,b)=>a+json+b);
+  const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([out],{type:"text/html"}));
+  a.download="chagee_deck_edited.html"; document.body.appendChild(a); a.click(); a.remove();
+  toast("Downloaded a copy with your edits built in");
+};
+document.getElementById("reset").onclick=()=>{ if(!confirm("Undo every edit made in this browser?")) return;
+  try{ localStorage.removeItem(STORE); }catch(e){} location.reload(); };
+document.getElementById("notesb").onclick=()=>{ document.body.classList.toggle("shownotes"); document.getElementById("notesb").classList.toggle("on"); };
+
+/* ---------- speaker-notes pages for printing (?notes=1 adds them to the PDF) ---------- */
+function buildNotesPages(){
+  document.querySelectorAll(".notespage").forEach(n=>n.remove());
+  slides.forEach((s,i)=>{
+    const n=s.querySelector(".notes"); if(!n) return;
+    const pg=document.createElement("section"); pg.className="slide notespage"; pg.setAttribute("aria-hidden","true");
+    pg.innerHTML=`<p class="nk">SPEAKER NOTES · PAGE ${i+1}</p><h3></h3><p class="np"></p><p class="src"></p>`;
+    pg.querySelector("h3").textContent=s.dataset.kicker||"";
+    pg.querySelector(".np").textContent=n.querySelector("[data-k]").innerText;
+    pg.querySelector(".src").textContent=n.querySelector(".src").innerText;
+    s.after(pg);
+  });
+}
+if(/[?&]notes=1/.test(location.search)) document.body.classList.add("printnotes");
+addEventListener("beforeprint",buildNotesPages);
+
+document.addEventListener("keydown",e=>{
+  if(e.target.isContentEditable) return;
+  if(e.target.tagName==="INPUT" && ["ArrowLeft","ArrowRight"].includes(e.key)) return;
+  if(["ArrowRight","PageDown"," "].includes(e.key) && e.target.tagName!=="BUTTON"){e.preventDefault();go(cur+1);}
+  else if(["ArrowLeft","PageUp"].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==="Home")go(0); else if(e.key==="End")go(slides.length-1);
+  else if((e.key==="f"||e.key==="F") && document.fullscreenEnabled)toggleFS();
+  else if(e.key==="e"||e.key==="E") document.getElementById("editb").click();
+  else if(e.key==="n"||e.key==="N") document.getElementById("notesb").click();
+});
+let idle; const wake=()=>{document.body.classList.remove("idle");clearTimeout(idle);idle=setTimeout(()=>document.body.classList.add("idle"),2500);};
+addEventListener("mousemove",wake); addEventListener("keydown",wake); wake();
+
+__ENGINE__
+const WIDGETS={where:whereWidget,band:bandWidget,stock:stockWidget,cross:crossWidget,benefit:benefitWidget};
+document.querySelectorAll("[data-widget]").forEach(el=>WIDGETS[el.dataset.widget](el));
+riskToggles();
+applyEdits();
+buildNotesPages();
+emit();
+let start=0; try{ start=(parseInt(location.hash.slice(1))||1)-1; }catch(e){}
+go(Math.max(0,start));
+</script>
+</body>
+</html>

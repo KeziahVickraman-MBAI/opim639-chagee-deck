@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chagee Overseas Openings · OPIM639</title>
+<script id="baked-edits" type="application/json">{}</script>
+<style>
+:root{
+  --navy:#1f2a44; --amber:#e8a33d; --amber-soft:#fbe9d0; --amber-ink:#9a6b1e; --ink:#23272f; --body:#374151;
+  --muted:#6b7280; --line:#e5e7eb; --soft:#f3f4f6; --red:#b93a3a; --blue:#2563eb; --green:#2f855a;
+  --c-human:#2a9d8f; --c-mixed:#d4892a; --c-machine:#2563eb;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#15171c;overflow:hidden;
+  font:15px/1.4 Calibri,Carlito,"Segoe UI",system-ui,sans-serif;color:var(--body)}
+#viewport{position:fixed;inset:0}
+#stage{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;background:#fff;overflow:hidden;
+  box-shadow:0 10px 40px rgba(0,0,0,.45)}
+.slide{position:absolute;inset:0;display:none;background:#fff}
+.slide.on{display:block}
+
+/* ---------- title slide ---------- */
+.title{background:var(--navy);color:#fff}
+.title .ttext{position:absolute;left:96px;top:50%;transform:translateY(-50%);max-width:780px}
+.title .course{margin:0;font-size:18px;font-weight:700;letter-spacing:.1em;color:var(--amber)}
+.title h1{margin:10px 0 0;font-size:54px;line-height:1.1;font-weight:700}
+.title .topic{margin:14px 0 0;font-size:22px;color:#cbd2e0}
+.title .rule{width:96px;height:4px;background:var(--amber);margin:30px 0 26px}
+.title .group{margin:0 0 8px;font-size:22px;font-weight:700;color:#cbd2e0}
+.title .names{list-style:none;margin:0;padding:0;font-size:24px;line-height:1.45}
+.title .art{position:absolute;right:0;top:0;bottom:0;width:430px;opacity:.95}
+
+/* ---------- content slides ---------- */
+.content{padding:16px 40px 0}
+.kicker{margin:0;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-ink)}
+h2{font-size:25px;line-height:1.14;color:var(--ink);margin:3px 0 3px;max-width:1180px}
+.sub{margin:0;font-size:13.5px;color:var(--body);font-style:italic}
+.grid{display:grid;grid-template-columns:410px 1fr;gap:24px;align-items:start;margin-top:10px}
+.points{display:flex;flex-direction:column;gap:20px}
+.point{display:flex;gap:11px}
+.point .ico{flex:none;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center}
+.point .ico svg{width:16px;height:16px}
+.point h3{margin:0 0 3px;font-size:16.5px;line-height:1.2;color:var(--ink)}
+.point p{margin:0;font-size:14px;line-height:1.4}
+.s4 .points{gap:16px}.s4 .point p{font-size:13.5px}
+
+.explainer{background:#fff;border:1px solid var(--line);border-left:4px solid var(--navy);padding:8px 13px 9px;position:relative}
+.exhead{display:flex;gap:10px;align-items:center;margin-bottom:4px}
+.tag{flex:none;background:var(--navy);color:#fff;font-size:10.5px;font-weight:700;border-radius:999px;padding:2px 10px}
+.ex-title{font-weight:700;letter-spacing:.05em;color:var(--muted);font-size:12px;text-transform:uppercase}
+.caption{margin:0 0 5px;font-size:12px;color:var(--body);line-height:1.3}
+.variants{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-bottom:5px}
+.variants button,.seg button{font:inherit;font-size:12px;padding:2px 9px;border:1px solid var(--navy);background:#fff;color:var(--navy);border-radius:5px;cursor:pointer}
+.variants button.on,.seg button.on{background:var(--navy);color:#fff}
+.seg button:disabled{opacity:.35;cursor:default}
+button:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.exgrid{display:grid;grid-template-columns:1fr 196px;gap:12px}
+.out{border-left:1px solid var(--line);padding-left:11px;font-size:12px;line-height:1.3}
+.out h4,.shift h4,.risks h4,.next h4{margin:0 0 3px;font-size:10.5px;letter-spacing:.05em;color:var(--muted);font-weight:700}
+.out hr{border:0;border-top:1px solid var(--line);margin:5px 0}
+.big{font:700 20px var(--mono);color:var(--ink)}
+.big small{font:400 12px Calibri,Carlito,sans-serif;color:var(--muted)}
+.stat{display:flex;justify-content:space-between;align-items:baseline;margin:2px 0;gap:6px}
+.stat b{font:600 12.5px var(--mono);color:var(--ink);white-space:nowrap}
+.stat.best b,.stat.best span{color:var(--green);font-weight:700}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.note{font-size:11px;color:var(--muted);margin:4px 0 0;line-height:1.3}
+.handoff{margin-top:5px;background:var(--amber-soft);border-radius:5px;padding:4px 7px;font-size:11.5px;color:#4a3410}
+.handoff b{color:#3d2a08}
+.controls{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;align-items:center;margin-top:5px;font-size:12px}
+.controls label{color:var(--ink);font-weight:600;white-space:nowrap}
+.rng{display:flex;gap:8px;align-items:center}
+.rng input[type=range]{flex:1;accent-color:var(--amber);height:16px;margin:0;min-width:0}
+.rng .val{font:11.5px var(--mono);min-width:86px;text-align:right;color:var(--ink)}
+svg.chart{width:100%;display:block;background:var(--soft);border-radius:6px;overflow:visible}
+svg.chart text{font-family:Calibri,Carlito,"Segoe UI",system-ui,sans-serif}
+.chartwrap{position:relative}
+.tip{position:absolute;pointer-events:none;background:#fff;border:1px solid var(--line);border-radius:6px;padding:5px 8px;
+  font-size:11.5px;line-height:1.35;box-shadow:0 4px 14px rgba(0,0,0,.12);display:none;z-index:2;white-space:nowrap}
+.tip b{font-family:var(--mono);font-weight:600}
+.printonly{display:none}
+.pnote{margin:4px 0 0;font-size:10.5px;color:var(--muted);font-style:italic}
+
+/* slide 1: where uncertainty lands */
+.scens{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.scen{border:1px solid var(--line);border-radius:7px;padding:7px 10px;opacity:.45;transition:opacity .25s}
+.scen.on{opacity:1;border-color:var(--navy);box-shadow:inset 0 3px 0 var(--amber)}
+.scen h5{margin:0 0 6px;font-size:14.5px;color:var(--ink)}
+.scen h5 small{font-weight:400;color:var(--muted);font-size:11.5px}
+.step{display:grid;grid-template-columns:104px 54px 1fr;gap:6px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:13px}
+.step .sname{font-weight:700;color:var(--ink)}
+.step .sdesc{color:var(--body)}
+.dots{display:inline-flex;gap:3px}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--line);display:inline-block}
+.dots i.on{background:var(--amber)}
+.dlegend{display:flex;gap:16px;font-size:11px;color:var(--muted);margin-top:6px;align-items:center}
+.dlegend .dots i{width:9px;height:9px}
+@media (prefers-reduced-motion:reduce){.scen{transition:none}}
+
+/* slide 4: shift panel */
+.shift{margin-top:7px;border-top:1px solid var(--line);padding-top:6px}
+.srow{display:grid;grid-template-columns:200px auto 1fr;gap:10px;align-items:center;font-size:12px;margin:3px 0}
+.srow > span:first-child{color:var(--ink);font-weight:600}
+.seg{display:inline-flex;gap:4px}
+.srow .sval{font:11px var(--mono);color:var(--muted)}
+
+/* slide 5 */
+.grid.g5{grid-template-columns:1fr 430px}
+.formula{margin:8px 0 2px;font-size:14px;line-height:1.5;background:var(--soft);border-radius:6px;padding:6px 9px;color:var(--ink)}
+.formula b{font-family:var(--mono);font-weight:600}
+.formula .term{white-space:nowrap}
+.formula small{display:block;color:var(--muted);font-size:11.5px;line-height:1.3}
+.s5 .controls{font-size:13px;gap:7px 10px}
+.s5 .big{font-size:28px}
+.risks{border:1px solid var(--line);border-left:4px solid var(--red);padding:8px 12px}
+.risk{border-top:1px solid var(--line)}
+.risk:first-of-type{border-top:0}
+.risk .rt{all:unset;cursor:pointer;display:flex;gap:8px;align-items:center;width:100%;padding:8px 0;font-size:14.5px;font-weight:700;color:var(--ink)}
+.risk .rt:focus-visible{outline:2px solid var(--blue)}
+.risk .rn{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid var(--red);color:var(--red);display:grid;place-items:center;font-size:11px}
+.risk.on .rn{background:var(--red);color:#fff}
+.risk .rb{display:none;margin:0 0 8px 28px;font-size:13.5px;line-height:1.38}
+.risk.on .rb{display:block}
+.next{margin-top:10px;background:var(--soft);border-radius:9px;padding:8px 12px}
+.next ul{margin:2px 0 0;padding-left:18px;font-size:13.5px;line-height:1.4}
+.next li{margin:2px 0}
+
+.view{margin-top:9px;background:var(--navy);color:#fff;border-radius:9px;padding:9px 15px 10px;font-size:12.5px;line-height:1.36}
+.view .vk{margin:0 0 2px;color:var(--amber);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:11.5px}
+.view .vl{margin:0 0 3px;font-size:14.5px;font-weight:700;line-height:1.28}
+.view .vb{margin:0;color:#dfe4ee}
+.foot{position:absolute;left:40px;right:40px;bottom:9px;display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.assume{font-style:italic}
+
+/* ---------- speaker notes ---------- */
+.notes{display:none;position:absolute;left:0;right:0;bottom:0;max-height:48%;overflow:auto;background:rgba(20,22,28,.96);color:#e5e7eb;
+  padding:14px 40px 34px;font-size:14px;line-height:1.5;z-index:3}
+.notes .nk{margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--amber)}
+.notes p{margin:0;white-space:pre-wrap}
+.notes .src{margin-top:8px;font-size:12px;color:#aab2c0}
+body.shownotes .notes{display:block}
+.notespage{display:none}
+
+/* ---------- edit mode ---------- */
+body.editing [data-k]{outline:1px dashed rgba(37,99,235,.55);outline-offset:2px;cursor:text;border-radius:2px}
+body.editing [data-k]:hover{background:rgba(37,99,235,.06)}
+body.editing [data-k]:focus{outline:2px solid var(--blue);background:rgba(37,99,235,.08)}
+body.editing .title [data-k]:hover,body.editing .view [data-k]:hover,body.editing .notes [data-k]:hover{background:rgba(255,255,255,.08)}
+
+/* ---------- presenter toolbar (outside the slide) ---------- */
+#toolbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);display:flex;gap:4px;align-items:center;
+  background:rgba(20,22,28,.86);color:#fff;border-radius:999px;padding:5px 8px;font-size:13px;transition:opacity .3s;z-index:5;white-space:nowrap}
+#toolbar button{all:unset;cursor:pointer;padding:4px 10px;border-radius:999px}
+#toolbar button:hover,#toolbar button:focus-visible{background:rgba(255,255,255,.18)}
+#toolbar button.on{background:var(--amber);color:#1f2a44;font-weight:700}
+#toolbar .count{min-width:44px;text-align:center;font-variant-numeric:tabular-nums}
+#toolbar .sep{width:1px;height:16px;background:rgba(255,255,255,.25);margin:0 4px}
+#toolbar .editonly{display:none}
+body.editing #toolbar .editonly{display:inline-block}
+body.idle:not(.editing) #toolbar{opacity:0}
+#toast{position:fixed;left:50%;top:14px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:6px 14px;border-radius:8px;font-size:13px;
+  opacity:0;transition:opacity .3s;pointer-events:none;z-index:6}
+#toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){#toolbar,#toast{transition:none}}
+
+/* ---------- print: every slide is a static 1280 x 720 page ---------- */
+@page{size:1280px 720px;margin:0}
+@media print{
+  html,body{height:auto;overflow:visible;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #viewport{position:static}
+  #stage{position:static!important;transform:none!important;width:1280px;height:auto;overflow:visible;box-shadow:none}
+  .slide{display:block!important;position:relative;width:1280px;height:720px;overflow:hidden;break-after:page;page-break-after:always}
+  #toolbar,#toast,.notes,.tip,.screenonly{display:none!important}
+  .printonly{display:block}
+  .scen{opacity:1!important}
+  .risk .rb{display:block!important;margin-bottom:5px}
+  .risk .rt{padding:5px 0}
+  .risk .rn{background:var(--red)!important;color:#fff!important}
+  body:not(.printnotes) .notespage{display:none!important}
+  body.editing [data-k]{outline:none!important;background:none!important}
+}
+.notespage{padding:48px 72px;background:#fff}
+.notespage .nk{margin:0;font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--amber-ink)}
+.notespage h3{margin:6px 0 18px;font-size:24px;color:var(--ink)}
+.notespage .np{margin:0;font-size:17px;line-height:1.55;white-space:pre-wrap;color:var(--ink)}
+.notespage .src{margin-top:18px;font-size:13.5px;color:var(--muted);line-height:1.45}
+</style>
+</head>
+<body>
+<div id="viewport"><div id="stage">
+<section class="slide title" aria-label="Title">
+  <div class="ttext">
+    <p class="course" data-k="t.course">OPIM639 · Innovations &amp; Operations of Intelligent Online Marketplaces</p>
+    <h1 data-k="t.title">Chagee: opening overseas stores right</h1>
+    <p class="topic" data-k="t.topic">Predict demand, provision the store, size the counter</p>
+    <div class="rule"></div>
+    <p class="group" data-k="t.group">Group [TBC]</p>
+    <ul class="names"><li data-k="t.m0">[Member names TBC - confirm with the team]</li></ul>
+  </div>
+  <svg class="art" viewBox="0 0 430 720" fill="none" aria-hidden="true">
+      <path d="M70 660 C 70 520, 340 560, 300 410 S 110 260, 230 150" stroke="#e8a33d" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round"/>
+      <circle cx="70" cy="660" r="9" fill="#e8a33d"/>
+      <g transform="translate(180 60)" stroke="#cbd2e0" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M10 30h80l-10 92a10 10 0 01-10 9H30a10 10 0 01-10-9z"/><path d="M4 30h92"/><path d="M50 30V4"/>
+        <circle cx="38" cy="108" r="4" fill="#cbd2e0"/><circle cx="54" cy="114" r="4" fill="#cbd2e0"/><circle cx="64" cy="104" r="4" fill="#cbd2e0"/>
+      </g>
+      <g transform="translate(250 380)" stroke="#fff" stroke-width="2.5" stroke-linejoin="round">
+        <rect x="0" y="0" width="90" height="56" rx="6"/><path d="M0 18h90"/><path d="M14 56v18M76 56v18"/>
+        <rect x="58" y="-30" width="22" height="30" rx="3" fill="#e8a33d" stroke="#e8a33d"/>
+      </g>
+    </svg>
+</section>
+<section class="slide content s1" aria-label="Slide 2" data-kicker="1 · Why this slice">
+  <p class="kicker" data-k="s1.kicker">1 · Why this slice</p>
+  <h2 data-k="s1.h">Chagee’s supply chain is fixed, so new-market risk lands on how much a store opens with and how fast its counter serves</h2>
+  
+  <div class="grid"><div class="points"><div class="point"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><div><h3 data-k="s1.p0.t">Scaling fast into markets it has not run before</h3><p data-k="s1.p0.b">7,453 stores at end-2025, 345 of them overseas in 7 markets, and about 200 more overseas openings planned for 2026. FY2025 GMV RMB 31.58bn, net revenue RMB 12.91bn.</p></div></div><div class="point"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7.5a4 4 0 018 0V11"/></svg></span><div><h3 data-k="s1.p1.t">The upstream is rigid by design</h3><p data-k="s1.p1.b">Chagee says it sources tea and milk directly for domestic operations, with distribution run from HQ. Reported own Yunnan plantations and a narrow menu (tea lattes about 91% of China sales, secondary source) keep sourcing fixed.</p></div></div><div class="point"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 4.5a3.5 3.5 0 010 7"/><path d="M18 14c2.2.6 3.5 2.8 3.5 6"/></svg></span><div><h3 data-k="s1.p2.t">New-store forecasts lean on local judgement</h3><p data-k="s1.p2.b">Our reading: a new market’s opening forecast is judgement-led by a local General Manager, while service is moving toward semi-automation (QR-scan dispensing, Chagee Express).</p></div></div><div class="point"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 18H15a3 3 0 000-6H9a3 3 0 010-6h6.5"/></svg></span><div><h3 data-k="s1.p3.t">Why not a marketplace lens</h3><p data-k="s1.p3.b">Chagee runs one closed channel, app to store: no third-party sellers, no sell-vs-FBA choice and no online-versus-offline conflict. We leave the marketplace-design topics aside; the franchise GMV revenue share is the one overlap, and it is out of scope.</p></div></div></div><div class="right"><div class="explainer" data-widget="where"><div class="exhead"><span class="tag">● INTERACTIVE EXPLAINER</span><span class="ex-title" data-k="s1.ex">Where does uncertainty land?</span></div><p class="caption" data-k="s1.cap">Our reading of public sources, not a Chagee statement. With sourcing fixed, a demand miss can only be absorbed in the store: by the stock it opened with, or by how fast the counter serves. Local sourcing would ease stock risk, but the counter stays exposed either way.</p><div class="variants"><button data-sc="rigid" class="on">Rigid sourcing</button><button data-sc="local" class="">Localised sourcing</button></div><div class="scens"><div class="scen on" data-sc="rigid"><h5><span data-k="s1.sc0">Rigid sourcing</span> <small>Chagee today, our reading</small></h5><div class="step"><span class="sname">Sourcing</span><span class="dots" aria-label="exposure 0 of 3"><i></i><i></i><i></i></span><span class="sdesc">Fixed: single origin</span></div><div class="step"><span class="sname">Distribution</span><span class="dots" aria-label="exposure 0 of 3"><i></i><i></i><i></i></span><span class="sdesc">Fixed: run from HQ</span></div><div class="step"><span class="sname">Opening stock</span><span class="dots" aria-label="exposure 3 of 3"><i class=on></i><i class=on></i><i class=on></i></span><span class="sdesc">Absorbs the miss</span></div><div class="step"><span class="sname">Counter speed</span><span class="dots" aria-label="exposure 3 of 3"><i class=on></i><i class=on></i><i class=on></i></span><span class="sdesc">Absorbs the miss</span></div></div><div class="scen " data-sc="local"><h5><span data-k="s1.sc1">Localised sourcing</span> <small>For contrast only</small></h5><div class="step"><span class="sname">Sourcing</span><span class="dots" aria-label="exposure 2 of 3"><i class=on></i><i class=on></i><i></i></span><span class="sdesc">Flexes with local suppliers</span></div><div class="step"><span class="sname">Distribution</span><span class="dots" aria-label="exposure 1 of 3"><i class=on></i><i></i><i></i></span><span class="sdesc">Shorter, local</span></div><div class="step"><span class="sname">Opening stock</span><span class="dots" aria-label="exposure 1 of 3"><i class=on></i><i></i><i></i></span><span class="sdesc">Less exposed</span></div><div class="step"><span class="sname">Counter speed</span><span class="dots" aria-label="exposure 3 of 3"><i class=on></i><i class=on></i><i class=on></i></span><span class="sdesc">Still exposed</span></div></div></div><div class="dlegend"><span><span class="dots"><i class=on></i><i></i><i></i></span> low</span><span><span class="dots"><i class=on></i><i class=on></i><i class=on></i></span> high exposure to a demand miss</span></div><p class="printonly pnote">Printed with both columns shown. Live: the toggle highlights one.</p></div><div class="view"><p class="vk" data-k="s1.vk">Our view</p><p class="vl" data-k="s1.vl">Take the rigid upstream as given; fix the store-level decisions.</p><p class="vb" data-k="s1.vb">New-market uncertainty lands on three decisions we can model: the demand forecast (slide 2), the opening stock (slide 3) and the counter setup (slide 4).</p></div></div></div>
+  <div class="foot"><span>OPIM639 · Chagee group project · Group [TBC] · <span class="assume">explainer figures are illustrative assumptions</span></span><span>2</span></div>
+  <div class="notes"><p class="nk">SPEAKER NOTES</p><p data-k="s1.notes">About 1.5 minutes. Start with scale: Chagee is opening overseas faster than it can learn each market. Then the key move: Chagee&#x27;s upstream is rigid by design. It sources tea and milk directly and runs distribution from HQ; reports describe its own Yunnan plantations and a menu dominated by tea lattes. That is a strength, but it means sourcing cannot soak up a demand miss. So where does the miss go? Into the store: the stock it opened with, and the speed of its counter. Use the toggle: with localised sourcing, stock risk eases, but the counter stays exposed either way. Say clearly that this is our reading, not a Chagee statement. On the marketplace weeks: Chagee has one closed app-to-store channel, so seller and channel-conflict topics do not apply; the franchise revenue share is the one overlap and is out of scope.</p><p class="src"><b>Sources:</b> Scale facts: L-jiemian. Direct sourcing and HQ distribution: L-prn (company release). Yunnan plantations and tea-latte share: L-prometheus (SECONDARY). Narrow menu choice: L-chainreact (secondary). Semi-automation: L-unsw, L-cyberrt. GM-led forecasting: I-leeyen (INFORMAL - check with Lee Yen before presenting).</p></div>
+</section>
+<section class="slide content s2" aria-label="Slide 3" data-kicker="2 · Predict">
+  <p class="kicker" data-k="s2.kicker">2 · Predict</p>
+  <h2 data-k="s2.h">App-only ordering lets Chagee read a new market’s demand before the store opens, and tell opening hype from repeat habit</h2>
+  
+  <div class="grid"><div class="points"><div class="point"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></svg></span><div><h3 data-k="s2.p0.t">Every order is tied to a member</h3><p data-k="s2.p0.b">With app-only ordering (our understanding), each cup is linked to a member account, so a pre-launch waitlist is a demand signal, not a guess.</p></div></div><div class="point"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l4-6 4 3 5-8 5 6"/><path d="M3 21h18"/></svg></span><div><h3 data-k="s2.p1.t">More signal, a narrower band</h3><p data-k="s2.p1.b">The forecast is a range, not a number. As sign-ups build before launch, the band narrows from ±50% to ±15% of the base (illustrative).</p></div></div><div class="point"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 00-14.3-4.9L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0014.3 4.9L20 16"/><path d="M20 20v-4h-4"/></svg></span><div><h3 data-k="s2.p2.t">Hype versus habit</h3><p data-k="s2.p2.b">Opening crowds are not steady demand: the Kuala Lumpur store reportedly sold 1,000+ cups on its first day (secondary source). Member IDs separate first orders from repeat orders.</p></div></div><div class="point"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5L2.5 20h19L12 3.5z"/><path d="M12 10v4.5"/><path d="M12 17.3v.4"/></svg></span><div><h3 data-k="s2.p3.t">Blind spot: tourists and non-app orders</h3><p data-k="s2.p3.b">Visitors and tourist exceptions are outside the member signal, so the forecast understates demand where tourists matter. We name this gap rather than model it.</p></div></div></div><div class="right"><div class="explainer" data-widget="band"><div class="exhead"><span class="tag">● INTERACTIVE EXPLAINER</span><span class="ex-title" data-k="s2.ex">Demand range before opening</span></div><p class="caption" data-k="s2.cap">Weekly cups at one new store. The band covers 80% of likely outcomes; its half-width is the uncertainty that slides 3 to 5 use.</p><div class="body"></div><p class="printonly pnote">Printed at the default signal strength (50%) with opening hype removed.</p></div><div class="view"><p class="vk" data-k="s2.vk">Our view</p><p class="vl" data-k="s2.vl">Hand on a demand band, not a single number.</p><p class="vb" data-k="s2.vb">Our contribution, to our knowledge based on public sources: using app-only member data to separate opening hype from repeat demand before launch. Tourist demand stays a named blind spot.</p></div></div></div>
+  <div class="foot"><span>OPIM639 · Chagee group project · Group [TBC] · <span class="assume">explainer figures are illustrative assumptions</span></span><span>3</span></div>
+  <div class="notes"><p class="nk">SPEAKER NOTES</p><p data-k="s2.notes">About 1.5 minutes. Because Chagee orders go through the app (our understanding from an industry conversation, to be confirmed), every cup is tied to a member. That turns a pre-launch waitlist into a demand signal. Move the slider: with no signal the band is wide; as sign-ups build it narrows. The width of this band is the uncertainty we carry into the next three slides. Toggle the hype: opening crowds, like the reported opening day in Kuala Lumpur, are not steady demand, and member IDs let us separate first orders from repeat orders. Be upfront about the blind spot: tourists and non-app orders are invisible to this signal, so the forecast understates demand in tourist areas. Novelty: AI forecasting and siting exist, e.g. Starbucks Deep Brew; our point is using a closed app channel to read demand before the store exists, to our knowledge.</p><p class="src"><b>Sources:</b> App-only ordering with tourist exceptions: I-leeyen (INFORMAL - check before presenting). Kuala Lumpur opening day: L-gabgrowth (secondary). Not novel - AI forecasting and siting: L-starbucks.</p></div>
+</section>
+<section class="slide content s3" aria-label="Slide 4" data-kicker="3 · Provision">
+  <p class="kicker" data-k="s3.kicker">3 · Provision</p>
+  <h2 data-k="s3.h">The wider the demand range, the costlier the opening-stock decision, especially with fresh milk</h2>
+  
+  <div class="grid"><div class="points"><div class="point"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M7 21h10"/><path d="M4 7h16"/><path d="M4 7l-2.5 6h5L4 7z"/><path d="M20 7l-2.5 6h5L20 7z"/></svg></span><div><h3 data-k="s3.p0.t">Two ways to be wrong</h3><p data-k="s3.p0.b">Too much fresh milk expires; too little turns customers away. Week 1 newsvendor logic: stock up to the point where the next litre is as likely to be wasted as to save a sale.</p></div></div><div class="point"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg></span><div><h3 data-k="s3.p1.t">Here a stockout costs more than waste</h3><p data-k="s3.p1.b">A missed cup loses S$3.82; a spare litre of milk wastes S$2.55. So the best order sits high in the band, at the 91% point of demand.</p></div></div><div class="point"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/></svg></span><div><h3 data-k="s3.p2.t">Shelf life caps the buffer</h3><p data-k="s3.p2.b">Fresh milk keeps about 7 days (illustrative), so extra stock cannot be carried forward. A narrower band from slide 2 is the cheaper fix.</p></div></div></div><div class="right"><div class="explainer" data-widget="stock"><div class="exhead"><span class="tag">● INTERACTIVE EXPLAINER</span><span class="ex-title" data-k="s3.ex">Opening stock calculator</span></div><p class="caption" data-k="s3.cap">Expected cost of the first fresh-milk order at one store, using slide 2’s band. Overseas milk sourcing is unknown; figures are generic.</p><div class="body"></div><p class="printonly pnote">Printed at the band from slide 2 and the default of 3 days of stock.</p></div><div class="view"><p class="vk" data-k="s3.vk">Our view</p><p class="vl" data-k="s3.vl">Narrow the band before you stock the store.</p><p class="vb" data-k="s3.vb">From no signal to the default signal, the expected cost of the best opening order falls from S$1,064 to S$694 per store (illustrative). Hand-off to slide 4: the same band sizes the counter.</p></div></div></div>
+  <div class="foot"><span>OPIM639 · Chagee group project · Group [TBC] · <span class="assume">explainer figures are illustrative assumptions</span></span><span>4</span></div>
+  <div class="notes"><p class="nk">SPEAKER NOTES</p><p data-k="s3.notes">About 1 minute. This is Week 1 newsvendor logic applied to fresh milk. Too much expires, too little loses sales, and here a lost cup costs more than a wasted litre, so the best order sits high in the band. Show the curve: the slider is days of opening stock; the dot marks the cheapest level. Then go back to slide 2 in your head: a wider band pushes the best order up and makes even the best decision more expensive. That is the value of the pre-launch signal in stock terms. Caveats: we assume the first order covers one shelf life before regular deliveries, and milk costs are generic because Chagee&#x27;s overseas milk sourcing is not public.</p><p class="src"><b>Sources:</b> All figures: assumptions.json (illustrative). Overseas milk sourcing: unknown, deliberately not claimed (brief.md section 9).</p></div>
+</section>
+<section class="slide content s4" aria-label="Slide 5" data-kicker="4 · Perform">
+  <p class="kicker" data-k="s4.kicker">4 · Perform</p>
+  <h2 data-k="s4.h">At a new store’s volume, a mixed people-and-machine counter beats full automation, because machines sit idle, not because demand is uncertain</h2>
+  <p class="sub" data-k="s4.sub">We tested the hypothesis that mixed wins only until demand becomes predictable. Our simulator rejected the uncertainty part.</p>
+  <div class="grid"><div class="points"><div class="point"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M4 7.5l8 4.5 8-4.5"/><path d="M12 12v9"/></svg></span><div><h3 data-k="s4.p0.t">Machines come in whole units, so they sit idle</h3><p data-k="s4.p0.b">Even one machine per station serves about 240 cups an hour against a forecast peak of about 61. The fully automated line is busy only 21% to 22% of open hours.</p></div></div><div class="point"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 4.5a3.5 3.5 0 010 7"/><path d="M18 14c2.2.6 3.5 2.8 3.5 6"/></svg></span><div><h3 data-k="s4.p1.t">People flex; machines cannot be returned</h3><p data-k="s4.p1.b">Rosters follow the hour and the real demand, and staff rebalance across stations like a bucket brigade. A mixed counter buys 3 machines instead of 6, with similar staff hours.</p></div></div><div class="point"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><div><h3 data-k="s4.p2.t">Where machines still win</h3><p data-k="s4.p2.b">Big surges: at a 2.5× peak, people-based counters lose about 11% of orders and full automation is cheaper. Also steady high volume, consistency and labour scarcity.</p></div></div></div><div class="right"><div class="explainer" data-widget="cross"><div class="exhead"><span class="tag">● INTERACTIVE EXPLAINER</span><span class="ex-title" data-k="s4.ex">Cost per cup by counter setup</span></div><div class="body"></div><div class="shift"><h4><span data-k="s4.shift">What could shift the balance</span></h4><div class="shiftrows"></div></div><p class="printonly pnote">Printed at the default band (±32.5%) and moderate surge.</p></div><div class="view"><p class="vk" data-k="s4.vk">Our view</p><p class="vl" data-k="s4.vl">Start lean and mixed; automate once volume and peaks are proven, not just once the forecast narrows.</p><p class="vb" data-k="s4.vb">In our model an all-human counter is cheaper still (S$0.61 vs S$0.64 per cup at the default band), but it is the most exposed to surges and turnover. Machine breakdowns are not modelled, which flatters automation.</p></div></div></div>
+  <div class="foot"><span>OPIM639 · Chagee group project · Group [TBC] · <span class="assume">explainer figures are illustrative assumptions</span></span><span>5</span></div>
+  <div class="notes"><p class="nk">SPEAKER NOTES</p><p data-k="s4.notes">About 2 minutes, the centrepiece. Our hypothesis was: a mixed counter beats full automation until demand becomes predictable. We built a simulator to test it, and it only half holds. Mixed does beat full automation at the default settings, at every level of uncertainty. But the reason is not uncertainty. Machines come in whole units: one per station already has several times the peak demand of a new store, so the automated line sits idle most of the day and its fixed cost is spread over too few cups. Move the uncertainty slider: the lines barely move. Switch to a large surge: now the people-based counters overflow and full automation wins. So the real trigger for automation is proven volume and peaks. Be honest about limits: all-human is cheapest in our model; the pooled staffing formula slightly overstates a real bucket brigade (our Week 5 check missed its tolerance, gap 4.7 to 6.8 percent); breakdowns are not modelled. To our knowledge, simulating a store before it exists, fed by its demand forecast, is our contribution; store digital twins today replicate existing stores.</p><p class="src"><b>Sources:</b> All figures: sim/ with assumptions.json (illustrative). Semi-automation context: L-unsw, L-cyberrt. Not novel - beverage automation: L-gongcha (company-reported), L-slate; store digital twins: L-mosimtec. Labour cost floor: L-mom-pwm, L-cpf.</p></div>
+</section>
+<section class="slide content s5" aria-label="Slide 6" data-kicker="5 · Benefit, risks, next step">
+  <p class="kicker" data-k="s5.kicker">5 · Benefit, risks, next step</p>
+  <h2 data-k="s5.h">Even modest per-store savings compound across about 200 overseas openings a year, if the risks are managed</h2>
+  
+  <div class="grid g5"><div class="left"><div class="explainer" data-widget="benefit"><div class="exhead"><span class="tag">● INTERACTIVE EXPLAINER</span><span class="ex-title" data-k="s5.ex">Benefit calculator</span></div><p class="caption" data-k="s5.cap">A sizing of the prize, not a forecast: first-year, new stores only, each term an assumption you can move.</p><div class="body"></div><p class="printonly pnote">Printed at the linked defaults: saving per cup from slide 4, waste avoided from slide 3.</p></div><div class="view"><p class="vk" data-k="s5.vk">Our conclusion</p><p class="vl" data-k="s5.vl">The saving per cup is small; the case is the count of openings.</p><p class="vb" data-k="s5.vb">Our simulator rejected the claim we set out to prove; what survives is simpler: start lean and mixed, read demand before opening, and automate on proven volume. To our knowledge, based on public sources, simulating a store before it exists is the new part.</p></div></div><div class="right"><div class="risks"><h4>RISKS <span class="screenonly">· click each</span></h4><div class="risk on"><button class="rt" aria-expanded="true"><span class="rn">1</span><span data-k="s5.r0.t">Staff dependence and turnover</span></button><p class="rb" data-k="s5.r0.b">A people-based counter relies on trained staff, and new hires are slower. Keep SOP-led training and the flexible worker role; track turnover as in slide 4.</p></div><div class="risk "><button class="rt" aria-expanded="false"><span class="rn">2</span><span data-k="s5.r1.t">Tourist and non-app demand is invisible</span></button><p class="rb" data-k="s5.r1.b">The member signal misses visitors, so the band sits too low in tourist areas. Widen it there and log walk-up exceptions after opening.</p></div><div class="risk "><button class="rt" aria-expanded="false"><span class="rn">3</span><span data-k="s5.r2.t">Opening crowds read as steady demand</span></button><p class="rb" data-k="s5.r2.b">Sizing to opening-week queues overbuys machines and staff. Separate first orders from repeat orders before committing capex.</p></div><div class="risk "><button class="rt" aria-expanded="false"><span class="rn">4</span><span data-k="s5.r3.t">Automation versus the premium teahouse</span></button><p class="rb" data-k="s5.r3.b">Heavy automation could undercut the premium experience. The mixed setup keeps people at the customer-facing steps: finishing and handover.</p></div></div><div class="next"><h4><span data-k="s5.nt">Next step with real Chagee data</span></h4><ul><li data-k="s5.n0">Replace every assumption with store actuals: station times, wages, machine costs.</li><li data-k="s5.n1">Back-test the waitlist signal on recent openings, such as Korea (launch planned for Q2 2026).</li><li data-k="s5.n2">Pilot mixed versus automated counters in paired new stores.</li></ul></div></div></div>
+  <div class="foot"><span>OPIM639 · Chagee group project · Group [TBC] · <span class="assume">explainer figures are illustrative assumptions</span></span><span>6</span></div>
+  <div class="notes"><p class="nk">SPEAKER NOTES</p><p data-k="s5.notes">About 1 minute. The benefit is a formula, not a forecast: stores opened, times cups per store, times the saving per cup from slide 4, plus the stock cost avoided from slide 3. Each term is a slider; the defaults are linked to the earlier slides. The per-cup saving is cents, but it repeats across about 200 overseas openings a year. Then the risks: click through each. Staff turnover; tourists invisible to the app signal; opening crowds mistaken for steady demand; and automation versus the premium teahouse feel. Close with the next step: with Chagee&#x27;s real data we would replace every assumption, back-test the waitlist signal on recent openings such as Korea, and pilot mixed against automated counters.</p><p class="src"><b>Sources:</b> Overseas openings planned for 2026 and Korea launch: L-jiemian. Everything else: assumptions.json and sim/ (illustrative).</p></div>
+</section></div></div>
+<div id="toolbar" role="toolbar" aria-label="Slide controls">
+  <button id="prev" aria-label="Previous slide">◀</button><span class="count" id="count"></span>
+  <button id="next" aria-label="Next slide">▶</button><span class="sep"></span>
+  <button id="notesb" title="Speaker notes (N)">Notes</button>
+  <button id="editb" title="Edit text (E)">✎ Edit</button>
+  <button id="dl" class="editonly" title="Save a copy with your edits built in">⤓ Download</button>
+  <button id="reset" class="editonly" title="Undo all edits made in this browser">Reset</button>
+  <span class="sep"></span><button id="printb" title="Print or save as PDF (each slide is one page)">⎙ Print</button>
+  <button id="fs" aria-label="Full screen">⛶ Full screen</button>
+</div>
+<div id="toast" role="status"></div>
+<script>
+const RAW = {"_meta": {"status": "APPROVED with changes (Singapore reference market, demand floor 0, machine-speed range to >= 30 s). Monetary assumptions first approved in USD are converted at fx_sgd_per_usd; the approved USD figure is kept as value_usd.", "currency": "SGD. Reference market: Singapore (illustrative; not a Chagee figure)", "fx_sgd_per_usd": {"value": 1.2725, "unit": "SGD per USD", "range": null, "source": "L-xrates", "rationale": "September 2026 monthly average, 1.272467, rounded. Used only to convert the USD assumptions approved earlier, so their size relative to each other is unchanged. Secondary aggregator, not MAS: the MAS statistics page did not return data when fetched."}, "footer": "explainer figures are illustrative assumptions", "conventions": {"value": "the default used by the deck and the simulator", "range": "[low, high] used by slide sliders and by the one-at-a-time sensitivity sweep; null = structural, excluded from the sweep", "source": "\"assumption\" or a ledger ID from _sources", "rationale": "why this value; any ledger fact named here is a sanity check, not the source of the number"}}, "_sources": {"L-jiemian": "Jiemian (en.jiemian.com), earnings-call coverage: 7,453 stores end-2025; about 200 overseas stores planned for 2026; 345 overseas stores; 7 overseas markets. (brief.md section 9)", "L-gabgrowth": "GabGrowth (secondary): first overseas store, Kuala Lumpur, reportedly sold 1,000+ cups on opening day. (brief.md section 9)", "L-unsw": "UNSW BusinessThink, Oct 2024: Chagee semi-automation, baristas scan a QR code and the machine dispenses the formulation. (brief.md section 9)", "L-mom-pwm": "Ministry of Manpower, Progressive Wage Model, Food Services sector, https://www.mom.gov.sg/employment-practices/progressive-wage-model/food-services-sector (page updated 1 Sep 2026; fetched 4 Oct 2026). Category A (quick service), Food Service Counter Attendant / Kitchen Assistant, 1 Jul 2026 - 30 Jun 2027: monthly gross wage >= S$2,295 full-time; part-time >= S$12.04 per hour (pro-rated on a 44-hour week). A legal floor, not a market wage. Added to the ledger at the user's request.", "L-cpf": "CPF Board, 'How much CPF contributions to pay', https://www.cpf.gov.sg/employer/employer-obligations/how-much-cpf-contributions-to-pay (page updated 11 Aug 2026; fetched 4 Oct 2026). Employer contribution 17% of wages from 1 Jan 2026, Singapore Citizen / SPR (3rd year on), age 55 and below, wages above S$750/month. Added to the ledger at the user's request.", "L-prn": "PR Newswire, 21 May 2024 (company release): Chagee says it sources all tea and milk directly for domestic operations, with distribution managed through HQ. (brief.md section 9)", "L-prometheus": "Prometheus Capital Substack (SECONDARY - flag when used): own Yunnan plantations, cold chain to 6,000+ stores; tea lattes about 91% of China sales. (brief.md section 9)", "L-chainreact": "Chainreact Substack (secondary): founder avoided fruit tea partly for supply chain complexity. (brief.md section 9)", "L-triunity": "Studio Triunity, citing the Mixue prospectus: Chagee's pure milk-tea menu seen as simpler to export; Mixue has 7 SEA warehouses and 3 planned local factories. (brief.md section 9)", "L-cyberrt": "Cyber-RT / Citizens Journal, Oct 2022: Chagee Express (Malaysia), semi-automated machine, three drink categories for speed. (brief.md section 9)", "L-gongcha": "FastCasual and franchise.org, Jan-Feb 2026 (company-reported): Gong cha Super Wu, up to 65% higher peak-hour productivity, about one minute off prep, stores with as few as two staff, 40-store pilot in 13 countries. (brief.md section 9)", "L-starbucks": "Constellation Research; Harvard D3: Starbucks Deep Brew - forecasting, scheduling, replenishment, order sequencing; location analytics for new stores. (brief.md section 9)", "L-mosimtec": "MOSIMTEC, Winter Simulation Conference 2025: store digital twins replicate existing layouts. (brief.md section 9)", "L-slate": "Slate, Aug 2021: bubble tea shaker robot needed about one worker vs four to six; two earlier all-robot shops closed within about a year. (brief.md section 9)", "I-leeyen": "INFORMAL - call with Lee Yen. Do not cite without checking with her: Yunnan standard sourcing, GM-led new-market forecasting, app-only ordering with tourist exceptions, sub-one-minute fulfilment target.", "L-xrates": "X-Rates monthly averages, https://x-rates.com/average/?amount=1&from=USD&to=SGD&year=2026 (fetched 4 Oct 2026). September 2026 USD to SGD average 1.272467 (30 days). Secondary aggregator; used only for converting the earlier USD assumptions."}, "facts": {"_note": "Chagee facts quoted on slides. Not assumptions: each carries its ledger source and appears with that source in the speaker notes.", "stores_end_2025": {"value": 7453, "unit": "stores", "source": "L-jiemian", "rationale": "Store count at end-2025."}, "overseas_stores": {"value": 345, "unit": "stores", "source": "L-jiemian", "rationale": "Overseas stores (earnings-call coverage)."}, "overseas_markets": {"value": 7, "unit": "markets", "source": "L-jiemian", "rationale": "Overseas markets."}, "gmv_2025_rmb_bn": {"value": 31.58, "unit": "RMB bn", "source": "L-jiemian", "rationale": "Full-year 2025 GMV."}, "net_revenue_2025_rmb_bn": {"value": 12.91, "unit": "RMB bn", "source": "L-jiemian", "rationale": "Full-year 2025 net revenue."}, "tea_latte_share_china": {"value": 0.91, "unit": "share of China sales", "source": "L-prometheus", "rationale": "Secondary source; flagged as such wherever shown."}, "kl_opening_day_cups": {"value": 1000, "unit": "cups (reported, '1,000+')", "source": "L-gabgrowth", "rationale": "Secondary; one store, one day."}}, "predict": {"signal_strength_default": {"value": 0.5, "unit": "share, 0 = no pre-launch signal, 1 = strong signal", "range": [0, 1], "source": "assumption", "rationale": "ADDED DURING DECK BUILD - needs approval. Slide 2 slider default. Band half-width u = uncertainty_no_signal - signal x (uncertainty_no_signal - uncertainty_strong_signal), a straight line between the two approved end points. At 0.5, u = 32.5%. This u feeds slides 3 and 5."}}, "predict_toggles": {"remove_hype_default": {"value": true, "unit": "boolean", "range": null, "source": "assumption", "rationale": "ADDED DURING DECK BUILD - needs approval. Slide 2 starts with opening-week hype removed, so slides 3-5 receive the steady-demand band by default. The hype band stays visible on the chart for comparison."}}, "store": {"open_hours_per_day": {"value": 12, "unit": "hours/day", "range": null, "source": "assumption", "rationale": "Generic mall/high-street trading day (10:00-22:00). Structural: sets the length of the simulated day."}, "open_days_per_year": {"value": 360, "unit": "days/year", "range": null, "source": "assumption", "rationale": "Allows for a few closure days. Only converts cups/year to cups/day."}, "cups_per_store_per_year": {"value": 200000, "unit": "cups/store/year", "range": [100000, 300000], "source": "assumption", "rationale": "About 555 cups/day after the opening period. No public per-store cup figure in the ledger; GMV per store cannot be turned into cups without an average ticket price, which the ledger does not have. Wide range on purpose."}, "hourly_demand_share": {"value": [0.04, 0.06, 0.1, 0.11, 0.08, 0.08, 0.09, 0.1, 0.1, 0.09, 0.08, 0.07], "unit": "share of daily cups per open hour (10:00 to 22:00), sums to 1", "range": null, "source": "assumption", "rationale": "Lunch peak and an evening plateau, typical of a tea shop. Peak hour = 11% of the day. Structural; the surge setting tests peaks above it."}}, "demand": {"uncertainty_definition": {"value": "half_width_pct", "unit": "text", "range": null, "source": "assumption", "rationale": "Uncertainty u = (high - low) / 2 / base, as a % of the forecast base. This is exactly the band width that slide 2 outputs, and it is the x-axis of the slide 4 crossover chart."}, "band_coverage": {"value": 0.8, "unit": "probability", "range": null, "source": "assumption", "rationale": "The low-high band is an 80% interval: true demand = base x (1 + u x z / 1.2816), z standard normal. So 1 in 10 stores lands above high and 1 in 10 below low. An 80% band is a common planning interval; a 95% band would make the same u mean less spread."}, "demand_floor_share_of_base": {"value": 0.0, "unit": "share of base", "range": null, "source": "assumption", "rationale": "Demand draws are floored at zero (user change; was 0.20). A draw can be a store with no demand. At u = 0.60, P(z < -2.14) is about 1.6% of draws."}, "uncertainty_no_signal": {"value": 0.5, "unit": "half-width, share of base", "range": [0.35, 0.7], "source": "assumption", "rationale": "Slide 2: band before any pre-launch app signal, i.e. a judgement-led forecast in a new market. Illustrative."}, "uncertainty_strong_signal": {"value": 0.15, "unit": "half-width, share of base", "range": [0.05, 0.25], "source": "assumption", "rationale": "Slide 2: band with a strong pre-launch waitlist signal. It does not reach zero because tourist and non-app demand stay invisible (named blind spot)."}, "opening_hype_multiplier": {"value": 1.5, "unit": "x steady-state demand", "range": [1.0, 2.5], "source": "assumption", "rationale": "Slide 2 toggle 'remove opening-week hype'. Sanity check only: L-gabgrowth reports 1,000+ cups on the KL opening day, about 1.8x our 555/day base, but that is one day, one store, from a secondary source."}, "opening_hype_weeks": {"value": 2, "unit": "weeks", "range": [1, 6], "source": "assumption", "rationale": "How long the hype lasts before demand settles. Illustrative."}, "uncertainty_sweep": {"value": {"from": 0.0, "to": 0.6, "step": 0.05}, "unit": "half-width, share of base", "range": null, "source": "assumption", "rationale": "x-axis of the crossover chart. Covers strong-signal to no-signal bands from slide 2."}}, "surge": {"surge_multiplier": {"value": {"none": 1.0, "moderate": 1.5, "large": 2.5}, "unit": "x forecast arrival rate", "range": null, "source": "assumption", "rationale": "Slide 4 toggle. Applied to the two busiest hours. Default = moderate. The counter is sized to the forecast curve without the surge, so a surge is the unplanned peak that piles up behind fixed capacity."}, "surge_hours": {"value": 2, "unit": "busiest forecast hours that get the surge", "range": null, "source": "assumption", "rationale": "This number was only in the surge_multiplier rationale; it now has its own field so the code reads it from here. With the default curve these are 12:00-14:00 (ties go to the earlier hour)."}, "surge_default": {"value": "moderate", "unit": "text", "range": null, "source": "assumption", "rationale": "Default toggle position and printed state."}}, "stations": {"list": {"value": ["ticket", "cup_ice", "tea_milk", "topping_finish", "shake_seal", "handover"], "unit": "text", "range": null, "source": "assumption", "rationale": "Six stations from brief.md section 7."}, "human_seconds_per_cup": {"value": {"ticket": 5, "cup_ice": 10, "tea_milk": 15, "topping_finish": 12, "shake_seal": 10, "handover": 8}, "unit": "seconds of one average worker per cup", "range": [0.8, 1.25], "source": "assumption", "rationale": "Totals 60 s, so one average worker makes about 1 cup/min. Range is a multiplier on all six. Stylised benchmark: Chagee already uses QR-scan dispensing (L-unsw), so 'all-human' is a reference case, not Chagee's current counter."}, "machine_seconds_per_cup": {"value": {"ticket": 2, "cup_ice": 8, "tea_milk": 10, "topping_finish": 15, "shake_seal": 8, "handover": 6}, "unit": "seconds per cup per machine unit", "range": [0.7, 2.0], "source": "assumption", "rationale": "Topping/finish is the hardest step to automate, so it is the slowest machine (4 cups/min per unit). Range is a multiplier on all six. The high end, 2.0, puts the slowest station at 30 s (2 cups/min per unit), as the user asked; was 1.3. No public per-station machine times; Gong cha's company-reported productivity figures are not per station, so they are not used."}, "mixed_machine_stations": {"value": ["ticket", "tea_milk", "shake_seal"], "unit": "text", "range": null, "source": "assumption", "rationale": "Fixed-time steps go to machines; cup/ice, topping/finish and handover (more variable) stay with people, who share the work including one flexible worker."}, "machine_speed_variation_cv": {"value": 0.0, "unit": "coefficient of variation", "range": null, "source": "assumption", "rationale": "Machines run at a fixed speed (brief.md section 2). Machine breakdowns are not modelled; this flatters automation, and the slide will say so."}}, "people": {"human_speed_variation_cv": {"value": 0.25, "unit": "coefficient of variation, minute to minute", "range": [0.1, 0.4], "source": "assumption", "rationale": "Random minute-to-minute variation in a worker's pace."}, "worker_speed_spread": {"value": 0.2, "unit": "+/- share around average speed", "range": [0.0, 0.4], "source": "assumption", "rationale": "Workers differ in speed (slowest 0.8x, fastest 1.2x by default). This is what the bucket brigade rebalances."}, "coordination_loss_human": {"value": 0.9, "unit": "multiplier on pooled throughput", "range": [0.75, 1.0], "source": "assumption", "rationale": "Pooling assumes perfect rebalancing. Handovers, walking and bumping at a small counter lose some of that. The Week 5 engine at realistic walk-back speed gives an information-only calibration point (see validation)."}, "coordination_loss_mixed": {"value": 0.9, "unit": "multiplier on human-pool throughput in the mixed setup", "range": [0.75, 1.0], "source": "assumption", "rationale": "Same as all-human by default; kept separate because people also wait on machines in the mixed line."}, "new_staff_share": {"value": 0.25, "unit": "share of roster in first months", "range": [0.0, 0.5], "source": "assumption", "rationale": "Staff turnover lever on slide 4. A new store, and churn, mean a share of staff are new."}, "new_staff_relative_speed": {"value": 0.7, "unit": "x average speed", "range": [0.5, 0.9], "source": "assumption", "rationale": "New staff are slower until trained. With defaults, average speed falls to 0.925x."}, "min_staff_on_shift": {"value": {"all_human": 2, "mixed": 1, "all_machine": 0}, "unit": "workers per open hour", "range": null, "source": "assumption", "rationale": "A counter never runs with fewer people than this. All-machine uses attendant hours instead."}, "all_machine_attendant_per_open_hour": {"value": 1.0, "unit": "workers per open hour", "range": [0.5, 2.0], "source": "assumption", "rationale": "Restocking, cleaning, exceptions, customer help. Approved: all-machine is not zero labour."}, "staffing_flexibility": {"value": 0.7, "unit": "share of roster gap closed after demand is known", "range": [0.3, 1.0], "source": "assumption", "rationale": "After opening, rosters move toward real demand; this share of the gap is closed (hiring, part-timers, shift changes). Machines get 0."}}, "costs": {"labour_cost_per_hour": {"value": 14.09, "unit": "SGD per worker-hour, loaded with employer CPF only", "range": [14.09, 25.45], "source": "L-mom-pwm, L-cpf", "rationale": "S$12.04/hr PWM part-time floor for a food service counter attendant (L-mom-pwm) x 1.17 employer CPF (L-cpf) = S$14.09. The full-time floor gives the same: 2,295 x 1.17 x 12 / (44 x 52) = S$14.08. This is a FLOOR, not a fully loaded market rate: it leaves out Skills Development Levy, leave, benefits, recruitment, training, overtime, any pay above the floor, and the levies for foreign workers. The real loaded cost is likely higher. The low end of the range is the floor because pay cannot legally go below it; the high end, 25.45, is the earlier USD 20 converted. Both are verified components; the combination is ours.", "placeholder_market_rate": "PLACEHOLDER - user to supply a sourced, fully loaded market rate for Singapore beverage counter staff. When supplied, it replaces value; the floor stays as the low end of the range."}, "machine_cost_per_unit_per_month": {"value": 1908.75, "value_usd": 1500.0, "unit": "SGD per station machine unit per month", "range": [636.25, 3817.5], "source": "assumption", "rationale": "Amortised purchase plus maintenance, cleaning and consumables. One rate for every station. No Chagee or industry figure in the ledger. Converted from the approved USD 1,500 (range 500-3,000) at fx_sgd_per_usd."}, "lost_order_cost": {"value": 3.82, "value_usd": 3.0, "unit": "SGD per lost order", "range": [1.91, 7.64], "source": "assumption", "rationale": "Margin on the cup not sold plus some goodwill. Charged when an order balks because the wait would exceed the target."}, "capacity_safety_margin": {"value": 1.2, "unit": "x forecast peak rate", "range": [1.0, 1.5], "source": "assumption", "rationale": "Same sizing rule for all three setups: capacity for forecast peak x margin. Machines round up to whole units, staff to whole workers."}}, "service": {"target_wait_minutes": {"value": 5.0, "unit": "minutes", "range": [2.0, 10.0], "source": "assumption", "rationale": "A slider, not a claim. An order balks if the wait it would see on arrival exceeds this. The call with Lee Yen mentioned a sub-one-minute fulfilment target, but that is informal and may mean prep time, not total wait; not used or cited."}}, "provision": {"milk_litres_per_cup": {"value": 0.15, "unit": "litres per cup", "range": [0.1, 0.25], "source": "assumption", "rationale": "Milk in a tea latte. Illustrative; not a Chagee recipe figure."}, "milk_waste_cost_per_litre": {"value": 2.55, "value_usd": 2.0, "unit": "SGD per litre thrown away", "range": [1.27, 5.09], "source": "assumption", "rationale": "Purchase cost of expired fresh milk. Overseas milk sourcing is unknown (ledger: do not claim), so this is generic."}, "milk_shelf_life_days": {"value": 7, "unit": "days", "range": [3, 14], "source": "assumption", "rationale": "Generic chilled fresh milk. Stock held beyond this is wasted."}, "stockout_cost_per_cup": {"value": 3.82, "value_usd": 3.0, "unit": "SGD per cup not served for lack of stock", "range": [1.91, 7.64], "source": "assumption", "rationale": "Set equal to lost_order_cost by default: a missed cup is a missed cup."}, "opening_stock_days": {"value": 3, "unit": "days of forecast base demand", "range": [1, 14], "source": "assumption", "rationale": "Slide 3 slider default. The calculator also shows the cost-minimising level. ADDED DURING DECK BUILD, needs approval: the opening order is assumed to cover one milk shelf-life (milk_shelf_life_days) before regular replenishment starts; stock beyond that period's demand expires (waste), and demand beyond stock is a stockout. Demand for the period = days x forecast base x m, with m drawn from slide 2's band."}}, "benefit": {"overseas_stores_per_year": {"value": 200, "unit": "stores/year", "range": [50, 300], "source": "L-jiemian", "rationale": "About 200 overseas stores planned for 2026 (L-jiemian). The slide shows it as 'about 200' and as a slider."}, "saving_per_cup": {"value": "from_simulator", "unit": "SGD/cup", "range": null, "source": "assumption", "rationale": "Default = mixed vs all-machine cost-per-cup gap at the slide 2 default uncertainty and the default surge. Not hand-set."}, "waste_avoided": {"value": "from_provision", "unit": "SGD/store/year", "range": null, "source": "assumption", "rationale": "Default = slide 3 waste-plus-stockout saving from a narrower band. Not hand-set."}}, "simulation": {"monte_carlo_draws": {"value": 500, "unit": "demand draws per uncertainty point", "range": null, "source": "assumption", "rationale": "Enough for a smooth curve at build time; stability is checked across seeds."}, "base_seed": {"value": 639, "unit": "integer", "range": null, "source": "assumption", "rationale": "Fixed so every build gives the same numbers."}, "minute_step": {"value": 1, "unit": "minutes", "range": null, "source": "assumption", "rationale": "Queue updated once per simulated minute."}}, "validation": {"_note": "Fixed before anything is run (addition 4). Changing these after seeing results needs explicit sign-off.", "week5_comparison": {"value": {"tolerance_pct": 3.0, "engine": "Brigade() read from the ENGINE string in week5/build_opim639_deck.py, not modified", "settings": {"walk": 40, "busyFactor": null, "hiccup": 0, "bufferCap": 0}, "speed_sets": [[1.0, 1.5, 2.0], [1.0, 2.0, 3.0]], "pass_rule": "pooled throughput (sum of speeds, coordination loss = 1) within +/-3% of Week 5 measured throughput for both speed sets", "info_only": "same comparison at walk = 6 (Week 5 Option 1 default); the gap is reported as a calibration point for coordination_loss, not pass/fail"}, "unit": "mixed", "range": null, "source": "assumption", "rationale": "walk = 40 is Week 5's 'near-instant walk back, as the lecture assumes', which is what the pooled formula assumes too. 3% allows for simulation granularity."}, "cost_per_cup_aggregation": {"value": "ratio_of_sums", "unit": "text", "range": null, "source": "assumption", "rationale": "Fixed before any run. Cost per cup at a given u = (sum over simulated stores of machine + labour + lost-order cost) / (sum of cups served). This is the chain-wide cost per cup, and it matches slide 5 (saving per cup x cups). The alternative, the average of each store's own cost per cup, weights low-demand stores more and is not used for the headline."}, "peak_utilisation_definition": {"value": "forecast peak-hour arrival rate x surge multiplier, divided by the setup's nominal capacity in that hour, at the base forecast (u = 0, demand = base), before random noise", "unit": "text", "range": null, "source": "assumption", "rationale": "User check (4): does the fixed-speed mechanism ever bind? Reported for none / moderate / large surge, before the full sweep, alongside the simulated share of orders lost in the peak hours."}, "crossover_definition": {"value": "smallest u at which mixed cost/cup <= all-machine cost/cup and stays <= for every larger u in the sweep, linearly interpolated between grid points", "unit": "text", "range": null, "source": "assumption", "rationale": "If mixed is cheaper at u = 0: 'no crossover, mixed cheaper everywhere'. If never cheaper: 'no crossover, machines cheaper everywhere'. All-human is plotted and reported but is not part of the headline test."}, "crossover_stability": {"value": {"seeds": 20, "min_seeds_with_crossover": 18, "max_spread_pct_points": 10}, "unit": "mixed", "range": null, "source": "assumption", "rationale": "Pass if a crossover exists in at least 18 of 20 seeds and the crossover u differs by at most 10 percentage points across them. If it fails, the slide shows a crossover zone or none, not a single point."}, "sensitivity": {"value": "one-at-a-time: each parameter with a non-null range set to its low then high value, all others at default; report crossover u (or none) and cost/cup at the slide 2 default u", "unit": "text", "range": null, "source": "assumption", "rationale": "Shows which assumptions decide the headline; feeds the 'what could shift the balance' panel and Q&A. No pass/fail."}}};
+const DATA = {"generated": "2026-10-04T16:17:38.610Z", "sweeps": {"none": {"rows": [{"u": 0, "all_human": {"cost": 0.6080306962366608, "machine": 0, "labour": 0.6077423528988943, "lost": 0.00028834333776643536, "lostShare": 7.547685196832848e-05, "busy": null}, "mixed": {"cost": 0.6472970913430458, "machine": 0.34304862618797716, "labour": 0.30387773001107354, "lost": 0.0003707351439950539, "lostShare": 9.704166681642233e-05, "busy": 0.1287981481481482}, "all_machine": {"cost": 0.9898789135646304, "machine": 0.6860306723549856, "labour": 0.3038482412096449, "lost": 0, "lostShare": 0, "busy": 0.19321597222222203}}, {"u": 0.05, "all_human": {"cost": 0.6081690292752601, "machine": 0, "labour": 0.6078668934003998, "lost": 0.0003021358748602387, "lostShare": 7.908690572481352e-05, "busy": null}, "mixed": {"cost": 0.6474755972604243, "machine": 0.3431213935177695, "labour": 0.3039421884269021, "lost": 0.0004120153157525749, "lostShare": 0.00010784578053383661, "busy": 0.12877083333333328}, "all_machine": {"cost": 0.9900781881908896, "machine": 0.6861687786465355, "labour": 0.3039094095443541, "lost": 0, "lostShare": 0, "busy": 0.19317708333333342}}, {"u": 0.1, "all_human": {"cost": 0.6077647980113707, "machine": 0, "labour": 0.6073668556156698, "lost": 0.0003979423957008713, "lostShare": 0.00010416255104862955, "busy": null}, "mixed": {"cost": 0.6471032079606305, "machine": 0.34284405647160254, "labour": 0.3036965190214488, "lost": 0.0005626324675791211, "lostShare": 0.0001472642963101314, "busy": 0.12887500000000013}, "all_machine": {"cost": 0.9892389309330475, "machine": 0.6855871355657643, "labour": 0.30365179536728326, "lost": 0, "lostShare": 0, "busy": 0.19334097222222218}}, {"u": 0.15, "all_human": {"cost": 0.6079228506892999, "machine": 0, "labour": 0.6071683789810911, "lost": 0.0007544717082086951, "lostShare": 0.00019746668198529412, "busy": null}, "mixed": {"cost": 0.6473286264257215, "machine": 0.34273817048294886, "labour": 0.30360272359008494, "lost": 0.000987732352687677, "lostShare": 0.0002585018382352941, "busy": 0.12891481481481473}, "all_machine": {"cost": 0.9888233857996349, "machine": 0.6852991440716911, "labour": 0.3035242417279437, "lost": 0, "lostShare": 0, "busy": 0.1934222222222221}}, {"u": 0.2, "all_human": {"cost": 0.6083010227884492, "machine": 0, "labour": 0.6069849632155083, "lost": 0.0013160595729409647, "lostShare": 0.00034439956089055986, "busy": null}, "mixed": {"cost": 0.6477940321434492, "machine": 0.34252905328289535, "labour": 0.3036197626926442, "lost": 0.0016452161679096705, "lostShare": 0.00043049945111319984, "busy": 0.1289935185185185}, "all_machine": {"cost": 0.9880500527361853, "machine": 0.6847631894269335, "labour": 0.3032868633092518, "lost": 0, "lostShare": 0, "busy": 0.19357361111111107}}, {"u": 0.25, "all_human": {"cost": 0.6093536031674354, "machine": 0, "labour": 0.6075863404557533, "lost": 0.0017672627116820513, "lostShare": 0.0004624202862704191, "busy": null}, "mixed": {"cost": 0.6488521297505152, "machine": 0.3423005466048807, "labour": 0.30442792993128215, "lost": 0.0021236532143523237, "lostShare": 0.0005556212742008911, "busy": 0.12907962962962963}, "all_machine": {"cost": 0.9872673111873472, "machine": 0.6842207142780329, "labour": 0.30304659690931435, "lost": 0, "lostShare": 0, "busy": 0.1937270833333332}}, {"u": 0.3, "all_human": {"cost": 0.6114387901376193, "machine": 0, "labour": 0.6091662844036744, "lost": 0.002272505733944954, "lostShare": 0.000594543097211378, "busy": null}, "mixed": {"cost": 0.6508928910632067, "machine": 0.3420515026073867, "labour": 0.30622640359837505, "lost": 0.0026149848574449405, "lostShare": 0.0006840827202853807, "busy": 0.12917361111111106}, "all_machine": {"cost": 0.9864222115570608, "machine": 0.6836350221700107, "labour": 0.30278718938705007, "lost": 0, "lostShare": 0, "busy": 0.19389305555555542}}, {"u": 0.35, "all_human": {"cost": 0.6138221327737278, "machine": 0, "labour": 0.6115512709406224, "lost": 0.0022708618331053337, "lostShare": 0.0005941132680524538, "busy": null}, "mixed": {"cost": 0.6532639247034576, "machine": 0.34180526903902353, "labour": 0.30883187209902235, "lost": 0.0026267835654117237, "lostShare": 0.000687167153410067, "busy": 0.12926666666666672}, "all_machine": {"cost": 0.9857090706064275, "machine": 0.6831407833705548, "labour": 0.30256828723587265, "lost": 0, "lostShare": 0, "busy": 0.1940333333333333}}, {"u": 0.4, "all_human": {"cost": 0.6167543338534478, "machine": 0, "labour": 0.6143209341941438, "lost": 0.0024333996593040056, "lostShare": 0.0006366100870510647, "busy": null}, "mixed": {"cost": 0.6561381011009171, "machine": 0.3415752816709854, "labour": 0.31180108373538173, "lost": 0.0027617356945498278, "lostShare": 0.0007224451549680622, "busy": 0.12935370370370367}, "all_machine": {"cost": 0.9850110512649968, "machine": 0.6826570245273706, "labour": 0.3023540267376262, "lost": 0, "lostShare": 0, "busy": 0.19417083333333332}}, {"u": 0.45, "all_human": {"cost": 0.6194751346656365, "machine": 0, "labour": 0.6166487112490078, "lost": 0.0028264234166288375, "lostShare": 0.0007393543686199433, "busy": null}, "mixed": {"cost": 0.6587313582224024, "machine": 0.34115525401432717, "labour": 0.3144900410369354, "lost": 0.0030860631711397417, "lostShare": 0.0008072178130826434, "busy": 0.129512962962963}, "all_machine": {"cost": 0.9837163450891894, "machine": 0.6817597348325202, "labour": 0.3019566102566692, "lost": 0, "lostShare": 0, "busy": 0.1944263888888889}}, {"u": 0.5, "all_human": {"cost": 0.6224667092578818, "machine": 0, "labour": 0.6193036336965523, "lost": 0.003163075561329561, "lostShare": 0.0008273451848153629, "busy": null}, "mixed": {"cost": 0.6615208817409264, "machine": 0.3406377488194794, "labour": 0.31758360013277714, "lost": 0.0032995327886698616, "lostShare": 0.0008630066151953355, "busy": 0.12970972222222227}, "all_machine": {"cost": 0.9821692848100162, "machine": 0.6806875523777258, "labour": 0.3014817324322904, "lost": 0, "lostShare": 0, "busy": 0.19473263888888898}}, {"u": 0.55, "all_human": {"cost": 0.6265454493576568, "machine": 0, "labour": 0.6230439620797676, "lost": 0.0035014872778891372, "lostShare": 0.0009157802839987885, "busy": null}, "mixed": {"cost": 0.6657005992295639, "machine": 0.34041054358681694, "labour": 0.32154308745898325, "lost": 0.003746968183763734, "lostShare": 0.0009799205373527892, "busy": 0.12979629629629627}, "all_machine": {"cost": 0.9813993265273423, "machine": 0.6801539366080496, "labour": 0.30124538991929267, "lost": 0, "lostShare": 0, "busy": 0.19488541666666662}}, {"u": 0.6, "all_human": {"cost": 0.6292373128697265, "machine": 0, "labour": 0.6258789695110272, "lost": 0.00335834335869929, "lostShare": 0.000878375254711043, "busy": null}, "mixed": {"cost": 0.6683283321764838, "machine": 0.33971381280367347, "labour": 0.3249975973089878, "lost": 0.0036169220638225938, "lostShare": 0.0009459425819965078, "busy": 0.13006249999999994}, "all_machine": {"cost": 0.9794239707540183, "machine": 0.6787849260849002, "labour": 0.30063904466911817, "lost": 0, "lostShare": 0, "busy": 0.1952784722222222}}], "crossover": {"kind": "mixed_cheaper_everywhere", "u": null}}, "moderate": {"rows": [{"u": 0, "all_human": {"cost": 0.5755919459749551, "machine": 0, "labour": 0.5532070829352609, "lost": 0.022384863039694308, "lostShare": 0.005825773273004649, "busy": null}, "mixed": {"cost": 0.6132052595572541, "machine": 0.31239668609922716, "labour": 0.2767257717650702, "lost": 0.024082801692956828, "lostShare": 0.00626490191167334, "busy": 0.14143564814814824}, "all_machine": {"cost": 0.8958712149550973, "machine": 0.6208791030065675, "labour": 0.2749921119485299, "lost": 0, "lostShare": 0, "busy": 0.21349097222222238}}, {"u": 0.05, "all_human": {"cost": 0.5767441875685185, "machine": 0, "labour": 0.5532813036862559, "lost": 0.023462883882262493, "lostShare": 0.006104620908570536, "busy": null}, "mixed": {"cost": 0.6145953431725643, "machine": 0.3124549835649088, "labour": 0.27677741255353094, "lost": 0.025362947054124507, "lostShare": 0.006595722537336733, "busy": 0.14140925925925918}, "all_machine": {"cost": 0.8957400999115389, "machine": 0.6207882343758131, "labour": 0.27495186553572587, "lost": 0, "lostShare": 0, "busy": 0.21352222222222225}}, {"u": 0.1, "all_human": {"cost": 0.5816634637105664, "machine": 0, "labour": 0.5535493882735839, "lost": 0.028114075436982515, "lostShare": 0.0073059360730593605, "busy": null}, "mixed": {"cost": 0.619622653870093, "machine": 0.31261259785777457, "labour": 0.27691702970945886, "lost": 0.030093026302859524, "lostShare": 0.007816181608410926, "busy": 0.141337962962963}, "all_machine": {"cost": 0.8950909179544702, "machine": 0.6203383220396822, "labour": 0.274752595914788, "lost": 0, "lostShare": 0, "busy": 0.21367708333333324}}, {"u": 0.15, "all_human": {"cost": 0.5889899883951975, "machine": 0, "labour": 0.5542770598532726, "lost": 0.03471292854192482, "lostShare": 0.009005321326238231, "busy": null}, "mixed": {"cost": 0.6270903920520353, "machine": 0.3130299163941578, "labour": 0.2772866968640452, "lost": 0.03677377879383237, "lostShare": 0.00953485501172771, "busy": 0.141149537037037}, "all_machine": {"cost": 0.8947332514667781, "machine": 0.6200904430540124, "labour": 0.27464280841276567, "lost": 0, "lostShare": 0, "busy": 0.21376250000000022}}, {"u": 0.2, "all_human": {"cost": 0.597793816463179, "machine": 0, "labour": 0.5551278718655684, "lost": 0.04266594459761059, "lostShare": 0.011045724691073509, "busy": null}, "mixed": {"cost": 0.6363691179948, "machine": 0.3134359974777331, "labour": 0.2778315073172036, "lost": 0.04510161319986335, "lostShare": 0.011668933371851093, "busy": 0.1409666666666666}, "all_machine": {"cost": 0.8939636396685332, "machine": 0.6195570674136515, "labour": 0.27440657225488163, "lost": 0, "lostShare": 0, "busy": 0.21394652777777787}}, {"u": 0.25, "all_human": {"cost": 0.6022728331971279, "machine": 0, "labour": 0.5560582518536068, "lost": 0.04621458134352114, "lostShare": 0.011953444479396037, "busy": null}, "mixed": {"cost": 0.640133581143651, "machine": 0.31338865282694217, "labour": 0.2787148889779159, "lost": 0.04803003933879303, "lostShare": 0.012417183643952095, "busy": 0.1409879629629629}, "all_machine": {"cost": 0.8931519021413098, "machine": 0.6189944967457185, "labour": 0.27415740539559125, "lost": 0, "lostShare": 0, "busy": 0.21414097222222223}}, {"u": 0.3, "all_human": {"cost": 0.605866668416257, "machine": 0, "labour": 0.557620737844208, "lost": 0.048245930572049046, "lostShare": 0.012472301771390807, "busy": null}, "mixed": {"cost": 0.6430211525966588, "machine": 0.31317886184197574, "labour": 0.2803777671311114, "lost": 0.04946452362357169, "lostShare": 0.012783299425950162, "busy": 0.14108240740740735}, "all_machine": {"cost": 0.8922231149006774, "machine": 0.618350805354343, "labour": 0.27387230954633446, "lost": 0, "lostShare": 0, "busy": 0.21436388888888908}}, {"u": 0.35, "all_human": {"cost": 0.6096159698810237, "machine": 0, "labour": 0.5600438141963285, "lost": 0.04957215568469522, "lostShare": 0.012810758835927104, "busy": null}, "mixed": {"cost": 0.6459548744928403, "machine": 0.3130299163941578, "labour": 0.28283243080132586, "lost": 0.05009252729735667, "lostShare": 0.012943496038927613, "busy": 0.14114953703703717}, "all_machine": {"cost": 0.8916540674240264, "machine": 0.6179564298224882, "labour": 0.27369763760153815, "lost": 0, "lostShare": 0, "busy": 0.21450069444444422}}, {"u": 0.4, "all_human": {"cost": 0.6133230504951865, "machine": 0, "labour": 0.5627426984746253, "lost": 0.050580352020561235, "lostShare": 0.013067898718122934, "busy": null}, "mixed": {"cost": 0.6478469525204774, "machine": 0.3127857472936966, "labour": 0.28552105558123037, "lost": 0.04954014964555044, "lostShare": 0.01280259352008231, "busy": 0.14125972222222224}, "all_machine": {"cost": 0.8910857453458373, "machine": 0.6175625570244404, "labour": 0.2735231883213969, "lost": 0, "lostShare": 0, "busy": 0.21463749999999993}}, {"u": 0.45, "all_human": {"cost": 0.619661583427815, "machine": 0, "labour": 0.5652879227749672, "lost": 0.05437366065284775, "lostShare": 0.014034180854844442, "busy": null}, "mixed": {"cost": 0.6503304421824391, "machine": 0.31236703433378066, "labour": 0.2879519523451072, "lost": 0.05001145550355117, "lostShare": 0.012922818466707588, "busy": 0.14144907407407406}, "all_machine": {"cost": 0.8897845120020699, "machine": 0.6166607437082028, "labour": 0.27312376829386714, "lost": 0, "lostShare": 0, "busy": 0.21495138888888898}}, {"u": 0.5, "all_human": {"cost": 0.6255835025214523, "machine": 0, "labour": 0.5682046957888569, "lost": 0.0573788067325954, "lostShare": 0.014798349501721151, "busy": null}, "mixed": {"cost": 0.6513705661708986, "machine": 0.31183018793946204, "labour": 0.29072571686227544, "lost": 0.048814661369161176, "lostShare": 0.012617472182522656, "busy": 0.14169259259259256}, "all_machine": {"cost": 0.8885300693299631, "machine": 0.6157913584349302, "labour": 0.272738710895033, "lost": 0, "lostShare": 0, "busy": 0.2152548611111112}}, {"u": 0.55, "all_human": {"cost": 0.6320151149997415, "machine": 0, "labour": 0.5720117750301288, "lost": 0.060003339969612796, "lostShare": 0.015464765030352462, "busy": null}, "mixed": {"cost": 0.6529350522193228, "machine": 0.311480091383812, "labour": 0.2942161227154065, "lost": 0.047238838120104404, "lostShare": 0.012215133354180839, "busy": 0.14185185185185192}, "all_machine": {"cost": 0.8878941548539784, "machine": 0.6153506410607726, "labour": 0.27254351379320574, "lost": 0, "lostShare": 0, "busy": 0.21540902777777768}}, {"u": 0.6, "all_human": {"cost": 0.6368862361570582, "machine": 0, "labour": 0.5747787089941592, "lost": 0.0621075271628989, "lostShare": 0.01599840466250249, "busy": null}, "mixed": {"cost": 0.6524931581739093, "machine": 0.31056683837670557, "labour": 0.29711325378049697, "lost": 0.04481306601670676, "lostShare": 0.011595144513132587, "busy": 0.14226898148148148}, "all_machine": {"cost": 0.8858465259596171, "machine": 0.613931542009482, "labour": 0.2719149839501351, "lost": 0, "lostShare": 0, "busy": 0.21590694444444455}}], "crossover": {"kind": "mixed_cheaper_everywhere", "u": null}}, "large": {"rows": [{"u": 0, "all_human": {"cost": 1.0442980727147484, "machine": 0, "labour": 0.524827494156689, "lost": 0.5194705785580593, "lostShare": 0.11970828449093239, "busy": null}, "mixed": {"cost": 1.079492847894734, "machine": 0.29632257283286706, "labour": 0.2624870759113639, "lost": 0.5206831991505031, "lostShare": 0.11995420427189984, "busy": 0.14910787037037035}, "all_machine": {"cost": 0.7525555163905553, "machine": 0.5215548688017968, "labour": 0.23100064758875846, "lost": 0, "lostShare": 0, "busy": 0.25414791666666664}}, {"u": 0.05, "all_human": {"cost": 1.0469962867290974, "machine": 0, "labour": 0.5249497031867111, "lost": 0.5220465835423863, "lostShare": 0.12023053495581869, "busy": null}, "mixed": {"cost": 1.0823218112363768, "machine": 0.29639895648933196, "labour": 0.2625547377247762, "lost": 0.5233681170222686, "lostShare": 0.12049821772442332, "busy": 0.1490694444444444}, "all_machine": {"cost": 0.7522841807678144, "machine": 0.5213668209939771, "labour": 0.2309173597738373, "lost": 0, "lostShare": 0, "busy": 0.2542395833333332}}, {"u": 0.1, "all_human": {"cost": 1.0480035513392068, "machine": 0, "labour": 0.5248780003228534, "lost": 0.5231255510163536, "lostShare": 0.1204490970549849, "busy": null}, "mixed": {"cost": 1.0832332008446182, "machine": 0.296352937523289, "labour": 0.26251397341945315, "lost": 0.5243662899018761, "lostShare": 0.1207002943376856, "busy": 0.14909259259259255}, "all_machine": {"cost": 0.7519945610327504, "machine": 0.5211661014727806, "labour": 0.2308284595599698, "lost": 0, "lostShare": 0, "busy": 0.25433750000000027}}, {"u": 0.15, "all_human": {"cost": 1.0533104896582188, "machine": 0, "labour": 0.5252595542687478, "lost": 0.5280509353894709, "lostShare": 0.12144543457197833, "busy": null}, "mixed": {"cost": 1.0888113365859744, "machine": 0.29658317536281426, "labour": 0.2627179216259073, "lost": 0.529510239597253, "lostShare": 0.12174019841973827, "busy": 0.14897685185185172}, "all_machine": {"cost": 0.7516887512111265, "machine": 0.5209541614923785, "labour": 0.23073458971874808, "lost": 0, "lostShare": 0, "busy": 0.25444097222222234}}, {"u": 0.2, "all_human": {"cost": 1.059203056225603, "machine": 0, "labour": 0.5257514982717075, "lost": 0.5334515579538955, "lostShare": 0.12253531499144912, "busy": null}, "mixed": {"cost": 1.0925581684476204, "machine": 0.2966311097849803, "labour": 0.26293555626006465, "lost": 0.5329915024025754, "lostShare": 0.12244257819212337, "busy": 0.14895277777777768}, "all_machine": {"cost": 0.7512089878323883, "machine": 0.5206216638618331, "labour": 0.23058732397055523, "lost": 0, "lostShare": 0, "busy": 0.2546034722222221}}, {"u": 0.25, "all_human": {"cost": 1.0574020111579256, "machine": 0, "labour": 0.5259751073414446, "lost": 0.531426903816481, "lostShare": 0.12212704374061426, "busy": null}, "mixed": {"cost": 1.0773528246278838, "machine": 0.29545750055724795, "labour": 0.26276766475964236, "lost": 0.5191276593109936, "lostShare": 0.11963871544480571, "busy": 0.14954444444444448}, "all_machine": {"cost": 0.7507022760536067, "machine": 0.5202271965375422, "labour": 0.23041261137018562, "lost": 6.246814587892844e-05, "lostShare": 1.6352650355806418e-05, "busy": 0.2547965277777778}}, {"u": 0.3, "all_human": {"cost": 1.0553248709722456, "machine": 0, "labour": 0.5269036747725586, "lost": 0.528421196199687, "lostShare": 0.12152024202749769, "busy": null}, "mixed": {"cost": 1.0578661475770876, "machine": 0.2939514154328536, "labour": 0.2631641261461622, "lost": 0.5007506059980719, "lostShare": 0.1158943553240331, "busy": 0.15031064814814823}, "all_machine": {"cost": 0.7503260049618351, "machine": 0.5198078447071511, "labour": 0.23022687723139706, "lost": 0.0002912830232868467, "lostShare": 7.62462863973902e-05, "busy": 0.2550020833333336}}, {"u": 0.35, "all_human": {"cost": 1.059395792669707, "machine": 0, "labour": 0.5290789106794352, "lost": 0.5303168819902719, "lostShare": 0.12190304669200362, "busy": null}, "mixed": {"cost": 1.0439864062840283, "machine": 0.29272343597120537, "labour": 0.2644848834320471, "lost": 0.4867780868807758, "lostShare": 0.11302604338115071, "busy": 0.15094120370370362}, "all_machine": {"cost": 0.7509835864805524, "machine": 0.519471153191941, "labour": 0.23007775397955235, "lost": 0.0014346793090591415, "lostShare": 0.0003754294995089491, "busy": 0.2551673611111112}}, {"u": 0.4, "all_human": {"cost": 1.0628908688865808, "machine": 0, "labour": 0.5316215437788057, "lost": 0.5312693251077752, "lostShare": 0.12209525207787865, "busy": null}, "mixed": {"cost": 1.02891367293208, "machine": 0.29149587973341967, "labour": 0.2660869684733957, "lost": 0.47133082472526466, "lostShare": 0.10983325312735351, "busy": 0.1515768518518518}, "all_machine": {"cost": 0.7533123413010544, "machine": 0.519471153191941, "labour": 0.23007775397955235, "lost": 0.003763434129560936, "lostShare": 0.0009842225321707544, "busy": 0.2551673611111111}}, {"u": 0.45, "all_human": {"cost": 1.0730772519159675, "machine": 0, "labour": 0.5344190772395285, "lost": 0.5386581746764388, "lostShare": 0.12358348672672086, "busy": null}, "mixed": {"cost": 1.023709350274401, "machine": 0.2906542938414029, "labour": 0.2679363126381911, "lost": 0.46511874379480683, "lostShare": 0.10854278996780097, "busy": 0.15201574074074073}, "all_machine": {"cost": 0.7573004973283584, "machine": 0.5192973196504554, "labour": 0.23000076177210146, "lost": 0.00800241590580144, "lostShare": 0.002090493953857097, "busy": 0.2552527777777776}}, {"u": 0.5, "all_human": {"cost": 1.0842667777750274, "machine": 0, "labour": 0.5375280352407658, "lost": 0.5467387425342617, "lostShare": 0.12520527898972927, "busy": null}, "mixed": {"cost": 1.0182500417343279, "machine": 0.2896741687280895, "labour": 0.27006920310200044, "lost": 0.45850666990423816, "lostShare": 0.10716511747649116, "busy": 0.1525300925925927}, "all_machine": {"cost": 0.7629170712337207, "machine": 0.5191377214239672, "labour": 0.22993007449473504, "lost": 0.013849275315018344, "lostShare": 0.0036123682285032926, "busy": 0.25533125000000023}}, {"u": 0.55, "all_human": {"cost": 1.0928686662720788, "machine": 0, "labour": 0.5413369817506859, "lost": 0.5515316845213929, "lostShare": 0.12616440285089145, "busy": null}, "mixed": {"cost": 1.0090465429353683, "machine": 0.2887189726369288, "labour": 0.2727165524647957, "lost": 0.44761101783364377, "lostShare": 0.10488561772925196, "busy": 0.15303472222222225}, "all_machine": {"cost": 0.7699499380691195, "machine": 0.5196069090364643, "labour": 0.23013788128326423, "lost": 0.020205147749390896, "lostShare": 0.0052614761378652975, "busy": 0.25510069444444455}}, {"u": 0.6, "all_human": {"cost": 1.1032135877526912, "machine": 0, "labour": 0.5446102100167589, "lost": 0.5586033777359322, "lostShare": 0.12757569698509028, "busy": null}, "mixed": {"cost": 1.0020460783398077, "machine": 0.28753769813173935, "labour": 0.2750817232226532, "lost": 0.43942665698541505, "lostShare": 0.10316568223208158, "busy": 0.15366342592592605}, "all_machine": {"cost": 0.7785693362299448, "machine": 0.5196337857924568, "labour": 0.23014978520442522, "lost": 0.028785765233062723, "lostShare": 0.0074791809648359605, "busy": 0.2550874999999999}}], "crossover": {"kind": "machine_cheaper_everywhere", "u": null}}}, "util": {"none": {"all_human": {"utilisation": 0.6117228339450561, "hour": 3, "capacityPerMin": 1.665, "arrivalPerMin": 1.0185185185185184, "staff": 2, "machineUnits": 0, "peakLostShare": 0.0002898501304325587}, "mixed": {"utilisation": 0.6117228339450561, "hour": 3, "capacityPerMin": 1.665, "arrivalPerMin": 1.0185185185185184, "staff": 1, "machineUnits": 3, "peakLostShare": 0.0003580501611225725}, "all_machine": {"utilisation": 0.2546296296296296, "hour": 3, "capacityPerMin": 4, "arrivalPerMin": 1.0185185185185184, "staff": 0, "machineUnits": 6, "peakLostShare": 0}}, "moderate": {"all_human": {"utilisation": 0.9175842509175842, "hour": 3, "capacityPerMin": 1.665, "arrivalPerMin": 1.5277777777777777, "staff": 2, "machineUnits": 0, "peakLostShare": 0.02029665213382358}, "mixed": {"utilisation": 0.9175842509175842, "hour": 3, "capacityPerMin": 1.665, "arrivalPerMin": 1.5277777777777777, "staff": 1, "machineUnits": 3, "peakLostShare": 0.021776497774539823}, "all_machine": {"utilisation": 0.3819444444444444, "hour": 3, "capacityPerMin": 4, "arrivalPerMin": 1.5277777777777777, "staff": 0, "machineUnits": 6, "peakLostShare": 0}}, "large": {"all_human": {"utilisation": 1.52930708486264, "hour": 3, "capacityPerMin": 1.665, "arrivalPerMin": 2.546296296296296, "staff": 2, "machineUnits": 0, "peakLostShare": 0.29896921300881873}, "mixed": {"utilisation": 1.52930708486264, "hour": 3, "capacityPerMin": 1.665, "arrivalPerMin": 2.546296296296296, "staff": 1, "machineUnits": 3, "peakLostShare": 0.29954984186402356}, "all_machine": {"utilisation": 0.636574074074074, "hour": 3, "capacityPerMin": 4, "arrivalPerMin": 2.546296296296296, "staff": 0, "machineUnits": 6, "peakLostShare": 0}}}, "shift": {"machine_cost": {"param": "costs.machine_cost_per_unit_per_month", "surge": "moderate", "low": 636.25, "high": 3817.5, "lowRun": {"rows": [{"u": 0, "all_human": {"cost": 0.5755919459749551, "machine": 0, "labour": 0.5532070829352609, "lost": 0.022384863039694308, "lostShare": 0.005825773273004649, "busy": null}, "mixed": {"cost": 0.4049408021577694, "machine": 0.1041322286997424, "labour": 0.2767257717650702, "lost": 0.024082801692956828, "lostShare": 0.00626490191167334, "busy": 0.14143564814814824}, "all_machine": {"cost": 0.48195181295071904, "machine": 0.20695970100218913, "labour": 0.2749921119485299, "lost": 0, "lostShare": 0, "busy": 0.21349097222222238}}, {"u": 0.05, "all_human": {"cost": 0.5767441875685185, "machine": 0, "labour": 0.5532813036862559, "lost": 0.023462883882262493, "lostShare": 0.006104620908570536, "busy": null}, "mixed": {"cost": 0.4062920207959584, "machine": 0.10415166118830294, "labour": 0.27677741255353094, "lost": 0.025362947054124507, "lostShare": 0.006595722537336733, "busy": 0.14140925925925918}, "all_machine": {"cost": 0.4818812769943302, "machine": 0.20692941145860436, "labour": 0.27495186553572587, "lost": 0, "lostShare": 0, "busy": 0.21352222222222225}}, {"u": 0.1, "all_human": {"cost": 0.5816634637105664, "machine": 0, "labour": 0.5535493882735839, "lost": 0.028114075436982515, "lostShare": 0.0073059360730593605, "busy": null}, "mixed": {"cost": 0.41121425529824324, "machine": 0.10420419928592486, "labour": 0.27691702970945886, "lost": 0.030093026302859524, "lostShare": 0.007816181608410926, "busy": 0.141337962962963}, "all_machine": {"cost": 0.4815320365946821, "machine": 0.20677944067989404, "labour": 0.274752595914788, "lost": 0, "lostShare": 0, "busy": 0.21367708333333324}}, {"u": 0.15, "all_human": {"cost": 0.5889899883951975, "machine": 0, "labour": 0.5542770598532726, "lost": 0.03471292854192482, "lostShare": 0.009005321326238231, "busy": null}, "mixed": {"cost": 0.41840378112259685, "machine": 0.10434330546471925, "labour": 0.2772866968640452, "lost": 0.03677377879383237, "lostShare": 0.00953485501172771, "busy": 0.141149537037037}, "all_machine": {"cost": 0.48133962276410314, "machine": 0.20669681435133747, "labour": 0.27464280841276567, "lost": 0, "lostShare": 0, "busy": 0.21376250000000022}}, {"u": 0.2, "all_human": {"cost": 0.597793816463179, "machine": 0, "labour": 0.5551278718655684, "lost": 0.04266594459761059, "lostShare": 0.011045724691073509, "busy": null}, "mixed": {"cost": 0.427411786342978, "machine": 0.10447866582591103, "labour": 0.2778315073172036, "lost": 0.04510161319986335, "lostShare": 0.011668933371851093, "busy": 0.1409666666666666}, "all_machine": {"cost": 0.4809255947260988, "machine": 0.20651902247121717, "labour": 0.27440657225488163, "lost": 0, "lostShare": 0, "busy": 0.21394652777777787}}, {"u": 0.25, "all_human": {"cost": 0.6022728331971279, "machine": 0, "labour": 0.5560582518536068, "lost": 0.04621458134352114, "lostShare": 0.011953444479396037, "busy": null}, "mixed": {"cost": 0.43120781259235635, "machine": 0.10446288427564739, "labour": 0.2787148889779159, "lost": 0.04803003933879303, "lostShare": 0.012417183643952095, "busy": 0.1409879629629629}, "all_machine": {"cost": 0.48048890431083074, "machine": 0.2063314989152395, "labour": 0.27415740539559125, "lost": 0, "lostShare": 0, "busy": 0.21414097222222223}}, {"u": 0.3, "all_human": {"cost": 0.605866668416257, "machine": 0, "labour": 0.557620737844208, "lost": 0.048245930572049046, "lostShare": 0.012472301771390807, "busy": null}, "mixed": {"cost": 0.43423524470200836, "machine": 0.10439295394732524, "labour": 0.2803777671311114, "lost": 0.04946452362357169, "lostShare": 0.012783299425950162, "busy": 0.14108240740740735}, "all_machine": {"cost": 0.47998924466444876, "machine": 0.20611693511811432, "labour": 0.27387230954633446, "lost": 0, "lostShare": 0, "busy": 0.21436388888888908}}, {"u": 0.35, "all_human": {"cost": 0.6096159698810237, "machine": 0, "labour": 0.5600438141963285, "lost": 0.04957215568469522, "lostShare": 0.012810758835927104, "busy": null}, "mixed": {"cost": 0.43726826356340176, "machine": 0.10434330546471925, "labour": 0.28283243080132586, "lost": 0.05009252729735667, "lostShare": 0.012943496038927613, "busy": 0.14114953703703717}, "all_machine": {"cost": 0.4796831142090342, "machine": 0.20598547660749608, "labour": 0.27369763760153815, "lost": 0, "lostShare": 0, "busy": 0.21450069444444422}}, {"u": 0.4, "all_human": {"cost": 0.6133230504951865, "machine": 0, "labour": 0.5627426984746253, "lost": 0.050580352020561235, "lostShare": 0.013067898718122934, "busy": null}, "mixed": {"cost": 0.4393231209913464, "machine": 0.10426191576456553, "labour": 0.28552105558123037, "lost": 0.04954014964555044, "lostShare": 0.01280259352008231, "busy": 0.14125972222222224}, "all_machine": {"cost": 0.47937737399621033, "machine": 0.20585418567481348, "labour": 0.2735231883213969, "lost": 0, "lostShare": 0, "busy": 0.21463749999999993}}, {"u": 0.45, "all_human": {"cost": 0.619661583427815, "machine": 0, "labour": 0.5652879227749672, "lost": 0.05437366065284775, "lostShare": 0.014034180854844442, "busy": null}, "mixed": {"cost": 0.4420857526265853, "machine": 0.10412234477792688, "labour": 0.2879519523451072, "lost": 0.05001145550355117, "lostShare": 0.012922818466707588, "busy": 0.14144907407407406}, "all_machine": {"cost": 0.47867734952993474, "machine": 0.2055535812360676, "labour": 0.27312376829386714, "lost": 0, "lostShare": 0, "busy": 0.21495138888888898}}, {"u": 0.5, "all_human": {"cost": 0.6255835025214523, "machine": 0, "labour": 0.5682046957888569, "lost": 0.0573788067325954, "lostShare": 0.014798349501721151, "busy": null}, "mixed": {"cost": 0.44348377421125734, "machine": 0.10394339597982069, "labour": 0.29072571686227544, "lost": 0.048814661369161176, "lostShare": 0.012617472182522656, "busy": 0.14169259259259256}, "all_machine": {"cost": 0.47800249704000974, "machine": 0.20526378614497673, "labour": 0.272738710895033, "lost": 0, "lostShare": 0, "busy": 0.2152548611111112}}, {"u": 0.55, "all_human": {"cost": 0.6320151149997415, "machine": 0, "labour": 0.5720117750301288, "lost": 0.060003339969612796, "lostShare": 0.015464765030352462, "busy": null}, "mixed": {"cost": 0.44528165796344826, "machine": 0.10382669712793734, "labour": 0.2942161227154065, "lost": 0.047238838120104404, "lostShare": 0.012215133354180839, "busy": 0.14185185185185192}, "all_machine": {"cost": 0.4776603941467966, "machine": 0.20511688035359088, "labour": 0.27254351379320574, "lost": 0, "lostShare": 0, "busy": 0.21540902777777768}}, {"u": 0.6, "all_human": {"cost": 0.6368862361570582, "machine": 0, "labour": 0.5747787089941592, "lost": 0.0621075271628989, "lostShare": 0.01599840466250249, "busy": null}, "mixed": {"cost": 0.4454485992561055, "machine": 0.10352227945890186, "labour": 0.29711325378049697, "lost": 0.04481306601670676, "lostShare": 0.011595144513132587, "busy": 0.14226898148148148}, "all_machine": {"cost": 0.47655883128662907, "machine": 0.204643847336494, "labour": 0.2719149839501351, "lost": 0, "lostShare": 0, "busy": 0.21590694444444455}}], "crossover": {"kind": "mixed_cheaper_everywhere", "u": null}}, "highRun": {"rows": [{"u": 0, "all_human": {"cost": 0.5755919459749551, "machine": 0, "labour": 0.5532070829352609, "lost": 0.022384863039694308, "lostShare": 0.005825773273004649, "busy": null}, "mixed": {"cost": 0.9256019456564814, "machine": 0.6247933721984543, "labour": 0.2767257717650702, "lost": 0.024082801692956828, "lostShare": 0.00626490191167334, "busy": 0.14143564814814824}, "all_machine": {"cost": 1.5167503179616648, "machine": 1.241758206013135, "labour": 0.2749921119485299, "lost": 0, "lostShare": 0, "busy": 0.21349097222222238}}, {"u": 0.05, "all_human": {"cost": 0.5767441875685185, "machine": 0, "labour": 0.5532813036862559, "lost": 0.023462883882262493, "lostShare": 0.006104620908570536, "busy": null}, "mixed": {"cost": 0.927050326737473, "machine": 0.6249099671298176, "labour": 0.27677741255353094, "lost": 0.025362947054124507, "lostShare": 0.006595722537336733, "busy": 0.14140925925925918}, "all_machine": {"cost": 1.5165283342873521, "machine": 1.2415764687516262, "labour": 0.27495186553572587, "lost": 0, "lostShare": 0, "busy": 0.21352222222222225}}, {"u": 0.1, "all_human": {"cost": 0.5816634637105664, "machine": 0, "labour": 0.5535493882735839, "lost": 0.028114075436982515, "lostShare": 0.0073059360730593605, "busy": null}, "mixed": {"cost": 0.9322352517278675, "machine": 0.6252251957155491, "labour": 0.27691702970945886, "lost": 0.030093026302859524, "lostShare": 0.007816181608410926, "busy": 0.141337962962963}, "all_machine": {"cost": 1.5154292399941522, "machine": 1.2406766440793644, "labour": 0.274752595914788, "lost": 0, "lostShare": 0, "busy": 0.21367708333333324}}, {"u": 0.15, "all_human": {"cost": 0.5889899883951975, "machine": 0, "labour": 0.5542770598532726, "lost": 0.03471292854192482, "lostShare": 0.009005321326238231, "busy": null}, "mixed": {"cost": 0.9401203084461932, "machine": 0.6260598327883156, "labour": 0.2772866968640452, "lost": 0.03677377879383237, "lostShare": 0.00953485501172771, "busy": 0.141149537037037}, "all_machine": {"cost": 1.5148236945207905, "machine": 1.2401808861080248, "labour": 0.27464280841276567, "lost": 0, "lostShare": 0, "busy": 0.21376250000000022}}, {"u": 0.2, "all_human": {"cost": 0.597793816463179, "machine": 0, "labour": 0.5551278718655684, "lost": 0.04266594459761059, "lostShare": 0.011045724691073509, "busy": null}, "mixed": {"cost": 0.9498051154725331, "machine": 0.6268719949554662, "labour": 0.2778315073172036, "lost": 0.04510161319986335, "lostShare": 0.011668933371851093, "busy": 0.1409666666666666}, "all_machine": {"cost": 1.5135207070821846, "machine": 1.239114134827303, "labour": 0.27440657225488163, "lost": 0, "lostShare": 0, "busy": 0.21394652777777787}}, {"u": 0.25, "all_human": {"cost": 0.6022728331971279, "machine": 0, "labour": 0.5560582518536068, "lost": 0.04621458134352114, "lostShare": 0.011953444479396037, "busy": null}, "mixed": {"cost": 0.9535222339705931, "machine": 0.6267773056538843, "labour": 0.2787148889779159, "lost": 0.04803003933879303, "lostShare": 0.012417183643952095, "busy": 0.1409879629629629}, "all_machine": {"cost": 1.5121463988870283, "machine": 1.237988993491437, "labour": 0.27415740539559125, "lost": 0, "lostShare": 0, "busy": 0.21414097222222223}}, {"u": 0.3, "all_human": {"cost": 0.605866668416257, "machine": 0, "labour": 0.557620737844208, "lost": 0.048245930572049046, "lostShare": 0.012472301771390807, "busy": null}, "mixed": {"cost": 0.9562000144386343, "machine": 0.6263577236839515, "labour": 0.2803777671311114, "lost": 0.04946452362357169, "lostShare": 0.012783299425950162, "busy": 0.14108240740740735}, "all_machine": {"cost": 1.5105739202550204, "machine": 1.236701610708686, "labour": 0.27387230954633446, "lost": 0, "lostShare": 0, "busy": 0.21436388888888908}}, {"u": 0.35, "all_human": {"cost": 0.6096159698810237, "machine": 0, "labour": 0.5600438141963285, "lost": 0.04957215568469522, "lostShare": 0.012810758835927104, "busy": null}, "mixed": {"cost": 0.9589847908869981, "machine": 0.6260598327883156, "labour": 0.28283243080132586, "lost": 0.05009252729735667, "lostShare": 0.012943496038927613, "busy": 0.14114953703703717}, "all_machine": {"cost": 1.5096104972465147, "machine": 1.2359128596449764, "labour": 0.27369763760153815, "lost": 0, "lostShare": 0, "busy": 0.21450069444444422}}, {"u": 0.4, "all_human": {"cost": 0.6133230504951865, "machine": 0, "labour": 0.5627426984746253, "lost": 0.050580352020561235, "lostShare": 0.013067898718122934, "busy": null}, "mixed": {"cost": 0.9606326998141741, "machine": 0.6255714945873933, "labour": 0.28552105558123037, "lost": 0.04954014964555044, "lostShare": 0.01280259352008231, "busy": 0.14125972222222224}, "all_machine": {"cost": 1.5086483023702777, "machine": 1.2351251140488808, "labour": 0.2735231883213969, "lost": 0, "lostShare": 0, "busy": 0.21463749999999993}}, {"u": 0.45, "all_human": {"cost": 0.619661583427815, "machine": 0, "labour": 0.5652879227749672, "lost": 0.05437366065284775, "lostShare": 0.014034180854844442, "busy": null}, "mixed": {"cost": 0.9626974765162197, "machine": 0.6247340686675613, "labour": 0.2879519523451072, "lost": 0.05001145550355117, "lostShare": 0.012922818466707588, "busy": 0.14144907407407406}, "all_machine": {"cost": 1.5064452557102728, "machine": 1.2333214874164056, "labour": 0.27312376829386714, "lost": 0, "lostShare": 0, "busy": 0.21495138888888898}}, {"u": 0.5, "all_human": {"cost": 0.6255835025214523, "machine": 0, "labour": 0.5682046957888569, "lost": 0.0573788067325954, "lostShare": 0.014798349501721151, "busy": null}, "mixed": {"cost": 0.9632007541103608, "machine": 0.6236603758789241, "labour": 0.29072571686227544, "lost": 0.048814661369161176, "lostShare": 0.012617472182522656, "busy": 0.14169259259259256}, "all_machine": {"cost": 1.5043214277648933, "machine": 1.2315827168698603, "labour": 0.272738710895033, "lost": 0, "lostShare": 0, "busy": 0.2152548611111112}}, {"u": 0.55, "all_human": {"cost": 0.6320151149997415, "machine": 0, "labour": 0.5720117750301288, "lost": 0.060003339969612796, "lostShare": 0.015464765030352462, "busy": null}, "mixed": {"cost": 0.9644151436031349, "machine": 0.622960182767624, "labour": 0.2942161227154065, "lost": 0.047238838120104404, "lostShare": 0.012215133354180839, "busy": 0.14185185185185192}, "all_machine": {"cost": 1.503244795914751, "machine": 1.2307012821215453, "labour": 0.27254351379320574, "lost": 0, "lostShare": 0, "busy": 0.21540902777777768}}, {"u": 0.6, "all_human": {"cost": 0.6368862361570582, "machine": 0, "labour": 0.5747787089941592, "lost": 0.0621075271628989, "lostShare": 0.01599840466250249, "busy": null}, "mixed": {"cost": 0.9630599965506147, "machine": 0.6211336767534111, "labour": 0.29711325378049697, "lost": 0.04481306601670676, "lostShare": 0.011595144513132587, "busy": 0.14226898148148148}, "all_machine": {"cost": 1.499778067969099, "machine": 1.227863084018964, "labour": 0.2719149839501351, "lost": 0, "lostShare": 0, "busy": 0.21590694444444455}}], "crossover": {"kind": "mixed_cheaper_everywhere", "u": null}}}, "staff_turnover": {"param": "people.new_staff_share", "surge": "moderate", "low": 0, "high": 0.5, "lowRun": {"rows": [{"u": 0, "all_human": {"cost": 0.5603713750986358, "machine": 0, "labour": 0.551291498477334, "lost": 0.009079876621301738, "lostShare": 0.002371294648810937, "busy": null}, "mixed": {"cost": 0.5967959404636138, "machine": 0.31124036316675147, "labour": 0.2757014831917997, "lost": 0.00985409410506269, "lostShare": 0.0025729685421254475, "busy": 0.14196111111111118}, "all_machine": {"cost": 0.8958712149550973, "machine": 0.6208791030065675, "labour": 0.2749921119485299, "lost": 0, "lostShare": 0, "busy": 0.21349097222222238}}, {"u": 0.05, "all_human": {"cost": 0.5611461346080526, "machine": 0, "labour": 0.551318462386247, "lost": 0.009827672221805589, "lostShare": 0.0025660873185200605, "busy": null}, "mixed": {"cost": 0.5980337194093744, "machine": 0.3112880762193034, "labour": 0.27574374814491287, "lost": 0.01100189504515818, "lostShare": 0.0028718062132486863, "busy": 0.14193935185185189}, "all_machine": {"cost": 0.8957400999115389, "machine": 0.6207882343758131, "labour": 0.27495186553572587, "lost": 0, "lostShare": 0, "busy": 0.21352222222222225}}, {"u": 0.1, "all_human": {"cost": 0.5638952019172813, "machine": 0, "labour": 0.5513148670459964, "lost": 0.012580334871284867, "lostShare": 0.003282471278376314, "busy": null}, "mixed": {"cost": 0.6011583187904709, "machine": 0.31131244597393704, "labour": 0.2757653352470135, "lost": 0.01408053756952033, "lostShare": 0.003672467865906173, "busy": 0.14192824074074087}, "all_machine": {"cost": 0.8950909179544702, "machine": 0.6203383220396822, "labour": 0.274752595914788, "lost": 0, "lostShare": 0, "busy": 0.21367708333333324}}, {"u": 0.15, "all_human": {"cost": 0.5684751624944575, "machine": 0, "labour": 0.5516980344044526, "lost": 0.01677712809000496, "lostShare": 0.004372713746434581, "busy": null}, "mixed": {"cost": 0.6055492921887824, "machine": 0.31151364213508637, "labour": 0.2759435578897228, "lost": 0.018092092163973294, "lostShare": 0.004713824402731485, "busy": 0.14183657407407393}, "all_machine": {"cost": 0.8947332514667781, "machine": 0.6200904430540124, "labour": 0.27464280841276567, "lost": 0, "lostShare": 0, "busy": 0.21376250000000022}}, {"u": 0.2, "all_human": {"cost": 0.5751483981360888, "machine": 0, "labour": 0.5521213961735564, "lost": 0.023027001962532285, "lostShare": 0.0059918917953928, "busy": null}, "mixed": {"cost": 0.6123401475209577, "machine": 0.31175888359695025, "labour": 0.2761607965347625, "lost": 0.024420467389244964, "lostShare": 0.00635218431396734, "busy": 0.14172499999999993}, "all_machine": {"cost": 0.8939636396685332, "machine": 0.6195570674136515, "labour": 0.27440657225488163, "lost": 0, "lostShare": 0, "busy": 0.21394652777777787}}, {"u": 0.25, "all_human": {"cost": 0.5827730784818778, "machine": 0, "labour": 0.5527205872739916, "lost": 0.030052491207886084, "lostShare": 0.00780573544815688, "busy": null}, "mixed": {"cost": 0.6201324239134722, "machine": 0.31205449979727695, "labour": 0.2765147987810483, "lost": 0.03156312533514694, "lostShare": 0.008194887194637488, "busy": 0.14159074074074068}, "all_machine": {"cost": 0.8931519021413098, "machine": 0.6189944967457185, "labour": 0.27415740539559125, "lost": 0, "lostShare": 0, "busy": 0.21414097222222223}}, {"u": 0.3, "all_human": {"cost": 0.588904256049598, "machine": 0, "labour": 0.5534703953283876, "lost": 0.03543386072121027, "lostShare": 0.009190628604009278, "busy": null}, "mixed": {"cost": 0.625901234002612, "machine": 0.31213921040840154, "labour": 0.2771428571428593, "lost": 0.03661916645135125, "lostShare": 0.009495147140765313, "busy": 0.14155231481481478}, "all_machine": {"cost": 0.8922231149006774, "machine": 0.618350805354343, "labour": 0.27387230954633446, "lost": 0, "lostShare": 0, "busy": 0.21436388888888908}}, {"u": 0.35, "all_human": {"cost": 0.5922851846645284, "machine": 0, "labour": 0.5547944121695223, "lost": 0.03749077249500617, "lostShare": 0.009718953253842094, "busy": null}, "mixed": {"cost": 0.6287264855815312, "machine": 0.3120677646874172, "labour": 0.2784615937977217, "lost": 0.03819712709639233, "lostShare": 0.009900252848184252, "busy": 0.14158472222222224}, "all_machine": {"cost": 0.8916540674240264, "machine": 0.6179564298224882, "labour": 0.27369763760153815, "lost": 0, "lostShare": 0, "busy": 0.21450069444444422}}, {"u": 0.4, "all_human": {"cost": 0.5956881069825716, "machine": 0, "labour": 0.5562417829556232, "lost": 0.03944632402694829, "lostShare": 0.010220720983052822, "busy": null}, "mixed": {"cost": 0.6318487194408322, "machine": 0.31200757154719794, "labour": 0.2799279787630545, "lost": 0.03991316913057977, "lostShare": 0.010340431865095543, "busy": 0.1416120370370369}, "all_machine": {"cost": 0.8910857453458373, "machine": 0.6175625570244404, "labour": 0.2735231883213969, "lost": 0, "lostShare": 0, "busy": 0.21463749999999993}}, {"u": 0.45, "all_human": {"cost": 0.5989451653138164, "machine": 0, "labour": 0.558233888188703, "lost": 0.040711277125113424, "lostShare": 0.010545019868833393, "busy": null}, "mixed": {"cost": 0.6340470585930761, "machine": 0.3115827998132544, "labour": 0.28216892644115926, "lost": 0.04029533233866253, "lostShare": 0.010438406616483055, "busy": 0.1418050925925925}, "all_machine": {"cost": 0.8897845120020699, "machine": 0.6166607437082028, "labour": 0.27312376829386714, "lost": 0, "lostShare": 0, "busy": 0.21495138888888898}}, {"u": 0.5, "all_human": {"cost": 0.6047730269599885, "machine": 0, "labour": 0.5600496768718626, "lost": 0.04472335008812583, "lostShare": 0.011572199621250005, "busy": null}, "mixed": {"cost": 0.6377953711405804, "machine": 0.31132260116455446, "labour": 0.28395563601963963, "lost": 0.04251713395638627, "lostShare": 0.011007623392167553, "busy": 0.1419236111111111}, "all_machine": {"cost": 0.8885300693299631, "machine": 0.6157913584349302, "labour": 0.272738710895033, "lost": 0, "lostShare": 0, "busy": 0.2152548611111112}}, {"u": 0.55, "all_human": {"cost": 0.6089308867623539, "machine": 0, "labour": 0.5629159502376897, "lost": 0.046014936524664145, "lostShare": 0.01190242078216829, "busy": null}, "mixed": {"cost": 0.6384926802407249, "machine": 0.31096351035649006, "labour": 0.28670403930807054, "lost": 0.040825130576164256, "lostShare": 0.01057419831135211, "busy": 0.1420875}, "all_machine": {"cost": 0.8878941548539784, "machine": 0.6153506410607726, "labour": 0.27254351379320574, "lost": 0, "lostShare": 0, "busy": 0.21540902777777768}}, {"u": 0.6, "all_human": {"cost": 0.615938748899831, "machine": 0, "labour": 0.5644359291977742, "lost": 0.051502819702056876, "lostShare": 0.013303056229213975, "busy": null}, "mixed": {"cost": 0.6420077743803285, "machine": 0.31044662025892916, "labour": 0.288244128553772, "lost": 0.043317025567627315, "lostShare": 0.011212392169980637, "busy": 0.14232407407407408}, "all_machine": {"cost": 0.8858465259596171, "machine": 0.613931542009482, "labour": 0.2719149839501351, "lost": 0, "lostShare": 0, "busy": 0.21590694444444455}}], "crossover": {"kind": "mixed_cheaper_everywhere", "u": null}}, "highRun": {"rows": [{"u": 0, "all_human": {"cost": 0.6069506476730936, "machine": 0, "labour": 0.5571537313285335, "lost": 0.049796916344560044, "lostShare": 0.012868095515358117, "busy": null}, "mixed": {"cost": 0.6464071496883577, "machine": 0.3147363387527619, "labour": 0.27879827193879464, "lost": 0.052872538996801034, "lostShare": 0.013652021455500004, "busy": 0.14038425925925926}, "all_machine": {"cost": 0.8958712149550973, "machine": 0.6208791030065675, "labour": 0.2749921119485299, "lost": 0, "lostShare": 0, "busy": 0.21349097222222238}}, {"u": 0.05, "all_human": {"cost": 0.6089035388428925, "machine": 0, "labour": 0.5573281999894566, "lost": 0.05157533885343596, "lostShare": 0.013321538221366499, "busy": null}, "mixed": {"cost": 0.6482118187276121, "machine": 0.3148235503684693, "labour": 0.27887552532443344, "lost": 0.05451274303470935, "lostShare": 0.014069573814851433, "busy": 0.1403453703703704}, "all_machine": {"cost": 0.8957400999115389, "machine": 0.6207882343758131, "labour": 0.27495186553572587, "lost": 0, "lostShare": 0, "busy": 0.21352222222222225}}, {"u": 0.1, "all_human": {"cost": 0.6161567548305399, "machine": 0, "labour": 0.5578872347165076, "lost": 0.05826952011403226, "lostShare": 0.015024618534587822, "busy": null}, "mixed": {"cost": 0.6553770005712402, "machine": 0.31513021254676393, "labour": 0.2791471713813086, "lost": 0.06109961664316765, "lostShare": 0.015742862249955313, "busy": 0.14020879629629632}, "all_machine": {"cost": 0.8950909179544702, "machine": 0.6203383220396822, "labour": 0.274752595914788, "lost": 0, "lostShare": 0, "busy": 0.21367708333333324}}, {"u": 0.15, "all_human": {"cost": 0.6243847185783907, "machine": 0, "labour": 0.5590523456757535, "lost": 0.06533237290263731, "lostShare": 0.016815131018978746, "busy": null}, "mixed": {"cost": 0.66350366363348, "machine": 0.3155668050999894, "labour": 0.27990662363771257, "lost": 0.06803023489577813, "lostShare": 0.01749735233157255, "busy": 0.14001481481481465}, "all_machine": {"cost": 0.8947332514667781, "machine": 0.6200904430540124, "labour": 0.27464280841276567, "lost": 0, "lostShare": 0, "busy": 0.21376250000000022}}, {"u": 0.2, "all_human": {"cost": 0.6261783264927449, "machine": 0, "labour": 0.5601590231435511, "lost": 0.06601930334919374, "lostShare": 0.01698892830828056, "busy": null}, "mixed": {"cost": 0.6641456815816877, "machine": 0.3152717902978049, "labour": 0.2811344003435595, "lost": 0.06773949094032336, "lostShare": 0.01742387603340658, "busy": 0.14014583333333333}, "all_machine": {"cost": 0.8939636396685332, "machine": 0.6195570674136515, "labour": 0.27440657225488163, "lost": 0, "lostShare": 0, "busy": 0.21394652777777787}}, {"u": 0.25, "all_human": {"cost": 0.6300305926458885, "machine": 0, "labour": 0.5625974707439303, "lost": 0.06743312190195826, "lostShare": 0.01734643909937314, "busy": null}, "mixed": {"cost": 0.6673418987663552, "machine": 0.31505531108565543, "labour": 0.2836856560908238, "lost": 0.06860093158987592, "lostShare": 0.01764154584045427, "busy": 0.14024212962962965}, "all_machine": {"cost": 0.8931519021413098, "machine": 0.6189944967457185, "labour": 0.27415740539559125, "lost": 0, "lostShare": 0, "busy": 0.21414097222222223}}, {"u": 0.3, "all_human": {"cost": 0.6303778476946685, "machine": 0, "labour": 0.5655774787092138, "lost": 0.06480036898545466, "lostShare": 0.016680488784647084, "busy": null}, "mixed": {"cost": 0.666132006786475, "machine": 0.3144097250819483, "labour": 0.28704989375545825, "lost": 0.06467238794906846, "lostShare": 0.016648093195630483, "busy": 0.14053009259259258}, "all_machine": {"cost": 0.8922231149006774, "machine": 0.618350805354343, "labour": 0.27387230954633446, "lost": 0, "lostShare": 0, "busy": 0.21436388888888908}}, {"u": 0.35, "all_human": {"cost": 0.6323975840163295, "machine": 0, "labour": 0.5686366149896352, "lost": 0.06376096902669427, "lostShare": 0.016417325766233597, "busy": null}, "mixed": {"cost": 0.6644587723798642, "machine": 0.31386893721141323, "labour": 0.290124215635978, "lost": 0.06046561953247295, "lostShare": 0.01558205263515723, "busy": 0.1407722222222223}, "all_machine": {"cost": 0.8916540674240264, "machine": 0.6179564298224882, "labour": 0.27369763760153815, "lost": 0, "lostShare": 0, "busy": 0.21450069444444422}}, {"u": 0.4, "all_human": {"cost": 0.6373112501275204, "machine": 0, "labour": 0.5719812689835859, "lost": 0.0653299811439346, "lostShare": 0.016814525783135647, "busy": null}, "mixed": {"cost": 0.6650694740991377, "machine": 0.31349571330026604, "labour": 0.2932504680879037, "lost": 0.05832329271096802, "lostShare": 0.015038275127961227, "busy": 0.14093981481481463}, "all_machine": {"cost": 0.8910857453458373, "machine": 0.6175625570244404, "labour": 0.2735231883213969, "lost": 0, "lostShare": 0, "busy": 0.21463749999999993}}, {"u": 0.45, "all_human": {"cost": 0.6433007781039545, "machine": 0, "labour": 0.5763819316833312, "lost": 0.06691884642062315, "lostShare": 0.017216424902271186, "busy": null}, "mixed": {"cost": 0.6652937841442768, "machine": 0.31276729621582294, "labour": 0.2975560646131779, "lost": 0.054970423315275976, "lostShare": 0.014186023971828256, "busy": 0.14126805555555547}, "all_machine": {"cost": 0.8897845120020699, "machine": 0.6166607437082028, "labour": 0.27312376829386714, "lost": 0, "lostShare": 0, "busy": 0.21495138888888898}}, {"u": 0.5, "all_human": {"cost": 0.65127115358075, "machine": 0, "labour": 0.5804123264174166, "lost": 0.0708588271633335, "lostShare": 0.018211616075259625, "busy": null}, "mixed": {"cost": 0.6662647922704065, "machine": 0.31215860846356636, "labour": 0.30121687479966397, "lost": 0.05288930900717616, "lostShare": 0.013656292444034365, "busy": 0.1415435185185186}, "all_machine": {"cost": 0.8885300693299631, "machine": 0.6157913584349302, "labour": 0.272738710895033, "lost": 0, "lostShare": 0, "busy": 0.2152548611111112}}, {"u": 0.55, "all_human": {"cost": 0.6588177647491881, "machine": 0, "labour": 0.5847372226311948, "lost": 0.07408054211799338, "lostShare": 0.01902388543758805, "busy": null}, "mixed": {"cost": 0.6663962795922982, "machine": 0.31168048647465896, "labour": 0.30498891258413696, "lost": 0.04972688053350222, "lostShare": 0.012850230021051682, "busy": 0.14176064814814826}, "all_machine": {"cost": 0.8878941548539784, "machine": 0.6153506410607726, "labour": 0.27254351379320574, "lost": 0, "lostShare": 0, "busy": 0.21540902777777768}}, {"u": 0.6, "all_human": {"cost": 0.6667239376156938, "machine": 0, "labour": 0.5888174615677504, "lost": 0.07790647604794346, "lostShare": 0.019986748406270707, "busy": null}, "mixed": {"cost": 0.6665754026783375, "machine": 0.31073874014671266, "labour": 0.3088843848390441, "lost": 0.04695227769258065, "lostShare": 0.012141933574778229, "busy": 0.1421902777777778}, "all_machine": {"cost": 0.8858465259596171, "machine": 0.613931542009482, "labour": 0.2719149839501351, "lost": 0, "lostShare": 0, "busy": 0.21590694444444455}}], "crossover": {"kind": "mixed_cheaper_everywhere", "u": null}}}}, "stability": {"surge": "moderate", "seeds": 20, "kinds": {"mixed_cheaper_everywhere": 20}, "spread": null, "pass": false}, "week5": [{"speeds": [1, 1.5, 2], "engine": 4.3, "pooled": 4.5, "gapPct": 4.651162790697679, "ratioWalk6": 0.7848888888888889}, {"speeds": [1, 2, 3], "engine": 5.62, "pooled": 6, "gapPct": 6.76156583629893, "ratioWalk6": 0.722}], "week5Pass": false, "defaults": {"signal": 0.5, "removeHype": true, "u": 0.325, "band": {"u": 0.325, "base": 3888.8888888888887, "low": 2625, "high": 5152.777777777777, "width": 2527.777777777778, "removeHype": true}}, "provision": {"none": {"days": 3, "waste": 17.775967389757835, "stockout": 8784.593052281612, "total": 8802.36901967137, "optDays": 10.780162571923935, "optWaste": 816.2503214646688, "optStockout": 247.66511713627295, "optTotal": 1063.9154386009418, "criticalRatio": 0.908982748364069}, "def": {"days": 3, "waste": 3.2509726487145443, "stockout": 8577.719065318024, "total": 8580.97003796674, "optDays": 9.457105671750556, "optWaste": 532.6105868653046, "optStockout": 160.98232613857755, "optTotal": 693.5929130038821, "criticalRatio": 0.908982748364069}, "strong": {"days": 3, "waste": 0, "stockout": 8514.902556419576, "total": 8514.902556419576, "optDays": 8.134048771577179, "optWaste": 245.8202708609097, "optStockout": 74.29953514088199, "optTotal": 320.1198060017917, "criticalRatio": 0.908982748364069}}};
+</script>
+<script>
+/* sim.js - pooled-speed counter simulator for the Chagee deck.
+ *
+ * Pure functions, no UI. Runs in Node (require) and in the browser (window.ChageeSim).
+ * Every number comes from assumptions.json via params(); nothing is hard-coded here
+ * except unit conversions (60 s/min, 12 months/year).
+ *
+ * Model (approved):
+ *   1. A store's true demand = forecast base x m, with m = max(floor, 1 + u z / z80),
+ *      so u is the half-width of the 80% band as a share of base (slide 2's output).
+ *   2. Each setup is sized before opening with the same rule: forecast peak x safety margin.
+ *      Machines round up to whole units per station and are never adjusted.
+ *      Staff rosters (per open hour) are planned on the forecast, then move a share
+ *      `staffing_flexibility` of the way to what the true demand needs.
+ *   3. One trading day, minute by minute. Poisson arrivals (surge on the busiest hours).
+ *      Capacity: all-human = pooled bucket-brigade rate; all-machine = slowest station;
+ *      mixed = min(machine stations, pooled human rate on the other stations).
+ *      An arriving order balks (is lost) if the expected wait, backlog / nominal capacity,
+ *      exceeds the target wait.
+ *   4. Cost per cup = (machine + labour + lost-order cost) / cups served, summed over
+ *      stores before dividing (ratio of sums).
+ */
+(function (root) {
+  "use strict";
+
+  const SETUPS = ["all_human", "mixed", "all_machine"];
+
+  /* ---------------- assumptions.json -> flat parameter object ---------------- */
+  function params(raw) {
+    const v = (sec, key) => raw[sec][key].value;
+    return {
+      hours: v("store", "open_hours_per_day"),
+      days: v("store", "open_days_per_year"),
+      cupsYear: v("store", "cups_per_store_per_year"),
+      share: v("store", "hourly_demand_share"),
+      coverage: v("demand", "band_coverage"),
+      floor: v("demand", "demand_floor_share_of_base"),
+      sweepU: v("demand", "uncertainty_sweep"),
+      surgeMult: v("surge", "surge_multiplier"),
+      surgeHours: v("surge", "surge_hours"),
+      stations: v("stations", "list"),
+      humanSec: v("stations", "human_seconds_per_cup"),
+      machineSec: v("stations", "machine_seconds_per_cup"),
+      humanMult: 1, machineMult: 1,              // sensitivity multipliers on station times
+      mixedMachine: v("stations", "mixed_machine_stations"),
+      humanCv: v("people", "human_speed_variation_cv"),
+      spread: v("people", "worker_speed_spread"),
+      coord: { all_human: v("people", "coordination_loss_human"), mixed: v("people", "coordination_loss_mixed") },
+      newShare: v("people", "new_staff_share"),
+      newSpeed: v("people", "new_staff_relative_speed"),
+      minStaff: v("people", "min_staff_on_shift"),
+      attendant: v("people", "all_machine_attendant_per_open_hour"),
+      flex: v("people", "staffing_flexibility"),
+      wage: v("costs", "labour_cost_per_hour"),
+      machineMonth: v("costs", "machine_cost_per_unit_per_month"),
+      lostCost: v("costs", "lost_order_cost"),
+      margin: v("costs", "capacity_safety_margin"),
+      targetWait: v("service", "target_wait_minutes"),
+      draws: v("simulation", "monte_carlo_draws"),
+      seed: v("simulation", "base_seed"),
+      uNone: v("demand", "uncertainty_no_signal"),
+      uStrong: v("demand", "uncertainty_strong_signal"),
+      hype: v("demand", "opening_hype_multiplier"),
+      milkPerCup: v("provision", "milk_litres_per_cup"),
+      wasteCost: v("provision", "milk_waste_cost_per_litre"),
+      shelfLife: v("provision", "milk_shelf_life_days"),
+      stockoutCost: v("provision", "stockout_cost_per_cup"),
+    };
+  }
+
+  /* ---------------- random numbers ---------------- */
+  function rng(seed) {                         // mulberry32, as in the Week 5 engine
+    let s = seed | 0;
+    return () => {
+      s = (s + 0x6D2B79F5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function hash(...xs) {                       // stable integer from several integers
+    let h = 2166136261;
+    for (const x of xs) { h ^= x | 0; h = Math.imul(h, 16777619); h ^= h >>> 13; }
+    return h | 0;
+  }
+  function normal(R) {                         // Box-Muller
+    let u = 0; while (u === 0) u = R();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * R());
+  }
+  function normInv(p) {                        // Acklam's approximation, |error| < 1.2e-9
+    const a = [-39.6968302866538, 220.946098424521, -275.928510446969, 138.357751867269, -30.6647980661472, 2.50662827745924];
+    const b = [-54.4760987982241, 161.585836858041, -155.698979859887, 66.8013118877197, -13.2806815528857];
+    const c = [-0.00778489400243029, -0.322396458041136, -2.40075827716184, -2.54973253934373, 4.37466414146497, 2.93816398269878];
+    const d = [0.00778469570904146, 0.32246712907004, 2.445134137143, 3.75440866190742];
+    const lo = 0.02425;
+    if (p < lo) { const q = Math.sqrt(-2 * Math.log(p));
+      return (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1); }
+    if (p > 1 - lo) return -normInv(1 - p);
+    const q = p - 0.5, r = q * q;
+    return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q /
+           (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
+  }
+  function poisson(lambda, u) {                // inverse CDF: same u -> monotone in lambda
+    let p = Math.exp(-lambda), F = p, k = 0;
+    while (u > F && k < 1000) { k++; p *= lambda / k; F += p; }
+    return k;
+  }
+
+  /* ---------------- demand ---------------- */
+  const dailyBase = P => P.cupsYear / P.days;
+
+  function drawMultipliers(u, n, seed, P) {
+    const zc = normInv(0.5 + P.coverage / 2), floor = P.floor;
+    const R = rng(hash(seed, 1));
+    const out = [];
+    for (let i = 0; i < n; i++) { const z = normal(R); out.push(Math.max(floor, 1 + u * z / zc)); }
+    return out;
+  }
+
+  function surgeHourSet(P) {
+    return new Set(P.share.map((s, h) => [s, h]).sort((x, y) => y[0] - x[0] || x[1] - y[1])
+      .slice(0, P.surgeHours).map(x => x[1]));
+  }
+
+  /* ---------------- capacity ---------------- */
+  // Bucket brigade, pooled: team rate = sum of worker speeds x coordination loss (Week 5 result).
+  const brigadeRate = (speeds, coord) => speeds.reduce((a, b) => a + b, 0) * coord;
+
+  const workerSpeeds = (n, spread) =>
+    n <= 1 ? (n === 1 ? [1] : []) : Array.from({ length: n }, (_, i) => 1 - spread + 2 * spread * i / (n - 1));
+
+  const expFactor = P => 1 - P.newShare * (1 - P.newSpeed);
+
+  function plan(P, setup) {
+    const base = dailyBase(P), rate = P.share.map(s => base * s / 60);          // forecast cups/min by hour
+    const R = Math.max(...rate) * P.margin;
+    const mStations = setup === "all_machine" ? P.stations : setup === "mixed" ? P.mixedMachine : [];
+    const hStations = setup === "all_machine" ? [] : P.stations.filter(s => !mStations.includes(s));
+    let machineUnits = 0, machineCap = Infinity;
+    for (const s of mStations) {
+      const sec = P.machineSec[s] * P.machineMult;
+      const units = Math.max(1, Math.ceil(R * sec / 60 - 1e-9));
+      machineUnits += units; machineCap = Math.min(machineCap, units * 60 / sec);
+    }
+    const W = hStations.reduce((a, s) => a + P.humanSec[s] * P.humanMult, 0);   // human seconds per cup
+    const perWorker = W > 0 ? (60 / W) * P.coord[setup] * expFactor(P) : 0;      // cups/min, average worker
+    const minStaff = P.minStaff[setup];
+    const need = m => rate.map(r => Math.max(minStaff, perWorker > 0 ? Math.ceil(r * m * P.margin / perWorker - 1e-9) : 0));
+    const rosterPlan = setup === "all_machine" ? rate.map(() => 0) : need(1);
+    const roster = m => setup === "all_machine" ? rosterPlan
+      : need(m).map((n, h) => Math.max(minStaff, Math.round(rosterPlan[h] + P.flex * (n - rosterPlan[h]))));
+    return { setup, machineUnits, machineCap, W, perWorker, rosterPlan, roster, rate };
+  }
+
+  function nominalCap(pl, n) {
+    if (pl.setup === "all_machine") return pl.machineCap;
+    const human = brigadeRate(Array(n).fill(1), 1) * pl.perWorker;
+    return pl.setup === "mixed" ? Math.min(pl.machineCap, human) : human;
+  }
+
+  /* ---------------- one trading day ---------------- */
+  function simulateDay(P, setup, { m = 1, surge = "none", seed = 1, deterministic = false, trace = false } = {}) {
+    const pl = plan(P, setup), roster = pl.roster(m), sh = surgeHourSet(P), mult = P.surgeMult[surge];
+    const base = dailyBase(P), RA = rng(hash(seed, 2));
+    let B = 0, arrivals = 0, served = 0, lost = 0, peakArr = 0, peakLost = 0;
+    const tr = trace ? { served: [], cap: [] } : null;
+    for (let t = 0; t < P.hours * 60; t++) {
+      const h = Math.floor(t / 60), n = roster[h];
+      const lam = base * P.share[h] * m * (sh.has(h) ? mult : 1) / 60;
+      const capNom = nominalCap(pl, n);
+      let capReal = capNom;
+      if (!deterministic && setup !== "all_machine") {
+        const sp = workerSpeeds(n, P.spread);
+        let sum = 0;
+        for (let i = 0; i < n; i++) {                       // noise keyed by (seed, minute, worker): shared across setups
+          const z = normal(rng(hash(seed, 3, t, i)));
+          sum += sp[i] * Math.max(0, 1 + P.humanCv * z);
+        }
+        const human = brigadeRate([sum], 1) * pl.perWorker;
+        capReal = setup === "mixed" ? Math.min(pl.machineCap, human) : human;
+      }
+      let a, l = 0;
+      if (deterministic) {
+        a = lam;
+        if (B / capNom > P.targetWait) l = a; else B += a;
+      } else {
+        a = poisson(lam, RA());
+        for (let k = 0; k < a; k++) { if (B / capNom > P.targetWait) l++; else B += 1; }
+      }
+      arrivals += a; lost += l;
+      if (sh.has(h)) { peakArr += a; peakLost += l; }
+      const s = Math.min(B, capReal); B -= s; served += s;
+      if (tr) { tr.served.push(s); tr.cap.push(capReal); }
+    }
+    served += B;                                             // backlog at close is finished after hours
+    const labourHours = setup === "all_machine" ? P.attendant * P.hours : roster.reduce((x, y) => x + y, 0);
+    const cost = {
+      machine: pl.machineUnits * P.machineMonth * 12 / P.days,
+      labour: labourHours * P.wage,
+      lost: lost * P.lostCost,
+    };
+    const machineBusy = pl.machineUnits ? served / (pl.machineCap * P.hours * 60) : null;
+    return { setup, m, arrivals, served, lost, peakArr, peakLost, labourHours, machineUnits: pl.machineUnits,
+             machineCap: pl.machineCap, machineBusy, cost, trace: tr };
+  }
+
+  /* ---------------- Monte Carlo over stores ---------------- */
+  function runPoint(P, u, surge, seed, draws) {
+    const ms = drawMultipliers(u, draws, seed, P);
+    const out = { u, surge };
+    for (const s of SETUPS) {
+      const acc = { arrivals: 0, served: 0, lost: 0, peakArr: 0, peakLost: 0, labourHours: 0,
+                    machine: 0, labour: 0, lostCost: 0, machineBusy: 0 };
+      ms.forEach((m, i) => {
+        const r = simulateDay(P, s, { m, surge, seed: hash(seed, 4, i) });
+        acc.arrivals += r.arrivals; acc.served += r.served; acc.lost += r.lost;
+        acc.peakArr += r.peakArr; acc.peakLost += r.peakLost; acc.labourHours += r.labourHours;
+        acc.machine += r.cost.machine; acc.labour += r.cost.labour; acc.lostCost += r.cost.lost;
+        acc.machineBusy += r.machineBusy || 0;
+      });
+      const total = acc.machine + acc.labour + acc.lostCost;
+      out[s] = {
+        arrivals: acc.arrivals, served: acc.served, lost: acc.lost,
+        costPerCup: total / acc.served,
+        perCup: { machine: acc.machine / acc.served, labour: acc.labour / acc.served, lost: acc.lostCost / acc.served },
+        lostShare: acc.arrivals ? acc.lost / acc.arrivals : 0,
+        peakLostShare: acc.peakArr ? acc.peakLost / acc.peakArr : 0,
+        cupsPerDay: acc.served / draws,
+        labourHoursPerDay: acc.labourHours / draws,
+        machineBusy: s === "all_human" ? null : acc.machineBusy / draws,
+      };
+    }
+    return out;
+  }
+
+  function uGrid(P) {
+    const { from, to, step } = P.sweepU, g = [];
+    for (let k = 0; from + k * step <= to + 1e-9; k++) g.push(+(from + k * step).toFixed(10));
+    return g;
+  }
+
+  const sweep = (P, surge, seed = P.seed, draws = P.draws) => uGrid(P).map(u => runPoint(P, u, surge, seed, draws));
+
+  /* Pre-registered rule (assumptions.json validation.crossover_definition). */
+  function crossover(rows) {
+    const d = rows.map(r => r.mixed.costPerCup - r.all_machine.costPerCup);
+    let i = d.length;
+    while (i > 0 && d[i - 1] <= 0) i--;
+    if (i === d.length) return { kind: d.some(x => x <= 0) ? "reverse" : "machine_cheaper_everywhere", u: null, d };
+    if (i === 0) return { kind: "mixed_cheaper_everywhere", u: null, d };
+    const u0 = rows[i - 1].u, u1 = rows[i].u;
+    return { kind: "crossover", u: u0 + (0 - d[i - 1]) / (d[i] - d[i - 1]) * (u1 - u0), d };
+  }
+
+  /* User check (4): peak-hour load vs nominal capacity at the base forecast. */
+  function peakUtilisation(P, surge) {
+    const sh = surgeHourSet(P), mult = P.surgeMult[surge], out = {};
+    for (const s of SETUPS) {
+      const pl = plan(P, s), roster = pl.roster(1);
+      let worst = 0, at = null;
+      for (const h of sh) {
+        const u = pl.rate[h] * mult / nominalCap(pl, roster[h]);
+        if (u > worst) { worst = u; at = h; }
+      }
+      out[s] = { utilisation: worst, hour: at, capacityPerMin: nominalCap(pl, roster[at]),
+                 arrivalPerMin: pl.rate[at] * mult, staff: roster[at], machineUnits: pl.machineUnits };
+    }
+    return out;
+  }
+
+  /* ---------------- slide 2: demand band (weekly cups) ---------------- */
+  // signal 0..1 moves u on a straight line from the no-signal to the strong-signal half-width.
+  function band(P, signal, removeHype) {
+    const u = P.uNone - signal * (P.uNone - P.uStrong);
+    const base = 7 * dailyBase(P) * (removeHype ? 1 : P.hype);
+    return { u, base, low: base * (1 - u), high: base * (1 + u), width: 2 * u * base, removeHype };
+  }
+
+  /* ---------------- slide 3: opening stock (newsvendor on fresh milk) ---------------- */
+  // The opening order covers one shelf life; unsold milk expires, unmet cups are stockouts.
+  function provision(P, u, days, daily) {
+    const ms = drawMultipliers(u, P.draws, P.seed, P);
+    const dem = ms.map(m => P.shelfLife * daily * m * P.milkPerCup);                // litres demanded
+    const cost = q => {
+      let w = 0, s = 0;
+      for (const d of dem) { w += Math.max(0, q - d) * P.wasteCost; s += Math.max(0, d - q) / P.milkPerCup * P.stockoutCost; }
+      return { waste: w / dem.length, stockout: s / dem.length };
+    };
+    const under = P.stockoutCost / P.milkPerCup, over = P.wasteCost;                // cost per litre short / spare
+    const ratio = under / (under + over);
+    const sorted = [...dem].sort((a, b) => a - b);
+    const qOpt = sorted[Math.min(sorted.length - 1, Math.ceil(ratio * sorted.length) - 1)];
+    const at = cost(days * daily * P.milkPerCup), opt = cost(qOpt);
+    return { days, waste: at.waste, stockout: at.stockout, total: at.waste + at.stockout,
+             optDays: qOpt / (daily * P.milkPerCup), optWaste: opt.waste, optStockout: opt.stockout,
+             optTotal: opt.waste + opt.stockout, criticalRatio: ratio, curve: d => cost(d * daily * P.milkPerCup) };
+  }
+
+  /* Linear interpolation of a sweep at any u (slides 4 and 5 read precomputed sweeps). */
+  function atU(rows, u, pick) {
+    if (u <= rows[0].u) return pick(rows[0]);
+    for (let i = 1; i < rows.length; i++) if (u <= rows[i].u) {
+      const t = (u - rows[i - 1].u) / (rows[i].u - rows[i - 1].u);
+      return pick(rows[i - 1]) + t * (pick(rows[i]) - pick(rows[i - 1]));
+    }
+    return pick(rows[rows.length - 1]);
+  }
+
+  const api = { band, provision, atU, SETUPS, params, rng, hash, normInv, poisson, dailyBase, drawMultipliers, surgeHourSet,
+                brigadeRate, workerSpeeds, plan, nominalCap, simulateDay, runPoint, uGrid, sweep, crossover,
+                peakUtilisation };
+  if (typeof module !== "undefined" && module.exports) module.exports = api;
+  else root.ChageeSim = api;
+})(typeof window !== "undefined" ? window : globalThis);
+
+</script>
+<script>
+const PRISTINE = "<!doctype html>\n" + document.documentElement.outerHTML;   // all scripts parsed, nothing rendered yet
+const Sim = window.ChageeSim, P = Sim.params(RAW);
+const slides=[...document.querySelectorAll(".slide")];
+const stage=document.getElementById("stage");
+let cur=0, SCALE=1;
+
+function fit(){
+  // scale the fixed 1280x720 slide to the largest size that fits, and centre it
+  const W=document.documentElement.clientWidth||innerWidth, H=document.documentElement.clientHeight||innerHeight;
+  SCALE=Math.min(W/1280, H/720);
+  stage.style.transform=`scale(${SCALE})`;
+  stage.style.left=((W-1280*SCALE)/2)+"px";
+  stage.style.top=((H-720*SCALE)/2)+"px";
+}
+addEventListener("resize",fit); document.addEventListener("fullscreenchange",()=>setTimeout(fit,50));
+if(window.ResizeObserver) new ResizeObserver(fit).observe(document.documentElement);
+fit();
+
+function go(i){
+  cur=Math.max(0,Math.min(slides.length-1,i));
+  slides.forEach((s,k)=>s.classList.toggle("on",k===cur));
+  document.getElementById("count").textContent=`${cur+1} / ${slides.length}`;
+  try{ history.replaceState(null,"",location.search+"#"+(cur+1)); }catch(e){}   // sandboxed previews block this
+}
+document.getElementById("next").onclick=()=>go(cur+1);
+document.getElementById("prev").onclick=()=>go(cur-1);
+const toggleFS=()=>{ try{ const p=document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.(); p&&p.catch&&p.catch(()=>{}); }catch(e){} };
+document.getElementById("fs").onclick=toggleFS;
+if(!document.fullscreenEnabled) document.getElementById("fs").style.display="none";   // not allowed in embedded previews
+document.getElementById("printb").onclick=()=>window.print();
+
+/* ---------- editing: click any text in edit mode; saved per browser, Download bakes it in ---------- */
+const STORE="opim639-chagee-deck-edits";
+const toast=m=>{const t=document.getElementById("toast"); t.textContent=m; t.classList.add("on"); clearTimeout(toast.h); toast.h=setTimeout(()=>t.classList.remove("on"),2200);};
+let edits={};
+try{ edits=JSON.parse(document.getElementById("baked-edits").textContent||"{}"); }catch(e){}
+try{ Object.assign(edits, JSON.parse(localStorage.getItem(STORE)||"{}")); }catch(e){}
+function applyEdits(){ document.querySelectorAll("[data-k]").forEach(el=>{ if(edits[el.dataset.k]!=null) el.textContent=edits[el.dataset.k]; }); }
+function saveEdits(){ try{ localStorage.setItem(STORE, JSON.stringify(edits)); }catch(e){} }
+function setEditing(on){
+  document.body.classList.toggle("editing",on);
+  document.getElementById("editb").classList.toggle("on",on);
+  document.querySelectorAll("[data-k]").forEach(el=>{ if(on) el.setAttribute("contenteditable","true"); else el.removeAttribute("contenteditable"); });
+  if(!on && document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  toast(on?"Edit mode: click any text to change it":"Edits saved in this browser");
+}
+document.getElementById("editb").onclick=()=>setEditing(!document.body.classList.contains("editing"));
+document.addEventListener("input",e=>{ const el=e.target.closest&&e.target.closest("[data-k]"); if(!el) return; edits[el.dataset.k]=el.innerText.replace(/\n+$/,""); saveEdits(); });
+document.addEventListener("paste",e=>{ if(!e.target.closest||!e.target.closest("[data-k]")) return; e.preventDefault();
+  document.execCommand("insertText",false,(e.clipboardData||window.clipboardData).getData("text/plain")); });
+document.addEventListener("keydown",e=>{ const el=e.target.closest&&e.target.closest("[data-k]");
+  if(el && e.key==="Enter" && !el.closest(".notes")){ e.preventDefault(); el.blur(); }
+  if(el && e.key==="Escape") el.blur(); }, true);
+document.getElementById("dl").onclick=()=>{
+  const json=JSON.stringify(edits).replace(/</g,"\\u003c");
+  const out=PRISTINE.replace(/(<script id="baked-edits" type="application\/json">)[\s\S]*?(<\/script>)/, (m,a,b)=>a+json+b);
+  const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([out],{type:"text/html"}));
+  a.download="chagee_deck_edited.html"; document.body.appendChild(a); a.click(); a.remove();
+  toast("Downloaded a copy with your edits built in");
+};
+document.getElementById("reset").onclick=()=>{ if(!confirm("Undo every edit made in this browser?")) return;
+  try{ localStorage.removeItem(STORE); }catch(e){} location.reload(); };
+document.getElementById("notesb").onclick=()=>{ document.body.classList.toggle("shownotes"); document.getElementById("notesb").classList.toggle("on"); };
+
+/* ---------- speaker-notes pages for printing (?notes=1 adds them to the PDF) ---------- */
+function buildNotesPages(){
+  document.querySelectorAll(".notespage").forEach(n=>n.remove());
+  slides.forEach((s,i)=>{
+    const n=s.querySelector(".notes"); if(!n) return;
+    const pg=document.createElement("section"); pg.className="slide notespage"; pg.setAttribute("aria-hidden","true");
+    pg.innerHTML=`<p class="nk">SPEAKER NOTES · PAGE ${i+1}</p><h3></h3><p class="np"></p><p class="src"></p>`;
+    pg.querySelector("h3").textContent=s.dataset.kicker||"";
+    pg.querySelector(".np").textContent=n.querySelector("[data-k]").innerText;
+    pg.querySelector(".src").textContent=n.querySelector(".src").innerText;
+    s.after(pg);
+  });
+}
+if(/[?&]notes=1/.test(location.search)) document.body.classList.add("printnotes");
+addEventListener("beforeprint",buildNotesPages);
+
+document.addEventListener("keydown",e=>{
+  if(e.target.isContentEditable) return;
+  if(e.target.tagName==="INPUT" && ["ArrowLeft","ArrowRight"].includes(e.key)) return;
+  if(["ArrowRight","PageDown"," "].includes(e.key) && e.target.tagName!=="BUTTON"){e.preventDefault();go(cur+1);}
+  else if(["ArrowLeft","PageUp"].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==="Home")go(0); else if(e.key==="End")go(slides.length-1);
+  else if((e.key==="f"||e.key==="F") && document.fullscreenEnabled)toggleFS();
+  else if(e.key==="e"||e.key==="E") document.getElementById("editb").click();
+  else if(e.key==="n"||e.key==="N") document.getElementById("notesb").click();
+});
+let idle; const wake=()=>{document.body.classList.remove("idle");clearTimeout(idle);idle=setTimeout(()=>document.body.classList.add("idle"),2500);};
+addEventListener("mousemove",wake); addEventListener("keydown",wake); wake();
+
+/* ================= deck explainers =================
+ * Every number comes from RAW (assumptions.json), DATA (sim/precompute.js output)
+ * or a live call into Sim (sim/sim.js). Slide 2's band is shared state: moving its
+ * slider updates slides 3, 4 (marker) and 5.
+ */
+const $=(r,s)=>r.querySelector(s), $$=(r,s)=>[...r.querySelectorAll(s)];
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const money=v=>(v<0?"−":"")+"S$"+Math.abs(v).toFixed(2);
+const money0=v=>(v<0?"−":"")+"S$"+Math.round(Math.abs(v)).toLocaleString("en-SG");
+const moneyM=v=>(v<0?"−":"")+"S$"+(Math.abs(v)/1e6).toFixed(1)+"m";
+const int=v=>Math.round(v).toLocaleString("en-SG");
+const pct=v=>Math.round(v*100)+"%", pct1=v=>(v*100).toFixed(1)+"%";
+const SETUPS=Sim.SETUPS, LABEL={all_human:"All-human",mixed:"Mixed",all_machine:"All-machine"}, SHORT={all_human:"Human",mixed:"Mixed",all_machine:"Machine"};
+const COL={all_human:css("--c-human"),mixed:css("--c-mixed"),all_machine:css("--c-machine")};
+const SURGE0=RAW.surge.surge_default.value, SURGES=Object.keys(RAW.surge.surge_multiplier.value);
+const SURGE_LABEL=g=>`${g[0].toUpperCase()+g.slice(1)} ×${RAW.surge.surge_multiplier.value[g]}`;
+
+/* ---------- shared state ---------- */
+const STATE={signal:RAW.predict.signal_strength_default.value, removeHype:RAW.predict_toggles.remove_hype_default.value, band:null};
+const LISTEN=[];
+const onBand=fn=>LISTEN.push(fn);
+function emit(){ STATE.band=Sim.band(P,STATE.signal,STATE.removeHype); LISTEN.forEach(f=>f(STATE.band)); }
+
+/* ---------- small SVG helpers ---------- */
+function niceStep(range,n){ const raw=range/n, mag=Math.pow(10,Math.floor(Math.log10(raw))), f=raw/mag;
+  return mag*(f<1.5?1:f<3?2:f<7?5:10); }
+const ticks=(max,n)=>{ const s=niceStep(max,n), out=[]; for(let v=0;v<=max+1e-9;v+=s) out.push(+v.toFixed(10)); return out; };
+const txt=(x,y,s,a="")=>`<text x="${x}" y="${y}" ${a}>${s}</text>`;
+function nudge(items,minGap,lo,hi){            // keep direct labels apart vertically
+  items.sort((a,b)=>a.y-b.y);
+  for(let i=1;i<items.length;i++) if(items[i].y-items[i-1].y<minGap) items[i].y=items[i-1].y+minGap;
+  const over=items.length?items[items.length-1].y-hi:0; if(over>0) items.forEach(it=>it.y-=over);
+  items.forEach(it=>it.y=Math.max(lo,it.y)); return items;
+}
+
+/* ================= slide 1: where does uncertainty land ================= */
+function whereWidget(root){
+  $$(root,".variants button").forEach(b=>b.onclick=()=>{
+    $$(root,".variants button").forEach(x=>x.classList.toggle("on",x===b));
+    $$(root,".scen").forEach(s=>s.classList.toggle("on",s.dataset.sc===b.dataset.sc));
+  });
+}
+
+/* ================= slide 2: demand band ================= */
+function bandWidget(root){
+  const body=$(root,".body");
+  body.innerHTML=`<div class="exgrid"><div>
+      <svg class="chart" viewBox="0 0 470 206" role="img" aria-label="Weekly demand bands"></svg>
+      <div class="controls"><label for="sig">Pre-launch signal</label><div class="rng"><input id="sig" type="range" min="0" max="1" step="any"><span class="val sigv"></span></div></div>
+      <div class="variants" style="margin-top:5px"><button data-h="1">Opening hype removed</button><button data-h="0">Hype included</button></div>
+    </div><div class="out"></div></div>`;
+  const svg=$(body,"svg"), out=$(body,".out"), sig=$(body,"#sig");
+  sig.value=STATE.signal;
+  sig.oninput=e=>{STATE.signal=+e.target.value; emit();};
+  $$(body,"[data-h]").forEach(b=>b.onclick=()=>{STATE.removeHype=b.dataset.h==="1"; emit();});
+  const xmax=7*Sim.dailyBase(P)*P.hype*(1+P.uNone);
+  onBand(b=>{
+    $$(body,"[data-h]").forEach(x=>x.classList.toggle("on",(x.dataset.h==="1")===b.removeHype));
+    $(body,".sigv").textContent=`${pct(STATE.signal)} → ±${pct1(b.u)}`;
+    const steady=Sim.band(P,STATE.signal,true), hype=Sim.band(P,STATE.signal,false);
+    const L=12,R=458,X=v=>L+(R-L)*v/xmax, amber=css("--amber"), grey="#c5cad3";
+    let s=ticks(xmax,5).map(v=>`<line x1="${X(v)}" x2="${X(v)}" y1="18" y2="176" stroke="#e5e7eb"/>`+
+      txt(X(v),192,int(v),'font-size="10" fill="#6b7280" text-anchor="middle"')).join("");
+    [[steady,"Steady demand (repeat habit)",40,b.removeHype],[hype,"Opening weeks, with hype",116,!b.removeHype]].forEach(([bd,lab,y,act])=>{
+      s+=txt(L,y-6,lab+(act?" · handed on":""),`font-size="11.5" font-weight="700" fill="${act?"#23272f":"#6b7280"}"`);
+      s+=`<rect x="${X(bd.low)}" y="${y}" width="${X(bd.high)-X(bd.low)}" height="22" rx="4" fill="${act?amber:grey}" opacity="${act?0.9:0.7}"/>`;
+      s+=`<line x1="${X(bd.base)}" x2="${X(bd.base)}" y1="${y-3}" y2="${y+25}" stroke="#23272f" stroke-width="2"/>`;
+      s+=txt(X(bd.low),y+36,int(bd.low),'font-size="10.5" fill="#374151" text-anchor="middle"');
+      s+=txt(X(bd.high),y+36,int(bd.high),'font-size="10.5" fill="#374151" text-anchor="middle"');
+      s+=txt(X(bd.base)+4,y+16,int(bd.base),'font-size="10.5" font-weight="700" fill="#23272f"');
+    });
+    s+=txt(R,204,"cups per week","font-size=\"10\" fill=\"#6b7280\" text-anchor=\"end\"");
+    svg.innerHTML=s;
+    out.innerHTML=`<h4>BAND HANDED ON</h4>
+      <div class="big">±${pct1(b.u)} <small>of base</small></div>
+      <div class="stat"><span>Low</span><b>${int(b.low)}</b></div>
+      <div class="stat"><span>Base</span><b>${int(b.base)}</b></div>
+      <div class="stat"><span>High</span><b>${int(b.high)}</b></div>
+      <div class="stat"><span>Width</span><b>${int(b.width)}</b></div>
+      <p class="note">Cups per week. ${b.removeHype?"Opening hype removed: steady demand.":"Hype included: opening-week demand."}</p>
+      <div class="handoff"><b>Not in the signal:</b> tourists and non-app orders, so true demand is likely higher.</div>`;
+  });
+}
+
+/* ================= slide 3: opening stock ================= */
+function stockWidget(root){
+  const body=$(root,".body"), [lo,hi]=RAW.provision.opening_stock_days.range;
+  let days=RAW.provision.opening_stock_days.value;
+  body.innerHTML=`<div class="exgrid"><div>
+      <svg class="chart" viewBox="0 0 470 236" role="img" aria-label="Expected cost by days of opening stock"></svg>
+      <div class="dlegend" style="margin:4px 0 0"><span><span class="sw" style="background:#23272f"></span>Total expected cost</span>
+        <span><span class="sw" style="background:${css("--c-human")}"></span>Milk wasted</span><span><span class="sw" style="background:${css("--red")}"></span>Cups missed</span></div>
+      <div class="controls"><label for="days">Days of opening stock</label><div class="rng"><input id="days" type="range" min="${lo}" max="${hi}" step="1" value="${days}"><span class="val dv"></span></div></div>
+    </div><div class="out"></div></div>`;
+  const svg=$(body,"svg"), out=$(body,".out");
+  $(body,"#days").oninput=e=>{days=+e.target.value; draw(STATE.band);};
+  function draw(b){
+    const daily=b.base/7, r=Sim.provision(P,b.u,days,daily), strong=Sim.provision(P,P.uStrong,days,daily);
+    $(body,".dv").textContent=`${days} days`;
+    const n=40, pts=[...Array(n+1)].map((_,i)=>{const d=lo+(hi-lo)*i/n, c=r.curve(d); return {d,w:c.waste,s:c.stockout,t:c.waste+c.stockout};});
+    const ymax=Math.max(...pts.map(p=>p.t))*1.05, L=46,R=458,T=12,B=210;
+    const X=d=>L+(R-L)*(d-lo)/(hi-lo), Y=v=>B-(B-T)*v/ymax;
+    const path=k=>pts.map((p,i)=>(i?"L":"M")+X(p.d).toFixed(1)+" "+Y(p[k]).toFixed(1)).join("");
+    let s=ticks(ymax,4).map(v=>`<line x1="${L}" x2="${R}" y1="${Y(v)}" y2="${Y(v)}" stroke="#e5e7eb"/>`+txt(L-5,Y(v)+3,money0(v),'font-size="10" fill="#6b7280" text-anchor="end"')).join("");
+    for(let d=lo; d<=hi; d+=Math.max(1,Math.round((hi-lo)/6))) s+=txt(X(d),B+14,d,'font-size="10" fill="#6b7280" text-anchor="middle"');
+    s+=txt(R,B+25,"days of base demand","font-size=\"10\" fill=\"#6b7280\" text-anchor=\"end\"");
+    s+=`<path d="${path("w")}" fill="none" stroke="${css("--c-human")}" stroke-width="2" stroke-dasharray="5 3"/>`;
+    s+=`<path d="${path("s")}" fill="none" stroke="${css("--red")}" stroke-width="2" stroke-dasharray="5 3"/>`;
+    s+=`<path d="${path("t")}" fill="none" stroke="#23272f" stroke-width="2.5"/>`;
+    s+=`<line x1="${X(days)}" x2="${X(days)}" y1="${T}" y2="${B}" stroke="${css("--amber")}" stroke-width="2"/>`;
+    s+=`<circle cx="${X(days)}" cy="${Y(r.total)}" r="5" fill="${css("--amber")}" stroke="#fff" stroke-width="2"/>`;
+    if(r.optDays>=lo && r.optDays<=hi){
+      s+=`<circle cx="${X(r.optDays)}" cy="${Y(r.optTotal)}" r="6" fill="#fff" stroke="${css("--green")}" stroke-width="3"/>`;
+      s+=txt(X(r.optDays),Y(r.optTotal)-11,"lowest cost",`font-size="10.5" font-weight="700" fill="${css("--green")}" text-anchor="middle"`);
+    }
+    svg.innerHTML=s;
+    const rows=DATA.sweeps[SURGE0].rows, cost=k=>Sim.atU(rows,b.u,r=>r[k].cost);
+    const best=SETUPS.reduce((a,k)=>cost(k)<cost(a)?k:a), gap=cost("all_machine")-cost("mixed");
+    out.innerHTML=`<h4>AT ${days} DAYS OF STOCK</h4>
+      <div class="big">${money0(r.total)} <small>expected</small></div>
+      <div class="stat"><span>Milk wasted</span><b>${money0(r.waste)}</b></div>
+      <div class="stat"><span>Cups missed</span><b>${money0(r.stockout)}</b></div>
+      <hr><h4>BEST ORDER AT THIS BAND (±${pct1(b.u)})</h4>
+      <div class="stat best"><span>${r.optDays.toFixed(1)} days</span><b>${money0(r.optTotal)}</b></div>
+      <div class="stat"><span>Same order, strong signal</span><b>${money0(strong.optTotal)}</b></div>
+      <div class="handoff"><b>Hand-off:</b> open with ${int(r.optDays*daily*P.milkPerCup)} L of milk. Counter (slide 4): cheapest is ${LABEL[best]}; mixed beats full automation by ${money(gap)}/cup.</div>`;
+  }
+  onBand(draw);
+}
+
+/* ================= slide 4: crossover chart ================= */
+function crossWidget(root){
+  const body=$(root,".body"), shiftRows=$(root,".shiftrows");
+  const st={surge:SURGE0, u:null, shift:null};
+  const allRuns=[...Object.values(DATA.sweeps),...Object.values(DATA.shift).flatMap(s=>[s.lowRun,s.highRun])];
+  const ymax=Math.max(...allRuns.flatMap(r=>r.rows.flatMap(x=>SETUPS.map(k=>x[k].cost))))*1.06;
+  const grid=DATA.sweeps[SURGE0].rows.map(r=>r.u), umin=grid[0], umax=grid[grid.length-1];
+  body.innerHTML=`<div class="exgrid"><div>
+      <div class="variants">${SURGES.map(g=>`<button data-g="${g}">${SURGE_LABEL(g)} surge</button>`).join("")}</div>
+      <div class="chartwrap"><svg class="chart" viewBox="0 0 470 178" role="img" aria-label="Cost per cup against demand uncertainty"></svg><div class="tip"></div></div>
+      <p class="note xo" style="margin-top:3px"></p>
+      <div class="controls"><label for="uu">Demand uncertainty</label><div class="rng"><input id="uu" type="range" min="${umin}" max="${umax}" step="any"><span class="val uv"></span></div></div>
+    </div><div class="out"></div></div>`;
+  const svg=$(body,"svg"), out=$(body,".out"), tip=$(body,".tip");
+  const SHIFT=[
+    ["machine_cost","Machine cost per month",x=>money0(x)],
+    ["staff_turnover","Staff turnover (share new)",x=>pct(x)],
+  ];
+  shiftRows.innerHTML=SHIFT.map(([k,lab,f])=>{const s=DATA.shift[k];
+    return `<div class="srow" data-shift="${k}"><span>${lab}</span><span class="seg">
+      <button data-l="low">Low ${f(s.low)}</button><button data-l="def">Default</button><button data-l="high">High ${f(s.high)}</button></span><span class="sval"></span></div>`;}).join("")+
+    `<div class="srow" data-shift="forecast"><span>Forecast narrows (slide 2 band)</span><span class="seg">
+      <button data-u="${P.uNone}">No signal ±${pct(P.uNone)}</button><button data-u="def">Slide 2</button><button data-u="${P.uStrong}">Strong ±${pct(P.uStrong)}</button></span><span class="sval"></span></div>`;
+  const run=()=>{ if(st.shift && st.surge===DATA.shift[st.shift.k].surge){ const s=DATA.shift[st.shift.k]; return s[st.shift.l+"Run"]; } return DATA.sweeps[st.surge]; };
+  const KIND={
+    mixed_cheaper_everywhere:"No crossover: mixed is cheaper than full automation at every uncertainty level shown.",
+    machine_cheaper_everywhere:"No crossover: full automation is cheaper than mixed at every uncertainty level shown.",
+    reverse:"Mixed is cheaper only when demand is predictable: the reverse of our hypothesis.",
+  };
+  const kindText=c=>c.kind==="crossover"?`Crossover at ±${pct1(c.u)}: mixed is cheaper above it.`:KIND[c.kind];
+  const L=44,R=378,T=10,B=150, X=u=>L+(R-L)*(u-umin)/(umax-umin), Y=v=>B-(B-T)*v/ymax;
+  function draw(){
+    const rs=run(), rows=rs.rows, u=st.u;
+    $$(body,"[data-g]").forEach(b=>b.classList.toggle("on",b.dataset.g===st.surge));
+    $(body,"#uu").value=u; $(body,".uv").textContent=`±${pct1(u)}`;
+    let s=`<rect x="${X(P.uStrong)}" y="${T}" width="${X(P.uNone)-X(P.uStrong)}" height="${B-T}" fill="${css("--amber-soft")}" opacity=".6"/>`+
+      txt(X(P.uStrong)+4,B-5,"slide 2 range",`font-size="10" fill="${css("--amber-ink")}"`);
+    s+=ticks(ymax,4).map(v=>`<line x1="${L}" x2="${R}" y1="${Y(v)}" y2="${Y(v)}" stroke="#e5e7eb"/>`+txt(L-5,Y(v)+3,money(v),'font-size="10" fill="#6b7280" text-anchor="end"')).join("");
+    s+=grid.filter((_,i)=>i%2===0).map(g=>txt(X(g),B+13,"±"+pct(g),'font-size="10" fill="#6b7280" text-anchor="middle"')).join("");
+    s+=txt(R,B+25,"demand uncertainty (band half-width)","font-size=\"10\" fill=\"#6b7280\" text-anchor=\"end\"");
+    const labs=[];
+    SETUPS.forEach(k=>{
+      s+=`<path d="${rows.map((r,i)=>(i?"L":"M")+X(r.u).toFixed(1)+" "+Y(r[k].cost).toFixed(1)).join("")}" fill="none" stroke="${COL[k]}" stroke-width="${k==="mixed"?2.6:2}"/>`;
+      labs.push({k,y:Y(rows[rows.length-1][k].cost)+4});
+    });
+    nudge(labs,13,T+8,B).forEach(l=>{ s+=txt(R+6,l.y,`${LABEL[l.k]} ${money(rows[rows.length-1][l.k].cost)}`,`font-size="10.5" fill="#23272f"`);
+      s+=`<line x1="${R+1}" x2="${R+5}" y1="${l.y-4}" y2="${l.y-4}" stroke="${COL[l.k]}" stroke-width="3"/>`; });
+    s+=`<line x1="${X(u)}" x2="${X(u)}" y1="${T}" y2="${B}" stroke="#23272f" stroke-width="1.5" stroke-dasharray="4 3"/>`;
+    SETUPS.forEach(k=>{ s+=`<circle cx="${X(u)}" cy="${Y(Sim.atU(rows,u,r=>r[k].cost))}" r="4.5" fill="${COL[k]}" stroke="#fff" stroke-width="2"/>`; });
+    if(rs.crossover.kind==="crossover"){ const cu=rs.crossover.u, cy=Y(Sim.atU(rows,cu,r=>r.mixed.cost));
+      s+=`<circle cx="${X(cu)}" cy="${cy}" r="7" fill="none" stroke="#23272f" stroke-width="2"/>`+txt(X(cu),cy-11,"crossover",'font-size="10.5" font-weight="700" fill="#23272f" text-anchor="middle"'); }
+    s+=`<rect class="hit" x="${L}" y="${T}" width="${R-L}" height="${B-T}" fill="transparent"/>`;
+    svg.innerHTML=s;
+    $(body,".xo").textContent=kindText(rs.crossover)+(st.shift&&st.surge===DATA.shift[st.shift.k].surge?" (with the shifted assumption)":"");
+    const c=Object.fromEntries(SETUPS.map(k=>[k,Sim.atU(rows,u,r=>r[k].cost)]));
+    const best=SETUPS.reduce((a,k)=>c[k]<c[a]?k:a);
+    const parts=k=>["machine","labour","lost"].map(p=>Sim.atU(rows,u,r=>r[k][p]));
+    const pmax=Math.max(...SETUPS.map(k=>c[k]));
+    const PC={machine:"#8b95a7",labour:"#4b5563",lost:css("--red")};
+    out.innerHTML=`<h4>COST PER CUP AT ±${pct1(u)}</h4>
+      ${SETUPS.map(k=>`<div class="stat ${k===best?"best":""}"><span><span class="sw" style="background:${COL[k]}"></span>${LABEL[k]}</span><b>${money(c[k])}</b></div>`).join("")}
+      <div class="stat"><span>Mixed − machine</span><b>${money(c.mixed-c.all_machine)}</b></div>
+      <hr><h4>WHAT THE COST IS MADE OF</h4>
+      ${SETUPS.map(k=>{const [m,l,o]=parts(k);return `<div style="display:flex;align-items:center;gap:6px;margin:3px 0;font-size:11px"><span style="width:44px">${SHORT[k]}</span>
+        <span style="display:flex;gap:2px;flex:1">${[["machine",m],["labour",l],["lost",o]].map(([p,v])=>v>0.004?`<span title="${p} ${money(v)}" style="height:10px;border-radius:2px;background:${PC[p]};width:${(100*v/pmax).toFixed(1)}%"></span>`:"").join("")}</span></div>`;}).join("")}
+      <div class="dlegend" style="margin-top:2px;gap:8px"><span><span class="sw" style="background:${PC.machine}"></span>machines</span><span><span class="sw" style="background:${PC.labour}"></span>labour</span><span><span class="sw" style="background:${PC.lost}"></span>lost</span></div>
+      <hr>
+      <div class="stat"><span>Automated line busy</span><b>${pct(Sim.atU(rows,u,r=>r.all_machine.busy))}</b></div>
+      <div class="stat"><span>Orders lost: mixed</span><b>${pct1(Sim.atU(rows,u,r=>r.mixed.lostShare))}</b></div>`;
+    // shift rows
+    $$(shiftRows,".srow").forEach(row=>{
+      const k=row.dataset.shift;
+      if(k==="forecast"){
+        $$(row,"button").forEach(b=>b.classList.toggle("on",Math.abs((b.dataset.u==="def"?STATE.band.u:+b.dataset.u)-u)<1e-9));
+        $(row,".sval").textContent=""; return;
+      }
+      const s=DATA.shift[k], enabled=st.surge===s.surge, lvl=st.shift&&st.shift.k===k?st.shift.l:"def";
+      $$(row,"button").forEach(b=>{ b.disabled=!enabled; b.classList.toggle("on",enabled&&b.dataset.l===lvl); });
+      const kind=lvl==="def"?DATA.sweeps[s.surge].crossover:s[lvl+"Run"].crossover;
+      $(row,".sval").textContent=enabled?(kind.kind==="crossover"?`→ crossover at ±${pct1(kind.u)}`:`→ ${kind.kind.replace(/_/g," ")}`):`computed at ${s.surge} surge only`;
+    });
+  }
+  svg.addEventListener("mousemove",e=>{
+    const pt=svg.createSVGPoint(); pt.x=e.clientX; pt.y=e.clientY; const p=pt.matrixTransform(svg.getScreenCTM().inverse());
+    if(p.x<L||p.x>R){ tip.style.display="none"; return; }
+    const rows=run().rows, uu=umin+(umax-umin)*(p.x-L)/(R-L), r=rows.reduce((a,b)=>Math.abs(b.u-uu)<Math.abs(a.u-uu)?b:a);
+    tip.innerHTML=`<div>±${pct(r.u)} uncertainty</div>`+SETUPS.map(k=>`<div><span class="sw" style="background:${COL[k]}"></span>${LABEL[k]} <b>${money(r[k].cost)}</b></div>`).join("");
+    const sc=svg.getBoundingClientRect().width/470;
+    tip.style.display="block"; tip.style.left=((X(r.u)+10)*sc/SCALE)+"px"; tip.style.top=(12*sc/SCALE)+"px";
+  });
+  svg.addEventListener("mouseleave",()=>tip.style.display="none");
+  $$(body,"[data-g]").forEach(b=>b.onclick=()=>{st.surge=b.dataset.g; draw();});
+  $(body,"#uu").oninput=e=>{st.u=+e.target.value; draw();};
+  $$(shiftRows,"[data-shift] button").forEach(b=>b.onclick=()=>{
+    const k=b.closest(".srow").dataset.shift;
+    if(k==="forecast"){ st.u=b.dataset.u==="def"?STATE.band.u:+b.dataset.u; }
+    else st.shift=b.dataset.l==="def"?null:{k,l:b.dataset.l};
+    draw();
+  });
+  onBand(b=>{ st.u=b.u; draw(); });
+}
+
+/* ================= slide 5: benefit calculator ================= */
+function benefitWidget(root){
+  const body=$(root,".body"), B=RAW.benefit, rows=DATA.sweeps[SURGE0].rows;
+  const daily0=Sim.dailyBase(P), days0=RAW.provision.opening_stock_days.value;
+  const maxSaving=Math.max(...rows.map(r=>r.all_machine.cost));
+  const maxWaste=Sim.provision(P,P.uNone,days0,daily0).optTotal;
+  const st={stores:B.overseas_stores_per_year.value, cups:RAW.store.cups_per_store_per_year.value, saving:0, waste:0, linked:true};
+  const [s0,s1]=B.overseas_stores_per_year.range, [c0,c1]=RAW.store.cups_per_store_per_year.range;
+  body.innerHTML=`<div class="controls" style="grid-template-columns:262px 1fr">
+      <label for="bst">Overseas openings a year</label><div class="rng"><input id="bst" type="range" min="${s0}" max="${s1}" step="1"><span class="val v1"></span></div>
+      <label for="bcu">Cups per store per year</label><div class="rng"><input id="bcu" type="range" min="${c0}" max="${c1}" step="any"><span class="val v2"></span></div>
+      <label for="bsa">Saving per cup (slide 4)</label><div class="rng"><input id="bsa" type="range" min="0" max="${maxSaving}" step="any"><span class="val v3"></span></div>
+      <label for="bwa">Stock cost avoided per opening (slide 3)</label><div class="rng"><input id="bwa" type="range" min="0" max="${maxWaste}" step="any"><span class="val v4"></span></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px"><span class="note link"></span><span class="variants" style="margin:0"><button class="relink">Re-link to slides 2–4</button></span></div>
+    <div class="formula"></div>`;
+  const ids={bst:"stores",bcu:"cups",bsa:"saving",bwa:"waste"};
+  Object.entries(ids).forEach(([id,k])=>$(body,"#"+id).oninput=e=>{ st[k]=+e.target.value; if(k==="saving"||k==="waste") st.linked=false; draw(); });
+  $(body,".relink").onclick=()=>{ st.linked=true; link(STATE.band); };
+  function link(b){
+    if(!st.linked) return draw();
+    const daily=b.base/7;
+    st.saving=Sim.atU(rows,b.u,r=>r.all_machine.cost-r.mixed.cost);
+    st.waste=Sim.provision(P,P.uNone,days0,daily).optTotal-Sim.provision(P,b.u,days0,daily).optTotal;
+    draw();
+  }
+  function draw(){
+    Object.entries(ids).forEach(([id,k])=>$(body,"#"+id).value=st[k]);
+    $(body,".v1").textContent=int(st.stores); $(body,".v2").textContent=int(st.cups);
+    $(body,".v3").textContent=money(st.saving); $(body,".v4").textContent=money0(st.waste);
+    const counter=st.stores*st.cups*st.saving, stock=st.stores*st.waste, total=counter+stock;
+    $(body,".link").textContent=st.linked?`Linked: band ±${pct1(STATE.band.u)} from slide 2, ${SURGE0} surge.`:"Unlinked: you moved a linked slider.";
+    $(body,".formula").innerHTML=`<div class="big" style="margin-bottom:3px">≈ ${moneyM(total)} <small>a year, illustrative</small></div>
+      <span class="term"><b>${int(st.stores)}</b> openings</span> × ( <span class="term"><b>${int(st.cups)}</b> cups</span> × <span class="term"><b>${money(st.saving)}</b> saved per cup</span>
+      + <span class="term"><b>${money0(st.waste)}</b> stock cost avoided</span> )
+      <small style="margin-top:4px">≈ ${moneyM(counter)} from the counter + ${moneyM(stock)} from opening stock. Saving per cup = full-automation minus mixed cost per cup; stock cost avoided = best-order cost with no signal minus with the slide 2 band.</small>`;
+  }
+  onBand(link);
+}
+
+/* ================= slide 5: risk toggles ================= */
+function riskToggles(){
+  $$(document,".risk .rt").forEach(b=>b.onclick=()=>{
+    const r=b.closest(".risk"), on=!r.classList.contains("on");
+    r.classList.toggle("on",on); b.setAttribute("aria-expanded",on);
+  });
+}
+
+const WIDGETS={where:whereWidget,band:bandWidget,stock:stockWidget,cross:crossWidget,benefit:benefitWidget};
+document.querySelectorAll("[data-widget]").forEach(el=>WIDGETS[el.dataset.widget](el));
+riskToggles();
+applyEdits();
+buildNotesPages();
+emit();
+let start=0; try{ start=(parseInt(location.hash.slice(1))||1)-1; }catch(e){}
+go(Math.max(0,start));
+</script>
+</body>
+</html>

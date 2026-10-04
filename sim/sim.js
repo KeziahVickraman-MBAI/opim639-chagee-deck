@@ -57,6 +57,13 @@
       targetWait: v("service", "target_wait_minutes"),
       draws: v("simulation", "monte_carlo_draws"),
       seed: v("simulation", "base_seed"),
+      uNone: v("demand", "uncertainty_no_signal"),
+      uStrong: v("demand", "uncertainty_strong_signal"),
+      hype: v("demand", "opening_hype_multiplier"),
+      milkPerCup: v("provision", "milk_litres_per_cup"),
+      wasteCost: v("provision", "milk_waste_cost_per_litre"),
+      shelfLife: v("provision", "milk_shelf_life_days"),
+      stockoutCost: v("provision", "stockout_cost_per_cup"),
     };
   }
 
@@ -258,7 +265,45 @@
     return out;
   }
 
-  const api = { SETUPS, params, rng, hash, normInv, poisson, dailyBase, drawMultipliers, surgeHourSet,
+  /* ---------------- slide 2: demand band (weekly cups) ---------------- */
+  // signal 0..1 moves u on a straight line from the no-signal to the strong-signal half-width.
+  function band(P, signal, removeHype) {
+    const u = P.uNone - signal * (P.uNone - P.uStrong);
+    const base = 7 * dailyBase(P) * (removeHype ? 1 : P.hype);
+    return { u, base, low: base * (1 - u), high: base * (1 + u), width: 2 * u * base, removeHype };
+  }
+
+  /* ---------------- slide 3: opening stock (newsvendor on fresh milk) ---------------- */
+  // The opening order covers one shelf life; unsold milk expires, unmet cups are stockouts.
+  function provision(P, u, days, daily) {
+    const ms = drawMultipliers(u, P.draws, P.seed, P);
+    const dem = ms.map(m => P.shelfLife * daily * m * P.milkPerCup);                // litres demanded
+    const cost = q => {
+      let w = 0, s = 0;
+      for (const d of dem) { w += Math.max(0, q - d) * P.wasteCost; s += Math.max(0, d - q) / P.milkPerCup * P.stockoutCost; }
+      return { waste: w / dem.length, stockout: s / dem.length };
+    };
+    const under = P.stockoutCost / P.milkPerCup, over = P.wasteCost;                // cost per litre short / spare
+    const ratio = under / (under + over);
+    const sorted = [...dem].sort((a, b) => a - b);
+    const qOpt = sorted[Math.min(sorted.length - 1, Math.ceil(ratio * sorted.length) - 1)];
+    const at = cost(days * daily * P.milkPerCup), opt = cost(qOpt);
+    return { days, waste: at.waste, stockout: at.stockout, total: at.waste + at.stockout,
+             optDays: qOpt / (daily * P.milkPerCup), optWaste: opt.waste, optStockout: opt.stockout,
+             optTotal: opt.waste + opt.stockout, criticalRatio: ratio, curve: d => cost(d * daily * P.milkPerCup) };
+  }
+
+  /* Linear interpolation of a sweep at any u (slides 4 and 5 read precomputed sweeps). */
+  function atU(rows, u, pick) {
+    if (u <= rows[0].u) return pick(rows[0]);
+    for (let i = 1; i < rows.length; i++) if (u <= rows[i].u) {
+      const t = (u - rows[i - 1].u) / (rows[i].u - rows[i - 1].u);
+      return pick(rows[i - 1]) + t * (pick(rows[i]) - pick(rows[i - 1]));
+    }
+    return pick(rows[rows.length - 1]);
+  }
+
+  const api = { band, provision, atU, SETUPS, params, rng, hash, normInv, poisson, dailyBase, drawMultipliers, surgeHourSet,
                 brigadeRate, workerSpeeds, plan, nominalCap, simulateDay, runPoint, uGrid, sweep, crossover,
                 peakUtilisation };
   if (typeof module !== "undefined" && module.exports) module.exports = api;

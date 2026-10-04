@@ -21,7 +21,42 @@
     "L-unsw": "UNSW BusinessThink, Oct 2024: Chagee semi-automation, baristas scan a QR code and the machine dispenses the formulation. (brief.md section 9)",
     "L-mom-pwm": "Ministry of Manpower, Progressive Wage Model, Food Services sector, https://www.mom.gov.sg/employment-practices/progressive-wage-model/food-services-sector (page updated 1 Sep 2026; fetched 4 Oct 2026). Category A (quick service), Food Service Counter Attendant / Kitchen Assistant, 1 Jul 2026 - 30 Jun 2027: monthly gross wage >= S$2,295 full-time; part-time >= S$12.04 per hour (pro-rated on a 44-hour week). A legal floor, not a market wage. Added to the ledger at the user's request.",
     "L-cpf": "CPF Board, 'How much CPF contributions to pay', https://www.cpf.gov.sg/employer/employer-obligations/how-much-cpf-contributions-to-pay (page updated 11 Aug 2026; fetched 4 Oct 2026). Employer contribution 17% of wages from 1 Jan 2026, Singapore Citizen / SPR (3rd year on), age 55 and below, wages above S$750/month. Added to the ledger at the user's request.",
-    "L-xrates": "X-Rates monthly averages, https://x-rates.com/average/?amount=1&from=USD&to=SGD&year=2026 (fetched 4 Oct 2026). September 2026 USD to SGD average 1.272467 (30 days). Secondary aggregator; used only for converting the earlier USD assumptions."
+    "L-prn": "PR Newswire, 21 May 2024 (company release): Chagee says it sources all tea and milk directly for domestic operations, with distribution managed through HQ. (brief.md section 9)",
+    "L-prometheus": "Prometheus Capital Substack (SECONDARY - flag when used): own Yunnan plantations, cold chain to 6,000+ stores; tea lattes about 91% of China sales. (brief.md section 9)",
+    "L-chainreact": "Chainreact Substack (secondary): founder avoided fruit tea partly for supply chain complexity. (brief.md section 9)",
+    "L-triunity": "Studio Triunity, citing the Mixue prospectus: Chagee's pure milk-tea menu seen as simpler to export; Mixue has 7 SEA warehouses and 3 planned local factories. (brief.md section 9)",
+    "L-cyberrt": "Cyber-RT / Citizens Journal, Oct 2022: Chagee Express (Malaysia), semi-automated machine, three drink categories for speed. (brief.md section 9)",
+    "L-gongcha": "FastCasual and franchise.org, Jan-Feb 2026 (company-reported): Gong cha Super Wu, up to 65% higher peak-hour productivity, about one minute off prep, stores with as few as two staff, 40-store pilot in 13 countries. (brief.md section 9)",
+    "L-starbucks": "Constellation Research; Harvard D3: Starbucks Deep Brew - forecasting, scheduling, replenishment, order sequencing; location analytics for new stores. (brief.md section 9)",
+    "L-mosimtec": "MOSIMTEC, Winter Simulation Conference 2025: store digital twins replicate existing layouts. (brief.md section 9)",
+    "L-slate": "Slate, Aug 2021: bubble tea shaker robot needed about one worker vs four to six; two earlier all-robot shops closed within about a year. (brief.md section 9)",
+    "I-leeyen": "INFORMAL - call with Lee Yen. Do not cite without checking with her: Yunnan standard sourcing, GM-led new-market forecasting, app-only ordering with tourist exceptions, sub-one-minute fulfilment target.",
+    "L-xrates":"X-Rates monthly averages, https://x-rates.com/average/?amount=1&from=USD&to=SGD&year=2026 (fetched 4 Oct 2026). September 2026 USD to SGD average 1.272467 (30 days). Secondary aggregator; used only for converting the earlier USD assumptions."
+  },
+
+  "facts": {
+    "_note": "Chagee facts quoted on slides. Not assumptions: each carries its ledger source and appears with that source in the speaker notes.",
+    "stores_end_2025": { "value": 7453, "unit": "stores", "source": "L-jiemian", "rationale": "Store count at end-2025." },
+    "overseas_stores": { "value": 345, "unit": "stores", "source": "L-jiemian", "rationale": "Overseas stores (earnings-call coverage)." },
+    "overseas_markets": { "value": 7, "unit": "markets", "source": "L-jiemian", "rationale": "Overseas markets." },
+    "gmv_2025_rmb_bn": { "value": 31.58, "unit": "RMB bn", "source": "L-jiemian", "rationale": "Full-year 2025 GMV." },
+    "net_revenue_2025_rmb_bn": { "value": 12.91, "unit": "RMB bn", "source": "L-jiemian", "rationale": "Full-year 2025 net revenue." },
+    "tea_latte_share_china": { "value": 0.91, "unit": "share of China sales", "source": "L-prometheus", "rationale": "Secondary source; flagged as such wherever shown." },
+    "kl_opening_day_cups": { "value": 1000, "unit": "cups (reported, '1,000+')", "source": "L-gabgrowth", "rationale": "Secondary; one store, one day." }
+  },
+
+  "predict": {
+    "signal_strength_default": {
+      "value": 0.5, "unit": "share, 0 = no pre-launch signal, 1 = strong signal", "range": [0, 1], "source": "assumption",
+      "rationale": "ADDED DURING DECK BUILD - needs approval. Slide 2 slider default. Band half-width u = uncertainty_no_signal - signal x (uncertainty_no_signal - uncertainty_strong_signal), a straight line between the two approved end points. At 0.5, u = 32.5%. This u feeds slides 3 and 5."
+    }
+  },
+
+  "predict_toggles": {
+    "remove_hype_default": {
+      "value": true, "unit": "boolean", "range": null, "source": "assumption",
+      "rationale": "ADDED DURING DECK BUILD - needs approval. Slide 2 starts with opening-week hype removed, so slides 3-5 receive the steady-demand band by default. The hype band stays visible on the chart for comparison."
+    }
   },
 
   "store": {
@@ -205,7 +240,7 @@
     },
     "opening_stock_days": {
       "value": 3, "unit": "days of forecast base demand", "range": [1, 14], "source": "assumption",
-      "rationale": "Slide 3 slider default. The calculator also shows the cost-minimising level."
+      "rationale": "Slide 3 slider default. The calculator also shows the cost-minimising level. ADDED DURING DECK BUILD, needs approval: the opening order is assumed to cover one milk shelf-life (milk_shelf_life_days) before regular replenishment starts; stock beyond that period's demand expires (waste), and demand beyond stock is a stockout. Demand for the period = days x forecast base x m, with m drawn from slide 2's band."
     }
   },
 
