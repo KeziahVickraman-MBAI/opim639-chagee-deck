@@ -1,0 +1,89 @@
+{
+ "none": {
+  "all_human": {
+   "utilisation": 0.6117228339450561,
+   "hour": 3,
+   "capacityPerMin": 1.665,
+   "arrivalPerMin": 1.0185185185185184,
+   "staff": 2,
+   "machineUnits": 0,
+   "peakLostShare": 0.0002898501304325587
+  },
+  "mixed": {
+   "utilisation": 0.6117228339450561,
+   "hour": 3,
+   "capacityPerMin": 1.665,
+   "arrivalPerMin": 1.0185185185185184,
+   "staff": 1,
+   "machineUnits": 3,
+   "peakLostShare": 0.0003580501611225725
+  },
+  "all_machine": {
+   "utilisation": 0.2546296296296296,
+   "hour": 3,
+   "capacityPerMin": 4,
+   "arrivalPerMin": 1.0185185185185184,
+   "staff": 0,
+   "machineUnits": 6,
+   "peakLostShare": 0
+  }
+ },
+ "moderate": {
+  "all_human": {
+   "utilisation": 0.9175842509175842,
+   "hour": 3,
+   "capacityPerMin": 1.665,
+   "arrivalPerMin": 1.5277777777777777,
+   "staff": 2,
+   "machineUnits": 0,
+   "peakLostShare": 0.02029665213382358
+  },
+  "mixed": {
+   "utilisation": 0.9175842509175842,
+   "hour": 3,
+   "capacityPerMin": 1.665,
+   "arrivalPerMin": 1.5277777777777777,
+   "staff": 1,
+   "machineUnits": 3,
+   "peakLostShare": 0.021776497774539823
+  },
+  "all_machine": {
+   "utilisation": 0.3819444444444444,
+   "hour": 3,
+   "capacityPerMin": 4,
+   "arrivalPerMin": 1.5277777777777777,
+   "staff": 0,
+   "machineUnits": 6,
+   "peakLostShare": 0
+  }
+ },
+ "large": {
+  "all_human": {
+   "utilisation": 1.52930708486264,
+   "hour": 3,
+   "capacityPerMin": 1.665,
+   "arrivalPerMin": 2.546296296296296,
+   "staff": 2,
+   "machineUnits": 0,
+   "peakLostShare": 0.29896921300881873
+  },
+  "mixed": {
+   "utilisation": 1.52930708486264,
+   "hour": 3,
+   "capacityPerMin": 1.665,
+   "arrivalPerMin": 2.546296296296296,
+   "staff": 1,
+   "machineUnits": 3,
+   "peakLostShare": 0.29954984186402356
+  },
+  "all_machine": {
+   "utilisation": 0.636574074074074,
+   "hour": 3,
+   "capacityPerMin": 4,
+   "arrivalPerMin": 2.546296296296296,
+   "staff": 0,
+   "machineUnits": 6,
+   "peakLostShare": 0
+  }
+ }
+}

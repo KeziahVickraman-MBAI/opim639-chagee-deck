@@ -1,0 +1,112 @@
+{
+ "surge": "moderate",
+ "criteria": {
+  "seeds": 20,
+  "min_seeds_with_crossover": 18,
+  "max_spread_pct_points": 10
+ },
+ "seeds": [
+  {
+   "seed": 639,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 640,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 641,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 642,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 643,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 644,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 645,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 646,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 647,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 648,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 649,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 650,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 651,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 652,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 653,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 654,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 655,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 656,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 657,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  },
+  {
+   "seed": 658,
+   "kind": "mixed_cheaper_everywhere",
+   "u": null
+  }
+ ],
+ "spread": null,
+ "pass": false
+}

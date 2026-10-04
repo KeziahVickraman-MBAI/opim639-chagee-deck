@@ -1,0 +1,2099 @@
+{
+ "none": {
+  "rows": [
+   {
+    "u": 0,
+    "surge": "none",
+    "all_human": {
+     "arrivals": 278231,
+     "served": 278210,
+     "lost": 21,
+     "costPerCup": 0.6080306962366608,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.6077423528988943,
+      "lost": 0.00028834333776643536
+     },
+     "lostShare": 0.00007547685196832848,
+     "peakLostShare": 0.0002898501304325587,
+     "cupsPerDay": 556.42,
+     "labourHoursPerDay": 24,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 278231,
+     "served": 278204,
+     "lost": 27,
+     "costPerCup": 0.6472970913430458,
+     "perCup": {
+      "machine": 0.34304862618797716,
+      "labour": 0.30387773001107354,
+      "lost": 0.0003707351439950539
+     },
+     "lostShare": 0.00009704166681642233,
+     "peakLostShare": 0.0003580501611225725,
+     "cupsPerDay": 556.408,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.1287981481481482
+    },
+    "all_machine": {
+     "arrivals": 278231,
+     "served": 278231,
+     "lost": 0,
+     "costPerCup": 0.9898789135646304,
+     "perCup": {
+      "machine": 0.6860306723549856,
+      "labour": 0.3038482412096449,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 556.462,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.19321597222222203
+    }
+   },
+   {
+    "u": 0.05,
+    "surge": "none",
+    "all_human": {
+     "arrivals": 278175,
+     "served": 278153,
+     "lost": 22,
+     "costPerCup": 0.6081690292752601,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.6078668934003998,
+      "lost": 0.0003021358748602387
+     },
+     "lostShare": 0.00007908690572481352,
+     "peakLostShare": 0.0003068530514831231,
+     "cupsPerDay": 556.306,
+     "labourHoursPerDay": 24,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 278175,
+     "served": 278145,
+     "lost": 30,
+     "costPerCup": 0.6474755972604243,
+     "perCup": {
+      "machine": 0.3431213935177695,
+      "labour": 0.3039421884269021,
+      "lost": 0.0004120153157525749
+     },
+     "lostShare": 0.00010784578053383661,
+     "peakLostShare": 0.00039209001022843506,
+     "cupsPerDay": 556.29,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.12877083333333328
+    },
+    "all_machine": {
+     "arrivals": 278175,
+     "served": 278175,
+     "lost": 0,
+     "costPerCup": 0.9900781881908896,
+     "perCup": {
+      "machine": 0.6861687786465355,
+      "labour": 0.3039094095443541,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 556.35,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.19317708333333342
+    }
+   },
+   {
+    "u": 0.1,
+    "surge": "none",
+    "all_human": {
+     "arrivals": 278411,
+     "served": 278382,
+     "lost": 29,
+     "costPerCup": 0.6077647980113707,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.6073668556156698,
+      "lost": 0.0003979423957008713
+     },
+     "lostShare": 0.00010416255104862955,
+     "peakLostShare": 0.0002895440532761058,
+     "cupsPerDay": 556.764,
+     "labourHoursPerDay": 24,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 278411,
+     "served": 278370,
+     "lost": 41,
+     "costPerCup": 0.6471032079606305,
+     "perCup": {
+      "machine": 0.34284405647160254,
+      "labour": 0.3036965190214488,
+      "lost": 0.0005626324675791211
+     },
+     "lostShare": 0.0001472642963101314,
+     "peakLostShare": 0.000442832081481103,
+     "cupsPerDay": 556.74,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.12887500000000013
+    },
+    "all_machine": {
+     "arrivals": 278411,
+     "served": 278411,
+     "lost": 0,
+     "costPerCup": 0.9892389309330475,
+     "perCup": {
+      "machine": 0.6855871355657643,
+      "labour": 0.30365179536728326,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 556.822,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.19334097222222218
+    }
+   },
+   {
+    "u": 0.15,
+    "surge": "none",
+    "all_human": {
+     "arrivals": 278528,
+     "served": 278473,
+     "lost": 55,
+     "costPerCup": 0.6079228506892999,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.6071683789810911,
+      "lost": 0.0007544717082086951
+     },
+     "lostShare": 0.00019746668198529412,
+     "peakLostShare": 0.0005444676977523693,
+     "cupsPerDay": 556.946,
+     "labourHoursPerDay": 24,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 278528,
+     "served": 278456,
+     "lost": 72,
+     "costPerCup": 0.6473286264257215,
+     "perCup": {
+      "machine": 0.34273817048294886,
+      "labour": 0.30360272359008494,
+      "lost": 0.000987732352687677
+     },
+     "lostShare": 0.0002585018382352941,
+     "peakLostShare": 0.0006975992377452232,
+     "cupsPerDay": 556.912,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.12891481481481473
+    },
+    "all_machine": {
+     "arrivals": 278528,
+     "served": 278528,
+     "lost": 0,
+     "costPerCup": 0.9888233857996349,
+     "perCup": {
+      "machine": 0.6852991440716911,
+      "labour": 0.3035242417279437,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 557.056,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.1934222222222221
+    }
+   },
+   {
+    "u": 0.2,
+    "surge": "none",
+    "all_human": {
+     "arrivals": 278746,
+     "served": 278650,
+     "lost": 96,
+     "costPerCup": 0.6083010227884492,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.6069849632155083,
+      "lost": 0.0013160595729409647
+     },
+     "lostShare": 0.00034439956089055986,
+     "peakLostShare": 0.0008323848675828563,
+     "cupsPerDay": 557.3,
+     "labourHoursPerDay": 24.008,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 278746,
+     "served": 278626,
+     "lost": 120,
+     "costPerCup": 0.6477940321434492,
+     "perCup": {
+      "machine": 0.34252905328289535,
+      "labour": 0.3036197626926442,
+      "lost": 0.0016452161679096705
+     },
+     "lostShare": 0.00043049945111319984,
+     "peakLostShare": 0.0010702091154636724,
+     "cupsPerDay": 557.252,
+     "labourHoursPerDay": 12.008,
+     "machineBusy": 0.1289935185185185
+    },
+    "all_machine": {
+     "arrivals": 278746,
+     "served": 278746,
+     "lost": 0,
+     "costPerCup": 0.9880500527361853,
+     "perCup": {
+      "machine": 0.6847631894269335,
+      "labour": 0.3032868633092518,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 557.492,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.19357361111111107
+    }
+   },
+   {
+    "u": 0.25,
+    "surge": "none",
+    "all_human": {
+     "arrivals": 278967,
+     "served": 278838,
+     "lost": 129,
+     "costPerCup": 0.6093536031674354,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.6075863404557533,
+      "lost": 0.0017672627116820513
+     },
+     "lostShare": 0.0004624202862704191,
+     "peakLostShare": 0.0009848870776023094,
+     "cupsPerDay": 557.676,
+     "labourHoursPerDay": 24.048,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 278967,
+     "served": 278812,
+     "lost": 155,
+     "costPerCup": 0.6488521297505152,
+     "perCup": {
+      "machine": 0.3423005466048807,
+      "labour": 0.30442792993128215,
+      "lost": 0.0021236532143523237
+     },
+     "lostShare": 0.0005556212742008911,
+     "peakLostShare": 0.001239599252844286,
+     "cupsPerDay": 557.624,
+     "labourHoursPerDay": 12.048,
+     "machineBusy": 0.12907962962962963
+    },
+    "all_machine": {
+     "arrivals": 278967,
+     "served": 278967,
+     "lost": 0,
+     "costPerCup": 0.9872673111873472,
+     "perCup": {
+      "machine": 0.6842207142780329,
+      "labour": 0.30304659690931435,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 557.934,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.1937270833333332
+    }
+   },
+   {
+    "u": 0.3,
+    "surge": "none",
+    "all_human": {
+     "arrivals": 279206,
+     "served": 279040,
+     "lost": 166,
+     "costPerCup": 0.6114387901376193,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.6091662844036744,
+      "lost": 0.002272505733944954
+     },
+     "lostShare": 0.000594543097211378,
+     "peakLostShare": 0.0012734095115201113,
+     "cupsPerDay": 558.08,
+     "labourHoursPerDay": 24.128,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 279206,
+     "served": 279015,
+     "lost": 191,
+     "costPerCup": 0.6508928910632067,
+     "perCup": {
+      "machine": 0.3420515026073867,
+      "labour": 0.30622640359837505,
+      "lost": 0.0026149848574449405
+     },
+     "lostShare": 0.0006840827202853807,
+     "peakLostShare": 0.0014601762398763945,
+     "cupsPerDay": 558.03,
+     "labourHoursPerDay": 12.128,
+     "machineBusy": 0.12917361111111106
+    },
+    "all_machine": {
+     "arrivals": 279206,
+     "served": 279206,
+     "lost": 0,
+     "costPerCup": 0.9864222115570608,
+     "perCup": {
+      "machine": 0.6836350221700107,
+      "labour": 0.30278718938705007,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 558.412,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.19389305555555542
+    }
+   },
+   {
+    "u": 0.35,
+    "surge": "none",
+    "all_human": {
+     "arrivals": 279408,
+     "served": 279242,
+     "lost": 166,
+     "costPerCup": 0.6138221327737278,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.6115512709406224,
+      "lost": 0.0022708618331053337
+     },
+     "lostShare": 0.0005941132680524538,
+     "peakLostShare": 0.0012374559262272851,
+     "cupsPerDay": 558.484,
+     "labourHoursPerDay": 24.24,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 279408,
+     "served": 279216,
+     "lost": 192,
+     "costPerCup": 0.6532639247034576,
+     "perCup": {
+      "machine": 0.34180526903902353,
+      "labour": 0.30883187209902235,
+      "lost": 0.0026267835654117237
+     },
+     "lostShare": 0.000687167153410067,
+     "peakLostShare": 0.0014747762408462164,
+     "cupsPerDay": 558.432,
+     "labourHoursPerDay": 12.24,
+     "machineBusy": 0.12926666666666672
+    },
+    "all_machine": {
+     "arrivals": 279408,
+     "served": 279408,
+     "lost": 0,
+     "costPerCup": 0.9857090706064275,
+     "perCup": {
+      "machine": 0.6831407833705548,
+      "labour": 0.30256828723587265,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 558.816,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.1940333333333333
+    }
+   },
+   {
+    "u": 0.4,
+    "surge": "none",
+    "all_human": {
+     "arrivals": 279606,
+     "served": 279428,
+     "lost": 178,
+     "costPerCup": 0.6167543338534478,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.6143209341941438,
+      "lost": 0.0024333996593040056
+     },
+     "lostShare": 0.0006366100870510647,
+     "peakLostShare": 0.001253026736881318,
+     "cupsPerDay": 558.856,
+     "labourHoursPerDay": 24.366,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 279606,
+     "served": 279404,
+     "lost": 202,
+     "costPerCup": 0.6561381011009171,
+     "perCup": {
+      "machine": 0.3415752816709854,
+      "labour": 0.31180108373538173,
+      "lost": 0.0027617356945498278
+     },
+     "lostShare": 0.0007224451549680622,
+     "peakLostShare": 0.0014562202617809912,
+     "cupsPerDay": 558.808,
+     "labourHoursPerDay": 12.366,
+     "machineBusy": 0.12935370370370367
+    },
+    "all_machine": {
+     "arrivals": 279606,
+     "served": 279606,
+     "lost": 0,
+     "costPerCup": 0.9850110512649968,
+     "perCup": {
+      "machine": 0.6826570245273706,
+      "labour": 0.3023540267376262,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 559.212,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.19417083333333332
+    }
+   },
+   {
+    "u": 0.45,
+    "surge": "none",
+    "all_human": {
+     "arrivals": 279974,
+     "served": 279767,
+     "lost": 207,
+     "costPerCup": 0.6194751346656365,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.6166487112490078,
+      "lost": 0.0028264234166288375
+     },
+     "lostShare": 0.0007393543686199433,
+     "peakLostShare": 0.0013027883053600433,
+     "cupsPerDay": 559.534,
+     "labourHoursPerDay": 24.488,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 279974,
+     "served": 279748,
+     "lost": 226,
+     "costPerCup": 0.6587313582224024,
+     "perCup": {
+      "machine": 0.34115525401432717,
+      "labour": 0.3144900410369354,
+      "lost": 0.0030860631711397417
+     },
+     "lostShare": 0.0008072178130826434,
+     "peakLostShare": 0.0015227395776935572,
+     "cupsPerDay": 559.496,
+     "labourHoursPerDay": 12.488,
+     "machineBusy": 0.129512962962963
+    },
+    "all_machine": {
+     "arrivals": 279974,
+     "served": 279974,
+     "lost": 0,
+     "costPerCup": 0.9837163450891894,
+     "perCup": {
+      "machine": 0.6817597348325202,
+      "labour": 0.3019566102566692,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 559.948,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.1944263888888889
+    }
+   },
+   {
+    "u": 0.5,
+    "surge": "none",
+    "all_human": {
+     "arrivals": 280415,
+     "served": 280183,
+     "lost": 232,
+     "costPerCup": 0.6224667092578818,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.6193036336965523,
+      "lost": 0.003163075561329561
+     },
+     "lostShare": 0.0008273451848153629,
+     "peakLostShare": 0.001535787217524851,
+     "cupsPerDay": 560.366,
+     "labourHoursPerDay": 24.63,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 280415,
+     "served": 280173,
+     "lost": 242,
+     "costPerCup": 0.6615208817409264,
+     "perCup": {
+      "machine": 0.3406377488194794,
+      "labour": 0.31758360013277714,
+      "lost": 0.0032995327886698616
+     },
+     "lostShare": 0.0008630066151953355,
+     "peakLostShare": 0.0018226925218976255,
+     "cupsPerDay": 560.346,
+     "labourHoursPerDay": 12.63,
+     "machineBusy": 0.12970972222222227
+    },
+    "all_machine": {
+     "arrivals": 280415,
+     "served": 280415,
+     "lost": 0,
+     "costPerCup": 0.9821692848100162,
+     "perCup": {
+      "machine": 0.6806875523777258,
+      "labour": 0.3014817324322904,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 560.83,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.19473263888888898
+    }
+   },
+   {
+    "u": 0.55,
+    "surge": "none",
+    "all_human": {
+     "arrivals": 280635,
+     "served": 280378,
+     "lost": 257,
+     "costPerCup": 0.6265454493576568,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.6230439620797676,
+      "lost": 0.0035014872778891372
+     },
+     "lostShare": 0.0009157802839987885,
+     "peakLostShare": 0.0016007009385162344,
+     "cupsPerDay": 560.756,
+     "labourHoursPerDay": 24.796,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 280635,
+     "served": 280360,
+     "lost": 275,
+     "costPerCup": 0.6657005992295639,
+     "perCup": {
+      "machine": 0.34041054358681694,
+      "labour": 0.32154308745898325,
+      "lost": 0.003746968183763734
+     },
+     "lostShare": 0.0009799205373527892,
+     "peakLostShare": 0.00180289474127618,
+     "cupsPerDay": 560.72,
+     "labourHoursPerDay": 12.796,
+     "machineBusy": 0.12979629629629627
+    },
+    "all_machine": {
+     "arrivals": 280635,
+     "served": 280635,
+     "lost": 0,
+     "costPerCup": 0.9813993265273423,
+     "perCup": {
+      "machine": 0.6801539366080496,
+      "labour": 0.30124538991929267,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 561.27,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.19488541666666662
+    }
+   },
+   {
+    "u": 0.6,
+    "surge": "none",
+    "all_human": {
+     "arrivals": 281201,
+     "served": 280954,
+     "lost": 247,
+     "costPerCup": 0.6292373128697265,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.6258789695110272,
+      "lost": 0.00335834335869929
+     },
+     "lostShare": 0.000878375254711043,
+     "peakLostShare": 0.0013632232656770676,
+     "cupsPerDay": 561.908,
+     "labourHoursPerDay": 24.96,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 281201,
+     "served": 280935,
+     "lost": 266,
+     "costPerCup": 0.6683283321764838,
+     "perCup": {
+      "machine": 0.33971381280367347,
+      "labour": 0.3249975973089878,
+      "lost": 0.0036169220638225938
+     },
+     "lostShare": 0.0009459425819965078,
+     "peakLostShare": 0.0015483523511393854,
+     "cupsPerDay": 561.87,
+     "labourHoursPerDay": 12.96,
+     "machineBusy": 0.13006249999999994
+    },
+    "all_machine": {
+     "arrivals": 281201,
+     "served": 281201,
+     "lost": 0,
+     "costPerCup": 0.9794239707540183,
+     "perCup": {
+      "machine": 0.6787849260849002,
+      "labour": 0.30063904466911817,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 562.402,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.1952784722222222
+    }
+   }
+  ],
+  "crossover": {
+   "kind": "mixed_cheaper_everywhere",
+   "u": null,
+   "d": [
+    -0.3425818222215846,
+    -0.3426025909304653,
+    -0.342135722972417,
+    -0.3414947593739134,
+    -0.3402560205927361,
+    -0.338415181436832,
+    -0.3355293204938541,
+    -0.3324451459029699,
+    -0.3288729501640797,
+    -0.324984986866787,
+    -0.3206484030690898,
+    -0.31569872729777837,
+    -0.31109563857753453
+   ]
+  }
+ },
+ "moderate": {
+  "rows": [
+   {
+    "u": 0,
+    "surge": "moderate",
+    "all_human": {
+     "arrivals": 307427,
+     "served": 305636,
+     "lost": 1791,
+     "costPerCup": 0.5755919459749551,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5532070829352609,
+      "lost": 0.022384863039694308
+     },
+     "lostShare": 0.005825773273004649,
+     "peakLostShare": 0.02029665213382358,
+     "cupsPerDay": 611.272,
+     "labourHoursPerDay": 24,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 307427,
+     "served": 305501,
+     "lost": 1926,
+     "costPerCup": 0.6132052595572541,
+     "perCup": {
+      "machine": 0.31239668609922716,
+      "labour": 0.2767257717650702,
+      "lost": 0.024082801692956828
+     },
+     "lostShare": 0.00626490191167334,
+     "peakLostShare": 0.021776497774539823,
+     "cupsPerDay": 611.002,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.14143564814814824
+    },
+    "all_machine": {
+     "arrivals": 307427,
+     "served": 307427,
+     "lost": 0,
+     "costPerCup": 0.8958712149550973,
+     "perCup": {
+      "machine": 0.6208791030065675,
+      "labour": 0.2749921119485299,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 614.854,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.21349097222222238
+    }
+   },
+   {
+    "u": 0.05,
+    "surge": "moderate",
+    "all_human": {
+     "arrivals": 307472,
+     "served": 305595,
+     "lost": 1877,
+     "costPerCup": 0.5767441875685185,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5532813036862559,
+      "lost": 0.023462883882262493
+     },
+     "lostShare": 0.006104620908570536,
+     "peakLostShare": 0.0212603885989745,
+     "cupsPerDay": 611.19,
+     "labourHoursPerDay": 24,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 307472,
+     "served": 305444,
+     "lost": 2028,
+     "costPerCup": 0.6145953431725643,
+     "perCup": {
+      "machine": 0.3124549835649088,
+      "labour": 0.27677741255353094,
+      "lost": 0.025362947054124507
+     },
+     "lostShare": 0.006595722537336733,
+     "peakLostShare": 0.022908921404777335,
+     "cupsPerDay": 610.888,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.14140925925925918
+    },
+    "all_machine": {
+     "arrivals": 307472,
+     "served": 307472,
+     "lost": 0,
+     "costPerCup": 0.8957400999115389,
+     "perCup": {
+      "machine": 0.6207882343758131,
+      "labour": 0.27495186553572587,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 614.944,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.21352222222222225
+    }
+   },
+   {
+    "u": 0.1,
+    "surge": "moderate",
+    "all_human": {
+     "arrivals": 307695,
+     "served": 305447,
+     "lost": 2248,
+     "costPerCup": 0.5816634637105664,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5535493882735839,
+      "lost": 0.028114075436982515
+     },
+     "lostShare": 0.0073059360730593605,
+     "peakLostShare": 0.025364501062536224,
+     "cupsPerDay": 610.894,
+     "labourHoursPerDay": 24,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 307695,
+     "served": 305290,
+     "lost": 2405,
+     "costPerCup": 0.619622653870093,
+     "perCup": {
+      "machine": 0.31261259785777457,
+      "labour": 0.27691702970945886,
+      "lost": 0.030093026302859524
+     },
+     "lostShare": 0.007816181608410926,
+     "peakLostShare": 0.027103196699887495,
+     "cupsPerDay": 610.58,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.141337962962963
+    },
+    "all_machine": {
+     "arrivals": 307695,
+     "served": 307695,
+     "lost": 0,
+     "costPerCup": 0.8950909179544702,
+     "perCup": {
+      "machine": 0.6203383220396822,
+      "labour": 0.274752595914788,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 615.39,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.21367708333333324
+    }
+   },
+   {
+    "u": 0.15,
+    "surge": "moderate",
+    "all_human": {
+     "arrivals": 307818,
+     "served": 305046,
+     "lost": 2772,
+     "costPerCup": 0.5889899883951975,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5542770598532726,
+      "lost": 0.03471292854192482
+     },
+     "lostShare": 0.009005321326238231,
+     "peakLostShare": 0.03110273327049953,
+     "cupsPerDay": 610.092,
+     "labourHoursPerDay": 24,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 307818,
+     "served": 304883,
+     "lost": 2935,
+     "costPerCup": 0.6270903920520353,
+     "perCup": {
+      "machine": 0.3130299163941578,
+      "labour": 0.2772866968640452,
+      "lost": 0.03677377879383237
+     },
+     "lostShare": 0.00953485501172771,
+     "peakLostShare": 0.032919614366987274,
+     "cupsPerDay": 609.766,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.141149537037037
+    },
+    "all_machine": {
+     "arrivals": 307818,
+     "served": 307818,
+     "lost": 0,
+     "costPerCup": 0.8947332514667781,
+     "perCup": {
+      "machine": 0.6200904430540124,
+      "labour": 0.27464280841276567,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 615.636,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.21376250000000022
+    }
+   },
+   {
+    "u": 0.2,
+    "surge": "moderate",
+    "all_human": {
+     "arrivals": 308083,
+     "served": 304680,
+     "lost": 3403,
+     "costPerCup": 0.597793816463179,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5551278718655684,
+      "lost": 0.04266594459761059
+     },
+     "lostShare": 0.011045724691073509,
+     "peakLostShare": 0.03793478753798014,
+     "cupsPerDay": 609.36,
+     "labourHoursPerDay": 24.008,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 308083,
+     "served": 304488,
+     "lost": 3595,
+     "costPerCup": 0.6363691179948,
+     "perCup": {
+      "machine": 0.3134359974777331,
+      "labour": 0.2778315073172036,
+      "lost": 0.04510161319986335
+     },
+     "lostShare": 0.011668933371851093,
+     "peakLostShare": 0.0399868486689946,
+     "cupsPerDay": 608.976,
+     "labourHoursPerDay": 12.008,
+     "machineBusy": 0.1409666666666666
+    },
+    "all_machine": {
+     "arrivals": 308083,
+     "served": 308083,
+     "lost": 0,
+     "costPerCup": 0.8939636396685332,
+     "perCup": {
+      "machine": 0.6195570674136515,
+      "labour": 0.27440657225488163,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 616.166,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.21394652777777787
+    }
+   },
+   {
+    "u": 0.25,
+    "surge": "moderate",
+    "all_human": {
+     "arrivals": 308363,
+     "served": 304677,
+     "lost": 3686,
+     "costPerCup": 0.6022728331971279,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5560582518536068,
+      "lost": 0.04621458134352114
+     },
+     "lostShare": 0.011953444479396037,
+     "peakLostShare": 0.040776567066126,
+     "cupsPerDay": 609.354,
+     "labourHoursPerDay": 24.048,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 308363,
+     "served": 304534,
+     "lost": 3829,
+     "costPerCup": 0.640133581143651,
+     "perCup": {
+      "machine": 0.31338865282694217,
+      "labour": 0.2787148889779159,
+      "lost": 0.04803003933879303
+     },
+     "lostShare": 0.012417183643952095,
+     "peakLostShare": 0.04235099562784587,
+     "cupsPerDay": 609.068,
+     "labourHoursPerDay": 12.048,
+     "machineBusy": 0.1409879629629629
+    },
+    "all_machine": {
+     "arrivals": 308363,
+     "served": 308363,
+     "lost": 0,
+     "costPerCup": 0.8931519021413098,
+     "perCup": {
+      "machine": 0.6189944967457185,
+      "labour": 0.27415740539559125,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 616.726,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.21414097222222223
+    }
+   },
+   {
+    "u": 0.3,
+    "surge": "moderate",
+    "all_human": {
+     "arrivals": 308684,
+     "served": 304834,
+     "lost": 3850,
+     "costPerCup": 0.605866668416257,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.557620737844208,
+      "lost": 0.048245930572049046
+     },
+     "lostShare": 0.012472301771390807,
+     "peakLostShare": 0.04233097595473833,
+     "cupsPerDay": 609.668,
+     "labourHoursPerDay": 24.128,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 308684,
+     "served": 304738,
+     "lost": 3946,
+     "costPerCup": 0.6430211525966588,
+     "perCup": {
+      "machine": 0.31317886184197574,
+      "labour": 0.2803777671311114,
+      "lost": 0.04946452362357169
+     },
+     "lostShare": 0.012783299425950162,
+     "peakLostShare": 0.04334936350777935,
+     "cupsPerDay": 609.476,
+     "labourHoursPerDay": 12.128,
+     "machineBusy": 0.14108240740740735
+    },
+    "all_machine": {
+     "arrivals": 308684,
+     "served": 308684,
+     "lost": 0,
+     "costPerCup": 0.8922231149006774,
+     "perCup": {
+      "machine": 0.618350805354343,
+      "labour": 0.27387230954633446,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 617.368,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.21436388888888908
+    }
+   },
+   {
+    "u": 0.35,
+    "surge": "moderate",
+    "all_human": {
+     "arrivals": 308881,
+     "served": 304924,
+     "lost": 3957,
+     "costPerCup": 0.6096159698810237,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5600438141963285,
+      "lost": 0.04957215568469522
+     },
+     "lostShare": 0.012810758835927104,
+     "peakLostShare": 0.04332786977900865,
+     "cupsPerDay": 609.848,
+     "labourHoursPerDay": 24.24,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 308881,
+     "served": 304883,
+     "lost": 3998,
+     "costPerCup": 0.6459548744928403,
+     "perCup": {
+      "machine": 0.3130299163941578,
+      "labour": 0.28283243080132586,
+      "lost": 0.05009252729735667
+     },
+     "lostShare": 0.012943496038927613,
+     "peakLostShare": 0.0438365455264794,
+     "cupsPerDay": 609.766,
+     "labourHoursPerDay": 12.24,
+     "machineBusy": 0.14114953703703717
+    },
+    "all_machine": {
+     "arrivals": 308881,
+     "served": 308881,
+     "lost": 0,
+     "costPerCup": 0.8916540674240264,
+     "perCup": {
+      "machine": 0.6179564298224882,
+      "labour": 0.27369763760153815,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 617.762,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.21450069444444422
+    }
+   },
+   {
+    "u": 0.4,
+    "surge": "moderate",
+    "all_human": {
+     "arrivals": 309078,
+     "served": 305039,
+     "lost": 4039,
+     "costPerCup": 0.6133230504951865,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5627426984746253,
+      "lost": 0.050580352020561235
+     },
+     "lostShare": 0.013067898718122934,
+     "peakLostShare": 0.04404206531193168,
+     "cupsPerDay": 610.078,
+     "labourHoursPerDay": 24.366,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 309078,
+     "served": 305121,
+     "lost": 3957,
+     "costPerCup": 0.6478469525204774,
+     "perCup": {
+      "machine": 0.3127857472936966,
+      "labour": 0.28552105558123037,
+      "lost": 0.04954014964555044
+     },
+     "lostShare": 0.01280259352008231,
+     "peakLostShare": 0.04322877249262953,
+     "cupsPerDay": 610.242,
+     "labourHoursPerDay": 12.366,
+     "machineBusy": 0.14125972222222224
+    },
+    "all_machine": {
+     "arrivals": 309078,
+     "served": 309078,
+     "lost": 0,
+     "costPerCup": 0.8910857453458373,
+     "perCup": {
+      "machine": 0.6175625570244404,
+      "labour": 0.2735231883213969,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 618.156,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.21463749999999993
+    }
+   },
+   {
+    "u": 0.45,
+    "surge": "moderate",
+    "all_human": {
+     "arrivals": 309530,
+     "served": 305186,
+     "lost": 4344,
+     "costPerCup": 0.619661583427815,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5652879227749672,
+      "lost": 0.05437366065284775
+     },
+     "lostShare": 0.014034180854844442,
+     "peakLostShare": 0.04681930972253553,
+     "cupsPerDay": 610.372,
+     "labourHoursPerDay": 24.488,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 309530,
+     "served": 305530,
+     "lost": 4000,
+     "costPerCup": 0.6503304421824391,
+     "perCup": {
+      "machine": 0.31236703433378066,
+      "labour": 0.2879519523451072,
+      "lost": 0.05001145550355117
+     },
+     "lostShare": 0.012922818466707588,
+     "peakLostShare": 0.04334536431310625,
+     "cupsPerDay": 611.06,
+     "labourHoursPerDay": 12.488,
+     "machineBusy": 0.14144907407407406
+    },
+    "all_machine": {
+     "arrivals": 309530,
+     "served": 309530,
+     "lost": 0,
+     "costPerCup": 0.8897845120020699,
+     "perCup": {
+      "machine": 0.6166607437082028,
+      "labour": 0.27312376829386714,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 619.06,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.21495138888888898
+    }
+   },
+   {
+    "u": 0.5,
+    "surge": "moderate",
+    "all_human": {
+     "arrivals": 309967,
+     "served": 305380,
+     "lost": 4587,
+     "costPerCup": 0.6255835025214523,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5682046957888569,
+      "lost": 0.0573788067325954
+     },
+     "lostShare": 0.014798349501721151,
+     "peakLostShare": 0.04917515905635944,
+     "cupsPerDay": 610.76,
+     "labourHoursPerDay": 24.63,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 309967,
+     "served": 306056,
+     "lost": 3911,
+     "costPerCup": 0.6513705661708986,
+     "perCup": {
+      "machine": 0.31183018793946204,
+      "labour": 0.29072571686227544,
+      "lost": 0.048814661369161176
+     },
+     "lostShare": 0.012617472182522656,
+     "peakLostShare": 0.04223861269072687,
+     "cupsPerDay": 612.112,
+     "labourHoursPerDay": 12.63,
+     "machineBusy": 0.14169259259259256
+    },
+    "all_machine": {
+     "arrivals": 309967,
+     "served": 309967,
+     "lost": 0,
+     "costPerCup": 0.8885300693299631,
+     "perCup": {
+      "machine": 0.6157913584349302,
+      "labour": 0.272738710895033,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 619.934,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.2152548611111112
+    }
+   },
+   {
+    "u": 0.55,
+    "surge": "moderate",
+    "all_human": {
+     "arrivals": 310189,
+     "served": 305392,
+     "lost": 4797,
+     "costPerCup": 0.6320151149997415,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5720117750301288,
+      "lost": 0.060003339969612796
+     },
+     "lostShare": 0.015464765030352462,
+     "peakLostShare": 0.05117937527417522,
+     "cupsPerDay": 610.784,
+     "labourHoursPerDay": 24.796,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 310189,
+     "served": 306400,
+     "lost": 3789,
+     "costPerCup": 0.6529350522193228,
+     "perCup": {
+      "machine": 0.311480091383812,
+      "labour": 0.2942161227154065,
+      "lost": 0.047238838120104404
+     },
+     "lostShare": 0.012215133354180839,
+     "peakLostShare": 0.04047107521680933,
+     "cupsPerDay": 612.8,
+     "labourHoursPerDay": 12.796,
+     "machineBusy": 0.14185185185185192
+    },
+    "all_machine": {
+     "arrivals": 310189,
+     "served": 310189,
+     "lost": 0,
+     "costPerCup": 0.8878941548539784,
+     "perCup": {
+      "machine": 0.6153506410607726,
+      "labour": 0.27254351379320574,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 620.378,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.21540902777777768
+    }
+   },
+   {
+    "u": 0.6,
+    "surge": "moderate",
+    "all_human": {
+     "arrivals": 310906,
+     "served": 305932,
+     "lost": 4974,
+     "costPerCup": 0.6368862361570582,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5747787089941592,
+      "lost": 0.0621075271628989
+     },
+     "lostShare": 0.01599840466250249,
+     "peakLostShare": 0.053229805998451576,
+     "cupsPerDay": 611.864,
+     "labourHoursPerDay": 24.96,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 310906,
+     "served": 307301,
+     "lost": 3605,
+     "costPerCup": 0.6524931581739093,
+     "perCup": {
+      "machine": 0.31056683837670557,
+      "labour": 0.29711325378049697,
+      "lost": 0.04481306601670676
+     },
+     "lostShare": 0.011595144513132587,
+     "peakLostShare": 0.03835149175858084,
+     "cupsPerDay": 614.602,
+     "labourHoursPerDay": 12.96,
+     "machineBusy": 0.14226898148148148
+    },
+    "all_machine": {
+     "arrivals": 310906,
+     "served": 310906,
+     "lost": 0,
+     "costPerCup": 0.8858465259596171,
+     "perCup": {
+      "machine": 0.613931542009482,
+      "labour": 0.2719149839501351,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 621.812,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.21590694444444455
+    }
+   }
+  ],
+  "crossover": {
+   "kind": "mixed_cheaper_everywhere",
+   "u": null,
+   "d": [
+    -0.2826659553978431,
+    -0.28114475673897465,
+    -0.2754682640843772,
+    -0.26764285941474275,
+    -0.2575945216737332,
+    -0.25301832099765875,
+    -0.2492019623040186,
+    -0.24569919293118614,
+    -0.24323879282535987,
+    -0.2394540698196308,
+    -0.23715950315906453,
+    -0.23495910263465558,
+    -0.2333533677857078
+   ]
+  }
+ },
+ "large": {
+  "rows": [
+   {
+    "u": 0,
+    "surge": "large",
+    "all_human": {
+     "arrivals": 365973,
+     "served": 322163,
+     "lost": 43810,
+     "costPerCup": 1.0442980727147484,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.524827494156689,
+      "lost": 0.5194705785580593
+     },
+     "lostShare": 0.11970828449093239,
+     "peakLostShare": 0.29896921300881873,
+     "cupsPerDay": 644.326,
+     "labourHoursPerDay": 24,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 365973,
+     "served": 322073,
+     "lost": 43900,
+     "costPerCup": 1.079492847894734,
+     "perCup": {
+      "machine": 0.29632257283286706,
+      "labour": 0.2624870759113639,
+      "lost": 0.5206831991505031
+     },
+     "lostShare": 0.11995420427189984,
+     "peakLostShare": 0.29954984186402356,
+     "cupsPerDay": 644.146,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.14910787037037035
+    },
+    "all_machine": {
+     "arrivals": 365973,
+     "served": 365973,
+     "lost": 0,
+     "costPerCup": 0.7525555163905553,
+     "perCup": {
+      "machine": 0.5215548688017968,
+      "labour": 0.23100064758875846,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 731.946,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.25414791666666664
+    }
+   },
+   {
+    "u": 0.05,
+    "surge": "large",
+    "all_human": {
+     "arrivals": 366105,
+     "served": 322088,
+     "lost": 44017,
+     "costPerCup": 1.0469962867290974,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5249497031867111,
+      "lost": 0.5220465835423863
+     },
+     "lostShare": 0.12023053495581869,
+     "peakLostShare": 0.2999863565045365,
+     "cupsPerDay": 644.176,
+     "labourHoursPerDay": 24,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 366105,
+     "served": 321990,
+     "lost": 44115,
+     "costPerCup": 1.0823218112363768,
+     "perCup": {
+      "machine": 0.29639895648933196,
+      "labour": 0.2625547377247762,
+      "lost": 0.5233681170222686
+     },
+     "lostShare": 0.12049821772442332,
+     "peakLostShare": 0.3006276007913227,
+     "cupsPerDay": 643.98,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.1490694444444444
+    },
+    "all_machine": {
+     "arrivals": 366105,
+     "served": 366105,
+     "lost": 0,
+     "costPerCup": 0.7522841807678144,
+     "perCup": {
+      "machine": 0.5213668209939771,
+      "labour": 0.2309173597738373,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 732.21,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.2542395833333332
+    }
+   },
+   {
+    "u": 0.1,
+    "surge": "large",
+    "all_human": {
+     "arrivals": 366246,
+     "served": 322132,
+     "lost": 44114,
+     "costPerCup": 1.0480035513392068,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5248780003228534,
+      "lost": 0.5231255510163536
+     },
+     "lostShare": 0.1204490970549849,
+     "peakLostShare": 0.30066599339465566,
+     "cupsPerDay": 644.264,
+     "labourHoursPerDay": 24,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 366246,
+     "served": 322040,
+     "lost": 44206,
+     "costPerCup": 1.0832332008446182,
+     "perCup": {
+      "machine": 0.296352937523289,
+      "labour": 0.26251397341945315,
+      "lost": 0.5243662899018761
+     },
+     "lostShare": 0.1207002943376856,
+     "peakLostShare": 0.30126647924229605,
+     "cupsPerDay": 644.08,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.14909259259259255
+    },
+    "all_machine": {
+     "arrivals": 366246,
+     "served": 366246,
+     "lost": 0,
+     "costPerCup": 0.7519945610327504,
+     "perCup": {
+      "machine": 0.5211661014727806,
+      "labour": 0.2308284595599698,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 732.492,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.25433750000000027
+    }
+   },
+   {
+    "u": 0.15,
+    "surge": "large",
+    "all_human": {
+     "arrivals": 366395,
+     "served": 321898,
+     "lost": 44497,
+     "costPerCup": 1.0533104896582188,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5252595542687478,
+      "lost": 0.5280509353894709
+     },
+     "lostShare": 0.12144543457197833,
+     "peakLostShare": 0.302986906710311,
+     "cupsPerDay": 643.796,
+     "labourHoursPerDay": 24,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 366395,
+     "served": 321790,
+     "lost": 44605,
+     "costPerCup": 1.0888113365859744,
+     "perCup": {
+      "machine": 0.29658317536281426,
+      "labour": 0.2627179216259073,
+      "lost": 0.529510239597253
+     },
+     "lostShare": 0.12174019841973827,
+     "peakLostShare": 0.30366884888161483,
+     "cupsPerDay": 643.58,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.14897685185185172
+    },
+    "all_machine": {
+     "arrivals": 366395,
+     "served": 366395,
+     "lost": 0,
+     "costPerCup": 0.7516887512111265,
+     "perCup": {
+      "machine": 0.5209541614923785,
+      "labour": 0.23073458971874808,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 732.79,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.25444097222222234
+    }
+   },
+   {
+    "u": 0.2,
+    "surge": "large",
+    "all_human": {
+     "arrivals": 366629,
+     "served": 321704,
+     "lost": 44925,
+     "costPerCup": 1.059203056225603,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5257514982717075,
+      "lost": 0.5334515579538955
+     },
+     "lostShare": 0.12253531499144912,
+     "peakLostShare": 0.30547189097103916,
+     "cupsPerDay": 643.408,
+     "labourHoursPerDay": 24.008,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 366629,
+     "served": 321738,
+     "lost": 44891,
+     "costPerCup": 1.0925581684476204,
+     "perCup": {
+      "machine": 0.2966311097849803,
+      "labour": 0.26293555626006465,
+      "lost": 0.5329915024025754
+     },
+     "lostShare": 0.12244257819212337,
+     "peakLostShare": 0.30515161839863714,
+     "cupsPerDay": 643.476,
+     "labourHoursPerDay": 12.008,
+     "machineBusy": 0.14895277777777768
+    },
+    "all_machine": {
+     "arrivals": 366629,
+     "served": 366629,
+     "lost": 0,
+     "costPerCup": 0.7512089878323883,
+     "perCup": {
+      "machine": 0.5206216638618331,
+      "labour": 0.23058732397055523,
+      "lost": 0
+     },
+     "lostShare": 0,
+     "peakLostShare": 0,
+     "cupsPerDay": 733.258,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.2546034722222221
+    }
+   },
+   {
+    "u": 0.25,
+    "surge": "large",
+    "all_human": {
+     "arrivals": 366913,
+     "served": 322103,
+     "lost": 44810,
+     "costPerCup": 1.0574020111579256,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5259751073414446,
+      "lost": 0.531426903816481
+     },
+     "lostShare": 0.12212704374061426,
+     "peakLostShare": 0.3040739328230134,
+     "cupsPerDay": 644.206,
+     "labourHoursPerDay": 24.048,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 366913,
+     "served": 323016,
+     "lost": 43897,
+     "costPerCup": 1.0773528246278838,
+     "perCup": {
+      "machine": 0.29545750055724795,
+      "labour": 0.26276766475964236,
+      "lost": 0.5191276593109936
+     },
+     "lostShare": 0.11963871544480571,
+     "peakLostShare": 0.29769947424337356,
+     "cupsPerDay": 646.032,
+     "labourHoursPerDay": 12.048,
+     "machineBusy": 0.14954444444444448
+    },
+    "all_machine": {
+     "arrivals": 366913,
+     "served": 366907,
+     "lost": 6,
+     "costPerCup": 0.7507022760536067,
+     "perCup": {
+      "machine": 0.5202271965375422,
+      "labour": 0.23041261137018562,
+      "lost": 0.00006246814587892844
+     },
+     "lostShare": 0.000016352650355806418,
+     "peakLostShare": 0.00004086191397205045,
+     "cupsPerDay": 733.814,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.2547965277777778
+    }
+   },
+   {
+    "u": 0.3,
+    "surge": "large",
+    "all_human": {
+     "arrivals": 367231,
+     "served": 322605,
+     "lost": 44626,
+     "costPerCup": 1.0553248709722456,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5269036747725586,
+      "lost": 0.528421196199687
+     },
+     "lostShare": 0.12152024202749769,
+     "peakLostShare": 0.302310069288466,
+     "cupsPerDay": 645.21,
+     "labourHoursPerDay": 24.128,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 367231,
+     "served": 324671,
+     "lost": 42560,
+     "costPerCup": 1.0578661475770876,
+     "perCup": {
+      "machine": 0.2939514154328536,
+      "labour": 0.2631641261461622,
+      "lost": 0.5007506059980719
+     },
+     "lostShare": 0.1158943553240331,
+     "peakLostShare": 0.2879623201426607,
+     "cupsPerDay": 649.342,
+     "labourHoursPerDay": 12.128,
+     "machineBusy": 0.15031064814814823
+    },
+    "all_machine": {
+     "arrivals": 367231,
+     "served": 367203,
+     "lost": 28,
+     "costPerCup": 0.7503260049618351,
+     "perCup": {
+      "machine": 0.5198078447071511,
+      "labour": 0.23022687723139706,
+      "lost": 0.0002912830232868467
+     },
+     "lostShare": 0.0000762462863973902,
+     "peakLostShare": 0.00019057731313213815,
+     "cupsPerDay": 734.406,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.2550020833333336
+    }
+   },
+   {
+    "u": 0.35,
+    "surge": "large",
+    "all_human": {
+     "arrivals": 367579,
+     "served": 322770,
+     "lost": 44809,
+     "costPerCup": 1.059395792669707,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5290789106794352,
+      "lost": 0.5303168819902719
+     },
+     "lostShare": 0.12190304669200362,
+     "peakLostShare": 0.30290901925076275,
+     "cupsPerDay": 645.54,
+     "labourHoursPerDay": 24.24,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 367579,
+     "served": 326033,
+     "lost": 41546,
+     "costPerCup": 1.0439864062840283,
+     "perCup": {
+      "machine": 0.29272343597120537,
+      "labour": 0.2644848834320471,
+      "lost": 0.4867780868807758
+     },
+     "lostShare": 0.11302604338115071,
+     "peakLostShare": 0.28032861520898594,
+     "cupsPerDay": 652.066,
+     "labourHoursPerDay": 12.24,
+     "machineBusy": 0.15094120370370362
+    },
+    "all_machine": {
+     "arrivals": 367579,
+     "served": 367441,
+     "lost": 138,
+     "costPerCup": 0.7509835864805524,
+     "perCup": {
+      "machine": 0.519471153191941,
+      "labour": 0.23007775397955235,
+      "lost": 0.0014346793090591415
+     },
+     "lostShare": 0.0003754294995089491,
+     "peakLostShare": 0.0009377357080244355,
+     "cupsPerDay": 734.882,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.2551673611111112
+    }
+   },
+   {
+    "u": 0.4,
+    "surge": "large",
+    "all_human": {
+     "arrivals": 367803,
+     "served": 322896,
+     "lost": 44907,
+     "costPerCup": 1.0628908688865808,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5316215437788057,
+      "lost": 0.5312693251077752
+     },
+     "lostShare": 0.12209525207787865,
+     "peakLostShare": 0.3030953318755348,
+     "cupsPerDay": 645.792,
+     "labourHoursPerDay": 24.366,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 367803,
+     "served": 327406,
+     "lost": 40397,
+     "costPerCup": 1.02891367293208,
+     "perCup": {
+      "machine": 0.29149587973341967,
+      "labour": 0.2660869684733957,
+      "lost": 0.47133082472526466
+     },
+     "lostShare": 0.10983325312735351,
+     "peakLostShare": 0.27188395561410894,
+     "cupsPerDay": 654.812,
+     "labourHoursPerDay": 12.366,
+     "machineBusy": 0.1515768518518518
+    },
+    "all_machine": {
+     "arrivals": 367803,
+     "served": 367441,
+     "lost": 362,
+     "costPerCup": 0.7533123413010544,
+     "perCup": {
+      "machine": 0.519471153191941,
+      "labour": 0.23007775397955235,
+      "lost": 0.003763434129560936
+     },
+     "lostShare": 0.0009842225321707544,
+     "peakLostShare": 0.0024583372947424176,
+     "cupsPerDay": 734.882,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.2551673611111111
+    }
+   },
+   {
+    "u": 0.45,
+    "surge": "large",
+    "all_human": {
+     "arrivals": 368334,
+     "served": 322814,
+     "lost": 45520,
+     "costPerCup": 1.0730772519159675,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5344190772395285,
+      "lost": 0.5386581746764388
+     },
+     "lostShare": 0.12358348672672086,
+     "peakLostShare": 0.3064883632615418,
+     "cupsPerDay": 645.628,
+     "labourHoursPerDay": 24.488,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 368334,
+     "served": 328354,
+     "lost": 39980,
+     "costPerCup": 1.023709350274401,
+     "perCup": {
+      "machine": 0.2906542938414029,
+      "labour": 0.2679363126381911,
+      "lost": 0.46511874379480683
+     },
+     "lostShare": 0.10854278996780097,
+     "peakLostShare": 0.26815358324743666,
+     "cupsPerDay": 656.708,
+     "labourHoursPerDay": 12.488,
+     "machineBusy": 0.15201574074074073
+    },
+    "all_machine": {
+     "arrivals": 368334,
+     "served": 367564,
+     "lost": 770,
+     "costPerCup": 0.7573004973283584,
+     "perCup": {
+      "machine": 0.5192973196504554,
+      "labour": 0.23000076177210146,
+      "lost": 0.00800241590580144
+     },
+     "lostShare": 0.002090493953857097,
+     "peakLostShare": 0.005221613410730755,
+     "cupsPerDay": 735.128,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.2552527777777776
+    }
+   },
+   {
+    "u": 0.5,
+    "surge": "large",
+    "all_human": {
+     "arrivals": 369010,
+     "served": 322808,
+     "lost": 46202,
+     "costPerCup": 1.0842667777750274,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5375280352407658,
+      "lost": 0.5467387425342617
+     },
+     "lostShare": 0.12520527898972927,
+     "peakLostShare": 0.31008873978680807,
+     "cupsPerDay": 645.616,
+     "labourHoursPerDay": 24.63,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 369010,
+     "served": 329465,
+     "lost": 39545,
+     "costPerCup": 1.0182500417343279,
+     "perCup": {
+      "machine": 0.2896741687280895,
+      "labour": 0.27006920310200044,
+      "lost": 0.45850666990423816
+     },
+     "lostShare": 0.10716511747649116,
+     "peakLostShare": 0.26430523240084414,
+     "cupsPerDay": 658.93,
+     "labourHoursPerDay": 12.63,
+     "machineBusy": 0.1525300925925927
+    },
+    "all_machine": {
+     "arrivals": 369010,
+     "served": 367677,
+     "lost": 1333,
+     "costPerCup": 0.7629170712337207,
+     "perCup": {
+      "machine": 0.5191377214239672,
+      "labour": 0.22993007449473504,
+      "lost": 0.013849275315018344
+     },
+     "lostShare": 0.0036123682285032926,
+     "peakLostShare": 0.009009252746063524,
+     "cupsPerDay": 735.354,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.25533125000000023
+    }
+   },
+   {
+    "u": 0.55,
+    "surge": "large",
+    "all_human": {
+     "arrivals": 369288,
+     "served": 322697,
+     "lost": 46591,
+     "costPerCup": 1.0928686662720788,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5413369817506859,
+      "lost": 0.5515316845213929
+     },
+     "lostShare": 0.12616440285089145,
+     "peakLostShare": 0.3120092971716598,
+     "cupsPerDay": 645.394,
+     "labourHoursPerDay": 24.796,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 369288,
+     "served": 330555,
+     "lost": 38733,
+     "costPerCup": 1.0090465429353683,
+     "perCup": {
+      "machine": 0.2887189726369288,
+      "labour": 0.2727165524647957,
+      "lost": 0.44761101783364377
+     },
+     "lostShare": 0.10488561772925196,
+     "peakLostShare": 0.2581384035350874,
+     "cupsPerDay": 661.11,
+     "labourHoursPerDay": 12.796,
+     "machineBusy": 0.15303472222222225
+    },
+    "all_machine": {
+     "arrivals": 369288,
+     "served": 367345,
+     "lost": 1943,
+     "costPerCup": 0.7699499380691195,
+     "perCup": {
+      "machine": 0.5196069090364643,
+      "labour": 0.23013788128326423,
+      "lost": 0.020205147749390896
+     },
+     "lostShare": 0.0052614761378652975,
+     "peakLostShare": 0.013121444304806692,
+     "cupsPerDay": 734.69,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.25510069444444455
+    }
+   },
+   {
+    "u": 0.6,
+    "surge": "large",
+    "all_human": {
+     "arrivals": 370094,
+     "served": 322879,
+     "lost": 47215,
+     "costPerCup": 1.1032135877526912,
+     "perCup": {
+      "machine": 0,
+      "labour": 0.5446102100167589,
+      "lost": 0.5586033777359322
+     },
+     "lostShare": 0.12757569698509028,
+     "peakLostShare": 0.315627296694109,
+     "cupsPerDay": 645.758,
+     "labourHoursPerDay": 24.96,
+     "machineBusy": null
+    },
+    "mixed": {
+     "arrivals": 370094,
+     "served": 331913,
+     "lost": 38181,
+     "costPerCup": 1.0020460783398077,
+     "perCup": {
+      "machine": 0.28753769813173935,
+      "labour": 0.2750817232226532,
+      "lost": 0.43942665698541505
+     },
+     "lostShare": 0.10316568223208158,
+     "peakLostShare": 0.25391912939701033,
+     "cupsPerDay": 663.826,
+     "labourHoursPerDay": 12.96,
+     "machineBusy": 0.15366342592592605
+    },
+    "all_machine": {
+     "arrivals": 370094,
+     "served": 367326,
+     "lost": 2768,
+     "costPerCup": 0.7785693362299448,
+     "perCup": {
+      "machine": 0.5196337857924568,
+      "labour": 0.23014978520442522,
+      "lost": 0.028785765233062723
+     },
+     "lostShare": 0.0074791809648359605,
+     "peakLostShare": 0.018656741576821678,
+     "cupsPerDay": 734.652,
+     "labourHoursPerDay": 12,
+     "machineBusy": 0.2550874999999999
+    }
+   }
+  ],
+  "crossover": {
+   "kind": "machine_cheaper_everywhere",
+   "u": null,
+   "d": [
+    0.3269373315041788,
+    0.3300376304685624,
+    0.33123863981186774,
+    0.33712258537484785,
+    0.3413491806152321,
+    0.3266505485742771,
+    0.30754014261525253,
+    0.29300281980347587,
+    0.2756013316310256,
+    0.26640885294604266,
+    0.2553329705006072,
+    0.23909660486624884,
+    0.2234767421098629
+   ]
+  }
+ }
+}

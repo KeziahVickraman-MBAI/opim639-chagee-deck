@@ -1,0 +1,282 @@
+{
+  "_meta": {
+    "status": "APPROVED with changes (Singapore reference market, demand floor 0, machine-speed range to >= 30 s). Monetary assumptions first approved in USD are converted at fx_sgd_per_usd; the approved USD figure is kept as value_usd.",
+    "currency": "SGD. Reference market: Singapore (illustrative; not a Chagee figure)",
+    "fx_sgd_per_usd": {
+      "value": 1.2725, "unit": "SGD per USD", "range": null, "source": "L-xrates",
+      "rationale": "September 2026 monthly average, 1.272467, rounded. Used only to convert the USD assumptions approved earlier, so their size relative to each other is unchanged. Secondary aggregator, not MAS: the MAS statistics page did not return data when fetched."
+    },
+    "footer": "explainer figures are illustrative assumptions",
+    "conventions": {
+      "value": "the default used by the deck and the simulator",
+      "range": "[low, high] used by slide sliders and by the one-at-a-time sensitivity sweep; null = structural, excluded from the sweep",
+      "source": "\"assumption\" or a ledger ID from _sources",
+      "rationale": "why this value; any ledger fact named here is a sanity check, not the source of the number"
+    }
+  },
+
+  "_sources": {
+    "L-jiemian": "Jiemian (en.jiemian.com), earnings-call coverage: 7,453 stores end-2025; about 200 overseas stores planned for 2026; 345 overseas stores; 7 overseas markets. (brief.md section 9)",
+    "L-gabgrowth": "GabGrowth (secondary): first overseas store, Kuala Lumpur, reportedly sold 1,000+ cups on opening day. (brief.md section 9)",
+    "L-unsw": "UNSW BusinessThink, Oct 2024: Chagee semi-automation, baristas scan a QR code and the machine dispenses the formulation. (brief.md section 9)",
+    "L-mom-pwm": "Ministry of Manpower, Progressive Wage Model, Food Services sector, https://www.mom.gov.sg/employment-practices/progressive-wage-model/food-services-sector (page updated 1 Sep 2026; fetched 4 Oct 2026). Category A (quick service), Food Service Counter Attendant / Kitchen Assistant, 1 Jul 2026 - 30 Jun 2027: monthly gross wage >= S$2,295 full-time; part-time >= S$12.04 per hour (pro-rated on a 44-hour week). A legal floor, not a market wage. Added to the ledger at the user's request.",
+    "L-cpf": "CPF Board, 'How much CPF contributions to pay', https://www.cpf.gov.sg/employer/employer-obligations/how-much-cpf-contributions-to-pay (page updated 11 Aug 2026; fetched 4 Oct 2026). Employer contribution 17% of wages from 1 Jan 2026, Singapore Citizen / SPR (3rd year on), age 55 and below, wages above S$750/month. Added to the ledger at the user's request.",
+    "L-xrates": "X-Rates monthly averages, https://x-rates.com/average/?amount=1&from=USD&to=SGD&year=2026 (fetched 4 Oct 2026). September 2026 USD to SGD average 1.272467 (30 days). Secondary aggregator; used only for converting the earlier USD assumptions."
+  },
+
+  "store": {
+    "open_hours_per_day": {
+      "value": 12, "unit": "hours/day", "range": null, "source": "assumption",
+      "rationale": "Generic mall/high-street trading day (10:00-22:00). Structural: sets the length of the simulated day."
+    },
+    "open_days_per_year": {
+      "value": 360, "unit": "days/year", "range": null, "source": "assumption",
+      "rationale": "Allows for a few closure days. Only converts cups/year to cups/day."
+    },
+    "cups_per_store_per_year": {
+      "value": 200000, "unit": "cups/store/year", "range": [100000, 300000], "source": "assumption",
+      "rationale": "About 555 cups/day after the opening period. No public per-store cup figure in the ledger; GMV per store cannot be turned into cups without an average ticket price, which the ledger does not have. Wide range on purpose."
+    },
+    "hourly_demand_share": {
+      "value": [0.04, 0.06, 0.10, 0.11, 0.08, 0.08, 0.09, 0.10, 0.10, 0.09, 0.08, 0.07],
+      "unit": "share of daily cups per open hour (10:00 to 22:00), sums to 1", "range": null, "source": "assumption",
+      "rationale": "Lunch peak and an evening plateau, typical of a tea shop. Peak hour = 11% of the day. Structural; the surge setting tests peaks above it."
+    }
+  },
+
+  "demand": {
+    "uncertainty_definition": {
+      "value": "half_width_pct", "unit": "text", "range": null, "source": "assumption",
+      "rationale": "Uncertainty u = (high - low) / 2 / base, as a % of the forecast base. This is exactly the band width that slide 2 outputs, and it is the x-axis of the slide 4 crossover chart."
+    },
+    "band_coverage": {
+      "value": 0.80, "unit": "probability", "range": null, "source": "assumption",
+      "rationale": "The low-high band is an 80% interval: true demand = base x (1 + u x z / 1.2816), z standard normal. So 1 in 10 stores lands above high and 1 in 10 below low. An 80% band is a common planning interval; a 95% band would make the same u mean less spread."
+    },
+    "demand_floor_share_of_base": {
+      "value": 0.0, "unit": "share of base", "range": null, "source": "assumption",
+      "rationale": "Demand draws are floored at zero (user change; was 0.20). A draw can be a store with no demand. At u = 0.60, P(z < -2.14) is about 1.6% of draws."
+    },
+    "uncertainty_no_signal": {
+      "value": 0.50, "unit": "half-width, share of base", "range": [0.35, 0.70], "source": "assumption",
+      "rationale": "Slide 2: band before any pre-launch app signal, i.e. a judgement-led forecast in a new market. Illustrative."
+    },
+    "uncertainty_strong_signal": {
+      "value": 0.15, "unit": "half-width, share of base", "range": [0.05, 0.25], "source": "assumption",
+      "rationale": "Slide 2: band with a strong pre-launch waitlist signal. It does not reach zero because tourist and non-app demand stay invisible (named blind spot)."
+    },
+    "opening_hype_multiplier": {
+      "value": 1.5, "unit": "x steady-state demand", "range": [1.0, 2.5], "source": "assumption",
+      "rationale": "Slide 2 toggle 'remove opening-week hype'. Sanity check only: L-gabgrowth reports 1,000+ cups on the KL opening day, about 1.8x our 555/day base, but that is one day, one store, from a secondary source."
+    },
+    "opening_hype_weeks": {
+      "value": 2, "unit": "weeks", "range": [1, 6], "source": "assumption",
+      "rationale": "How long the hype lasts before demand settles. Illustrative."
+    },
+    "uncertainty_sweep": {
+      "value": {"from": 0.0, "to": 0.60, "step": 0.05}, "unit": "half-width, share of base", "range": null, "source": "assumption",
+      "rationale": "x-axis of the crossover chart. Covers strong-signal to no-signal bands from slide 2."
+    }
+  },
+
+  "surge": {
+    "surge_multiplier": {
+      "value": {"none": 1.0, "moderate": 1.5, "large": 2.5}, "unit": "x forecast arrival rate", "range": null, "source": "assumption",
+      "rationale": "Slide 4 toggle. Applied to the two busiest hours. Default = moderate. The counter is sized to the forecast curve without the surge, so a surge is the unplanned peak that piles up behind fixed capacity."
+    },
+    "surge_hours": {
+      "value": 2, "unit": "busiest forecast hours that get the surge", "range": null, "source": "assumption",
+      "rationale": "This number was only in the surge_multiplier rationale; it now has its own field so the code reads it from here. With the default curve these are 12:00-14:00 (ties go to the earlier hour)."
+    },
+    "surge_default": {
+      "value": "moderate", "unit": "text", "range": null, "source": "assumption",
+      "rationale": "Default toggle position and printed state."
+    }
+  },
+
+  "stations": {
+    "list": {
+      "value": ["ticket", "cup_ice", "tea_milk", "topping_finish", "shake_seal", "handover"],
+      "unit": "text", "range": null, "source": "assumption",
+      "rationale": "Six stations from brief.md section 7."
+    },
+    "human_seconds_per_cup": {
+      "value": {"ticket": 5, "cup_ice": 10, "tea_milk": 15, "topping_finish": 12, "shake_seal": 10, "handover": 8},
+      "unit": "seconds of one average worker per cup", "range": [0.8, 1.25], "source": "assumption",
+      "rationale": "Totals 60 s, so one average worker makes about 1 cup/min. Range is a multiplier on all six. Stylised benchmark: Chagee already uses QR-scan dispensing (L-unsw), so 'all-human' is a reference case, not Chagee's current counter."
+    },
+    "machine_seconds_per_cup": {
+      "value": {"ticket": 2, "cup_ice": 8, "tea_milk": 10, "topping_finish": 15, "shake_seal": 8, "handover": 6},
+      "unit": "seconds per cup per machine unit", "range": [0.7, 2.0], "source": "assumption",
+      "rationale": "Topping/finish is the hardest step to automate, so it is the slowest machine (4 cups/min per unit). Range is a multiplier on all six. The high end, 2.0, puts the slowest station at 30 s (2 cups/min per unit), as the user asked; was 1.3. No public per-station machine times; Gong cha's company-reported productivity figures are not per station, so they are not used."
+    },
+    "mixed_machine_stations": {
+      "value": ["ticket", "tea_milk", "shake_seal"], "unit": "text", "range": null, "source": "assumption",
+      "rationale": "Fixed-time steps go to machines; cup/ice, topping/finish and handover (more variable) stay with people, who share the work including one flexible worker."
+    },
+    "machine_speed_variation_cv": {
+      "value": 0.0, "unit": "coefficient of variation", "range": null, "source": "assumption",
+      "rationale": "Machines run at a fixed speed (brief.md section 2). Machine breakdowns are not modelled; this flatters automation, and the slide will say so."
+    }
+  },
+
+  "people": {
+    "human_speed_variation_cv": {
+      "value": 0.25, "unit": "coefficient of variation, minute to minute", "range": [0.10, 0.40], "source": "assumption",
+      "rationale": "Random minute-to-minute variation in a worker's pace."
+    },
+    "worker_speed_spread": {
+      "value": 0.20, "unit": "+/- share around average speed", "range": [0.0, 0.40], "source": "assumption",
+      "rationale": "Workers differ in speed (slowest 0.8x, fastest 1.2x by default). This is what the bucket brigade rebalances."
+    },
+    "coordination_loss_human": {
+      "value": 0.90, "unit": "multiplier on pooled throughput", "range": [0.75, 1.0], "source": "assumption",
+      "rationale": "Pooling assumes perfect rebalancing. Handovers, walking and bumping at a small counter lose some of that. The Week 5 engine at realistic walk-back speed gives an information-only calibration point (see validation)."
+    },
+    "coordination_loss_mixed": {
+      "value": 0.90, "unit": "multiplier on human-pool throughput in the mixed setup", "range": [0.75, 1.0], "source": "assumption",
+      "rationale": "Same as all-human by default; kept separate because people also wait on machines in the mixed line."
+    },
+    "new_staff_share": {
+      "value": 0.25, "unit": "share of roster in first months", "range": [0.0, 0.50], "source": "assumption",
+      "rationale": "Staff turnover lever on slide 4. A new store, and churn, mean a share of staff are new."
+    },
+    "new_staff_relative_speed": {
+      "value": 0.70, "unit": "x average speed", "range": [0.50, 0.90], "source": "assumption",
+      "rationale": "New staff are slower until trained. With defaults, average speed falls to 0.925x."
+    },
+    "min_staff_on_shift": {
+      "value": {"all_human": 2, "mixed": 1, "all_machine": 0}, "unit": "workers per open hour", "range": null, "source": "assumption",
+      "rationale": "A counter never runs with fewer people than this. All-machine uses attendant hours instead."
+    },
+    "all_machine_attendant_per_open_hour": {
+      "value": 1.0, "unit": "workers per open hour", "range": [0.5, 2.0], "source": "assumption",
+      "rationale": "Restocking, cleaning, exceptions, customer help. Approved: all-machine is not zero labour."
+    },
+    "staffing_flexibility": {
+      "value": 0.70, "unit": "share of roster gap closed after demand is known", "range": [0.30, 1.0], "source": "assumption",
+      "rationale": "After opening, rosters move toward real demand; this share of the gap is closed (hiring, part-timers, shift changes). Machines get 0."
+    }
+  },
+
+  "costs": {
+    "labour_cost_per_hour": {
+      "value": 14.09, "unit": "SGD per worker-hour, loaded with employer CPF only", "range": [14.09, 25.45], "source": "L-mom-pwm, L-cpf",
+      "rationale": "S$12.04/hr PWM part-time floor for a food service counter attendant (L-mom-pwm) x 1.17 employer CPF (L-cpf) = S$14.09. The full-time floor gives the same: 2,295 x 1.17 x 12 / (44 x 52) = S$14.08. This is a FLOOR, not a fully loaded market rate: it leaves out Skills Development Levy, leave, benefits, recruitment, training, overtime, any pay above the floor, and the levies for foreign workers. The real loaded cost is likely higher. The low end of the range is the floor because pay cannot legally go below it; the high end, 25.45, is the earlier USD 20 converted. Both are verified components; the combination is ours.",
+      "placeholder_market_rate": "PLACEHOLDER - user to supply a sourced, fully loaded market rate for Singapore beverage counter staff. When supplied, it replaces value; the floor stays as the low end of the range."
+    },
+    "machine_cost_per_unit_per_month": {
+      "value": 1908.75, "value_usd": 1500.0, "unit": "SGD per station machine unit per month", "range": [636.25, 3817.5], "source": "assumption",
+      "rationale": "Amortised purchase plus maintenance, cleaning and consumables. One rate for every station. No Chagee or industry figure in the ledger. Converted from the approved USD 1,500 (range 500-3,000) at fx_sgd_per_usd."
+    },
+    "lost_order_cost": {
+      "value": 3.82, "value_usd": 3.0, "unit": "SGD per lost order", "range": [1.91, 7.64], "source": "assumption",
+      "rationale": "Margin on the cup not sold plus some goodwill. Charged when an order balks because the wait would exceed the target."
+    },
+    "capacity_safety_margin": {
+      "value": 1.20, "unit": "x forecast peak rate", "range": [1.0, 1.5], "source": "assumption",
+      "rationale": "Same sizing rule for all three setups: capacity for forecast peak x margin. Machines round up to whole units, staff to whole workers."
+    }
+  },
+
+  "service": {
+    "target_wait_minutes": {
+      "value": 5.0, "unit": "minutes", "range": [2.0, 10.0], "source": "assumption",
+      "rationale": "A slider, not a claim. An order balks if the wait it would see on arrival exceeds this. The call with Lee Yen mentioned a sub-one-minute fulfilment target, but that is informal and may mean prep time, not total wait; not used or cited."
+    }
+  },
+
+  "provision": {
+    "milk_litres_per_cup": {
+      "value": 0.15, "unit": "litres per cup", "range": [0.10, 0.25], "source": "assumption",
+      "rationale": "Milk in a tea latte. Illustrative; not a Chagee recipe figure."
+    },
+    "milk_waste_cost_per_litre": {
+      "value": 2.55, "value_usd": 2.0, "unit": "SGD per litre thrown away", "range": [1.27, 5.09], "source": "assumption",
+      "rationale": "Purchase cost of expired fresh milk. Overseas milk sourcing is unknown (ledger: do not claim), so this is generic."
+    },
+    "milk_shelf_life_days": {
+      "value": 7, "unit": "days", "range": [3, 14], "source": "assumption",
+      "rationale": "Generic chilled fresh milk. Stock held beyond this is wasted."
+    },
+    "stockout_cost_per_cup": {
+      "value": 3.82, "value_usd": 3.0, "unit": "SGD per cup not served for lack of stock", "range": [1.91, 7.64], "source": "assumption",
+      "rationale": "Set equal to lost_order_cost by default: a missed cup is a missed cup."
+    },
+    "opening_stock_days": {
+      "value": 3, "unit": "days of forecast base demand", "range": [1, 14], "source": "assumption",
+      "rationale": "Slide 3 slider default. The calculator also shows the cost-minimising level."
+    }
+  },
+
+  "benefit": {
+    "overseas_stores_per_year": {
+      "value": 200, "unit": "stores/year", "range": [50, 300], "source": "L-jiemian",
+      "rationale": "About 200 overseas stores planned for 2026 (L-jiemian). The slide shows it as 'about 200' and as a slider."
+    },
+    "saving_per_cup": {
+      "value": "from_simulator", "unit": "SGD/cup", "range": null, "source": "assumption",
+      "rationale": "Default = mixed vs all-machine cost-per-cup gap at the slide 2 default uncertainty and the default surge. Not hand-set."
+    },
+    "waste_avoided": {
+      "value": "from_provision", "unit": "SGD/store/year", "range": null, "source": "assumption",
+      "rationale": "Default = slide 3 waste-plus-stockout saving from a narrower band. Not hand-set."
+    }
+  },
+
+  "simulation": {
+    "monte_carlo_draws": {
+      "value": 500, "unit": "demand draws per uncertainty point", "range": null, "source": "assumption",
+      "rationale": "Enough for a smooth curve at build time; stability is checked across seeds."
+    },
+    "base_seed": {
+      "value": 639, "unit": "integer", "range": null, "source": "assumption",
+      "rationale": "Fixed so every build gives the same numbers."
+    },
+    "minute_step": {
+      "value": 1, "unit": "minutes", "range": null, "source": "assumption",
+      "rationale": "Queue updated once per simulated minute."
+    }
+  },
+
+  "validation": {
+    "_note": "Fixed before anything is run (addition 4). Changing these after seeing results needs explicit sign-off.",
+    "week5_comparison": {
+      "value": {
+        "tolerance_pct": 3.0,
+        "engine": "Brigade() read from the ENGINE string in week5/build_opim639_deck.py, not modified",
+        "settings": {"walk": 40, "busyFactor": null, "hiccup": 0, "bufferCap": 0},
+        "speed_sets": [[1.0, 1.5, 2.0], [1.0, 2.0, 3.0]],
+        "pass_rule": "pooled throughput (sum of speeds, coordination loss = 1) within +/-3% of Week 5 measured throughput for both speed sets",
+        "info_only": "same comparison at walk = 6 (Week 5 Option 1 default); the gap is reported as a calibration point for coordination_loss, not pass/fail"
+      },
+      "unit": "mixed", "range": null, "source": "assumption",
+      "rationale": "walk = 40 is Week 5's 'near-instant walk back, as the lecture assumes', which is what the pooled formula assumes too. 3% allows for simulation granularity."
+    },
+    "cost_per_cup_aggregation": {
+      "value": "ratio_of_sums",
+      "unit": "text", "range": null, "source": "assumption",
+      "rationale": "Fixed before any run. Cost per cup at a given u = (sum over simulated stores of machine + labour + lost-order cost) / (sum of cups served). This is the chain-wide cost per cup, and it matches slide 5 (saving per cup x cups). The alternative, the average of each store's own cost per cup, weights low-demand stores more and is not used for the headline."
+    },
+    "peak_utilisation_definition": {
+      "value": "forecast peak-hour arrival rate x surge multiplier, divided by the setup's nominal capacity in that hour, at the base forecast (u = 0, demand = base), before random noise",
+      "unit": "text", "range": null, "source": "assumption",
+      "rationale": "User check (4): does the fixed-speed mechanism ever bind? Reported for none / moderate / large surge, before the full sweep, alongside the simulated share of orders lost in the peak hours."
+    },
+    "crossover_definition": {
+      "value": "smallest u at which mixed cost/cup <= all-machine cost/cup and stays <= for every larger u in the sweep, linearly interpolated between grid points",
+      "unit": "text", "range": null, "source": "assumption",
+      "rationale": "If mixed is cheaper at u = 0: 'no crossover, mixed cheaper everywhere'. If never cheaper: 'no crossover, machines cheaper everywhere'. All-human is plotted and reported but is not part of the headline test."
+    },
+    "crossover_stability": {
+      "value": {"seeds": 20, "min_seeds_with_crossover": 18, "max_spread_pct_points": 10},
+      "unit": "mixed", "range": null, "source": "assumption",
+      "rationale": "Pass if a crossover exists in at least 18 of 20 seeds and the crossover u differs by at most 10 percentage points across them. If it fails, the slide shows a crossover zone or none, not a single point."
+    },
+    "sensitivity": {
+      "value": "one-at-a-time: each parameter with a non-null range set to its low then high value, all others at default; report crossover u (or none) and cost/cup at the slide 2 default u",
+      "unit": "text", "range": null, "source": "assumption",
+      "rationale": "Shows which assumptions decide the headline; feeds the 'what could shift the balance' panel and Q&A. No pass/fail."
+    }
+  }
+}
