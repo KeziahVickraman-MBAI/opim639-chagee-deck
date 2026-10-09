@@ -10,17 +10,18 @@
  *   PEOPLE follow the Week 5 bucket-brigade rules, in seconds:
  *     - a worker carries one cup forward through the hand stations at
  *       speed x experience x per-station variation / human seconds of the station;
- *     - no overtaking: a worker who catches the working colleague ahead is blocked;
+ *     - no overtaking: a worker held back by the working colleague ahead is blocked;
  *     - the last worker hands the cup over at pick-up, walks back, and takes over the cup of
- *       the first SLOWER working colleague met upstream (a handover; workers keep Week 5's
- *       slowest-to-fastest order); at the order point with nothing to take over, the worker
+ *       working colleague just upstream in the line order (a handover; slowest first by default,
+ *       as in Week 5); at the order point with nothing to take over, the worker
  *       starts the next order, or waits if none is waiting;
  *     - at a machine station the worker puts the cup in and, if the machine has a finished
  *       cup ready, takes it on (as a barista swaps cups at a brewer); otherwise the worker
  *       goes for the most downstream finished cup, or walks back like the Week 5 brigade.
  *     Walking speed = illustration.walk_back_speed x the worker's speed, in Week 5 units where
  *     the whole counter is one line (opts.walkBack, required). Staff on shift = plan().rosterPlan
- *     for the peak hour; speeds = sim workerSpeeds(), slowest at the order point. The cost
+ *     for the peak hour; speeds = sim workerSpeeds(), slowest at the order point (opts.order "fast_first"
+ *     reverses it, Week 5's counter-example). The cost
  *     model's coordination loss is NOT applied: walking and blocking produce it here.
  *   MACHINES stay at their station: fixed time (machine seconds x multiplier), plan() units in
  *   parallel; a cup moves on to the next machine by itself, or waits there for a person.
@@ -38,7 +39,7 @@
 
   function peakHour(P) { return P.share.indexOf(Math.max(...P.share)); }
 
-  function create(Sim, P, setup, { surge = P.surgeDefault, seed = P.seed, warm = true, walkBack } = {}) {
+  function create(Sim, P, setup, { surge = P.surgeDefault, seed = P.seed, warm = true, walkBack, order = "slow_first" } = {}) {
     if (!(walkBack > 0)) throw new Error("store.create: opts.walkBack (illustration.walk_back_speed) is required");
     const pl = Sim.plan(P, setup), h = peakHour(P);
     const mStations = setup === "all_machine" ? P.stations : setup === "mixed" ? P.mixedMachine : [];
@@ -46,7 +47,8 @@
     const base = Sim.dailyBase(P), mult = P.surgeMult[surge];
     const lamOf = hr => base * P.share[hr] * mult / 3600;                    // cups per second
     const staff = setup === "all_machine" ? 0 : pl.rosterPlan[h];
-    const speeds = Sim.workerSpeeds(staff, P.spread);
+    const speeds = Sim.workerSpeeds(staff, P.spread);                       // slowest first (Week 5's order)
+    if (order === "fast_first") speeds.reverse();                            // the Week 5 counter-example
     const capNom = Sim.nominalCap(pl, staff);                                // cups per minute
     const exp = 1 - P.newShare * (1 - P.newSpeed);
     const n = P.stations.length;
@@ -138,8 +140,10 @@
           let nx = w.x + w.v * exp * w.m * dt / stations[k].sec;
           const ahead = workers.filter(o => o !== w && o.mode === "work" && o.x > w.x)
                                .reduce((a, o) => (a == null || o.x < a.x ? o : a), null);
-          if (ahead && nx > ahead.x - GAP) nx = Math.max(w.x, ahead.x - GAP);
-          if (nx <= w.x + 1e-12) { w.blocked = true; w.blockedTime += dt; continue; }
+          if (ahead && nx > ahead.x - GAP) {                                 // held back by the colleague ahead
+            nx = Math.max(w.x, ahead.x - GAP); w.blocked = true; w.blockedTime += dt;
+          }
+          if (nx <= w.x + 1e-12) continue;
           w.busyTime += dt;
           if (nx >= k + 1) {
             if (k + 1 >= n) { const c = w.cup; w.cup = null; w.x = n; handOver(c); w.mode = "back"; w.target = null; }
@@ -149,8 +153,8 @@
         } else if (w.mode === "back") {
           const nx = w.x - walk * w.v * dt;
           // the first thing met walking upstream: a working colleague (handover) or a finished cup at a machine
-          // Week 5: a worker only takes over from a slower colleague upstream (lower index), so the line keeps
-          // its slowest-to-fastest order and balances itself
+          // Week 5: a worker only takes over from the colleague upstream in the line order (lower index), so
+          // nobody passes; with slowest first the line balances itself
           const u = workers.filter(o => o.i < w.i && o.mode === "work" && o.x >= nx)
                            .reduce((a, o) => (a == null || o.x > a.x ? o : a), null);
           let pick = null;

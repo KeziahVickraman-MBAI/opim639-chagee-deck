@@ -254,45 +254,51 @@ function crossWidget(root){
 /* ================= slide 5: benefit calculator ================= */
 function benefitWidget(root){
   // Comparator: Chagee's semi-automated counter (our mixed setup) at every new store, against choosing per store by
-  // trigger. Per-store cost by volume from DATA.volumeCurve (sim/), x open days; zero where the standard is best.
+  // trigger. Openings spread evenly over the volume range you set; each curve point (DATA.volumeCurve, sim/) stands
+  // for the volumes within half a step of it. Per-store cost x open days; zero where the standard is already best.
   const body=$(root,".body"), B=RAW.benefit, days=RAW.store.open_days_per_year.value, vc=DATA.volumeCurve;
   const be=DATA.breakEven.find(r=>r.lever==="cupsPerDay"&&r.a==="all_human"&&r.b==="mixed").x;
   const best=r=>Math.min(...SETUPS.map(k=>r[k].cost));
   const per=vc.map(r=>({v:r.cupsPerDay, std:(r.mixed.cost-best(r))*r.cupsPerDay*days, full:(r.all_machine.cost-best(r))*r.cupsPerDay*days}));
-  const below=per.filter(p=>p.v<be), avg=below.reduce((a,p)=>a+p.std,0)/below.length;
-  const share0=(be-vc[0].cupsPerDay)/(vc[vc.length-1].cupsPerDay-vc[0].cupsPerDay);
+  const V0=vc[0].cupsPerDay, V1=vc[vc.length-1].cupsPerDay, step=vc[1].cupsPerDay-vc[0].cupsPerDay;
   const days0=RAW.provision.opening_stock_days.value, [s0,s1]=B.overseas_stores_per_year.range;
-  const st={stores:B.overseas_stores_per_year.value, share:share0, stock:0};
-  body.innerHTML=`<svg class="chart" viewBox="0 0 640 136" role="img" aria-label="Cost of the standard counter per store, by volume"></svg>
-    <div class="controls" style="grid-template-columns:250px 1fr;margin-top:2px">
+  const st={stores:B.overseas_stores_per_year.value, lo:V0, hi:V1, stock:0};
+  body.innerHTML=`<svg class="chart" viewBox="0 0 640 116" role="img" aria-label="What the standard counter costs across the pipeline, by volume"></svg>
+    <div class="controls" style="grid-template-columns:230px 1fr;margin-top:2px">
       <label for="bst">Overseas openings a year</label><div class="rng"><input id="bst" type="range" min="${s0}" max="${s1}" step="1" value="${st.stores}"><span class="val v1"></span></div>
-      <label for="bsh">Share of openings below the trigger</label><div class="rng"><input id="bsh" type="range" min="0" max="1" step="0.01" value="${st.share}"><span class="val v2"></span></div>
+      <label for="blo">Expected steady volume: lowest</label><div class="rng"><input id="blo" type="range" min="${V0}" max="${V1}" step="any" value="${st.lo}"><span class="val v2"></span></div>
+      <label for="bhi">Expected steady volume: highest</label><div class="rng"><input id="bhi" type="range" min="${V0}" max="${V1}" step="any" value="${st.hi}"><span class="val v3"></span></div>
     </div>
-    <p class="note" style="margin:1px 0 3px">Default share: openings spread evenly over our volume range (illustrative).</p>
     <div class="formula"></div>`;
-  const svg=$(body,"svg"), L=62,R=630,T=14,Bm=104, ymax=Math.max(...per.map(p=>p.std))*1.25, pad=22;
-  const X=v=>L+pad+(R-L-2*pad)*(v-vc[0].cupsPerDay)/(vc[vc.length-1].cupsPerDay-vc[0].cupsPerDay), Y=v=>Bm-(Bm-T)*v/ymax, bw=(R-L)/per.length*0.6;
-  let g="";
-  for(const v of ticks(ymax,3)) g+=`<line x1="${L}" x2="${R}" y1="${Y(v)}" y2="${Y(v)}" stroke="#e5e7eb"/>`+txt(L-5,Y(v)+3,money0(v),'font-size="9.5" fill="#6b7280" text-anchor="end"');
-  per.forEach(p=>{ const x=X(p.v)-bw/2;
-    g+= p.std>0.5 ? `<rect x="${x}" y="${Y(p.std)}" width="${bw}" height="${Bm-Y(p.std)}" rx="3" fill="${COL.mixed}"/>`
-                  : `<rect x="${x}" y="${Bm-2}" width="${bw}" height="2" fill="#9aa3af"/>`;
-    g+=txt(X(p.v),Bm+12,int(p.v),'font-size="9" fill="#6b7280" text-anchor="middle"'); });
-  g+=`<line x1="${X(be)}" x2="${X(be)}" y1="${T-4}" y2="${Bm}" stroke="#23272f" stroke-dasharray="4 3"/>`+
-     txt(X(be)+4,T+4,`trigger ≈${int(be)} cups/day`,'font-size="9.5" font-weight="700" fill="#23272f"')+
-     txt((X(be)+R)/2+6,Bm-14,"standard already best: nothing to gain",'font-size="9.5" fill="#6b7280" text-anchor="middle"');
-  g+=txt(R,Bm+26,"steady cups per day",'font-size="9.5" fill="#6b7280" text-anchor="end"')+txt(L,T-4,"S$ per store per year",'font-size="9.5" fill="#6b7280"');
-  svg.innerHTML=g;
-  $(body,"#bst").oninput=e=>{ st.stores=+e.target.value; draw(); };
-  $(body,"#bsh").oninput=e=>{ st.share=+e.target.value; draw(); };
+  const svg=$(body,"svg"), L=62,R=630,T=16,Bm=86, pad=22, kS=v=>"S$"+Math.round(v/1000)+"k";
+  const X=v=>L+pad+(R-L-2*pad)*(v-V0)/(V1-V0), bw=(R-L)/per.length*0.6;
+  const frac=p=>{ const a=Math.max(st.lo,p.v-step/2,V0), b=Math.min(st.hi,p.v+step/2,V1); return st.hi>st.lo? Math.max(0,b-a)/(st.hi-st.lo) : (Math.abs(p.v-st.lo)<=step/2?1:0); };
+  const sliders={bst:"stores",blo:"lo",bhi:"hi"};
+  Object.entries(sliders).forEach(([id,k])=>$(body,"#"+id).oninput=e=>{ st[k]=+e.target.value;
+    if(st.lo>st.hi){ if(k==="lo") st.hi=st.lo; else st.lo=st.hi; } draw(); });
   function draw(){
-    $(body,".v1").textContent=int(st.stores); $(body,".v2").textContent=pct(st.share);
-    const counter=st.stores*st.share*avg, stock=st.stores*st.stock, fl=Math.min(...per.map(p=>p.full)), fh=Math.max(...per.map(p=>p.full));
-    $(body,".formula").innerHTML=`<div class="big" style="margin-bottom:3px">≈ ${moneyM(counter+stock)} <small>a year, illustrative</small></div>
-      <span class="term"><b>${int(st.stores)}</b> openings</span> × ( <span class="term"><b>${pct(st.share)}</b> below the trigger</span> × <span class="term"><b>${money0(avg)}</b> per store</span>
-      + <span class="term"><b>${money0(st.stock)}</b> stock cost avoided</span> )
-      <small style="margin-top:4px">≈ ${moneyM(counter)} from choosing the counter + ${moneyM(stock)} from opening stock, if the pre-launch signal works as assumed (slide ${REF.s2}).
-      For reference: had the standard been full automation, it would cost ${money0(fl)}–${money0(fh)} per store a year more than the cheapest counter.</small>`;
+    Object.entries(sliders).forEach(([id,k])=>$(body,"#"+id).value=st[k]);
+    $(body,".v1").textContent=int(st.stores); $(body,".v2").textContent=`${int(st.lo)} cups/day`; $(body,".v3").textContent=`${int(st.hi)} cups/day`;
+    const bars=per.map(p=>{ const f=frac(p); return {...p, f, n:st.stores*f, total:st.stores*f*p.std}; });
+    const ymax=Math.max(1000,...bars.map(p=>p.total))*1.3, Y=v=>Bm-(Bm-T)*v/ymax;                // scale follows the bars
+    let g="";
+    for(const v of ticks(ymax,3)) g+=`<line x1="${L}" x2="${R}" y1="${Y(v)}" y2="${Y(v)}" stroke="#e5e7eb"/>`+txt(L-5,Y(v)+3,kS(v),'font-size="9.5" fill="#6b7280" text-anchor="end"');
+    g+=`<rect x="${X(st.lo)}" y="${T-2}" width="${Math.max(2,X(st.hi)-X(st.lo))}" height="${Bm-T+2}" fill="${css("--amber")}" opacity=".08"/>`;
+    bars.forEach(p=>{ const x=X(p.v)-bw/2, on=p.f>0;
+      if(p.std>0.5 && on) g+=`<rect x="${x}" y="${Y(p.total)}" width="${bw}" height="${Math.max(0,Bm-Y(p.total))}" rx="3" fill="${COL.mixed}"/>`;
+      else g+=`<rect x="${x}" y="${Bm-2}" width="${bw}" height="2" fill="${on?"#9aa3af":"#e5e7eb"}"/>`;
+      if(on && p.n>=0.5) g+=txt(X(p.v),Bm-4-(p.std>0.5?Bm-Y(p.total):0),Math.round(p.n),'font-size="8.5" fill="#374151" text-anchor="middle"');
+      g+=txt(X(p.v),Bm+12,int(p.v),`font-size="9" fill="${on?"#6b7280":"#c5cad3"}" text-anchor="middle"`); });
+    g+=`<line x1="${X(be)}" x2="${X(be)}" y1="${T-2}" y2="${Bm}" stroke="#23272f" stroke-dasharray="4 3"/>`+
+       txt(X(be),T-6,`open all-human ← trigger ≈${int(be)} cups/day → mixed (the standard)`,'font-size="9.5" font-weight="700" fill="#23272f" text-anchor="middle"');
+    g+=txt(R,Bm+26,"steady cups per day · numbers on bars = openings",'font-size="9" fill="#6b7280" text-anchor="end"')+txt(L,T-4,"",'');
+    svg.innerHTML=g;
+    const counter=bars.reduce((a,p)=>a+p.total,0), nBelow=bars.filter(p=>p.v<be).reduce((a,p)=>a+p.n,0), stock=st.stores*st.stock;
+    const fl=Math.min(...per.map(p=>p.full)), fh=Math.max(...per.map(p=>p.full));
+    $(body,".formula").innerHTML=`<div class="big" style="margin-bottom:2px">≈ ${moneyM(counter+stock)} <small>a year, illustrative</small></div>
+      <span class="term"><b>${Math.round(nBelow)}</b> of ${int(st.stores)} openings below the trigger open all-human</span> → <b>${moneyM(counter)}</b>
+      + <span class="term"><b>${money0(st.stock)}</b> stock cost avoided × ${int(st.stores)}</span> → <b>${moneyM(stock)}</b>
+      <small style="margin-top:2px">Stock term only if the pre-launch signal works as assumed (slide ${REF.s2}). A fully automated standard would cost ${money0(fl)}–${money0(fh)} more per store a year.</small>`;
   }
   onBand(b=>{ const daily=b.base/7; st.stock=Sim.provision(P,P.uNone,days0,daily).optTotal-Sim.provision(P,b.u,days0,daily).optTotal; draw(); });
 }
@@ -453,104 +459,105 @@ const STORE_SETUPS=[["mixed","Today's counter"],["all_human","All-human"],["all_
 const mmss=s=>`${Math.floor(s/60)}:${String(Math.round(s%60)).padStart(2,"0")}`;
 
 function storefrontWidget(root){
+  // Two counters stacked for comparison, each chosen from a dropdown; both see the same customers (same seed).
   const Store=window.ChageeStore, body=$(root,".body"), WB=RAW.illustration.walk_back_speed.value;
-  const [sp0,sp1]=RAW.people.worker_speed_spread.range;
-  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const st={setup:"all_human", S:null, playing:!reduce, speed:10, spread:P.spread, pos:new WeakMap()};
+  const [sp0,sp1]=RAW.people.worker_speed_spread.range, reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const OPTS=[["human_slow","People, slowest first (Week 5)","all_human","slow_first"],
+              ["human_fast","People, fastest first","all_human","fast_first"],
+              ["mixed","Today's counter: robots + people","mixed","slow_first"],
+              ["all_machine","All-robot","all_machine","slow_first"]];
+  const opt=k=>OPTS.find(o=>o[0]===k);
+  const st={playing:!reduce, speed:10, spread:P.spread, lanes:[{key:"human_slow"},{key:"human_fast"}]};
   const Pq=()=>({...P, spread:st.spread});
   body.innerHTML=`<div class="mcontrols screenonly">
-      <div class="variants su">${STORE_SETUPS.map(([k,n])=>`<button data-s="${k}">${n}</button>`).join("")}</div>
       <div class="variants sg">${SURGES.map(g=>`<button data-g="${g}">${SURGE_LABEL(g)}</button>`).join("")}</div>
       <button class="play">▶ Play</button>
       <div class="variants sp"><button data-v="10">×10</button><button data-v="60">×60</button></div>
       <label class="slw">Slowest worker <input type="range" min="${1-sp1}" max="${1-sp0}" step="0.05" value="${1-st.spread}"><span class="val swv"></span></label>
     </div>
-    <svg class="storesvg" viewBox="0 0 1180 196" role="img" aria-label="Store replica"></svg>
-    <div class="sstats"></div>
-    <p class="slegend">Number = worker speed (slowest at the order point) · cup = drink in hand · faded = walking back · red ring = blocked · ▲ = handover. Robots stay put; cups move.</p>`;
-  const svg=$(body,"svg"), play=$(body,".play"), stats=$(body,".sstats"), slw=$(body,".slw input");
+    ${st.lanes.map((l,j)=>`<div class="lane" data-j="${j}">
+      <div class="lanehead"><span class="lpos">${j?"Bottom":"Top"}</span>
+        <select aria-label="${j?"Bottom":"Top"} counter">${OPTS.map(o=>`<option value="${o[0]}">${o[1]}</option>`).join("")}</select>
+        <span class="lname printonly"></span><span class="sstats"></span></div>
+      <svg class="storesvg" viewBox="0 0 1180 150" role="img" aria-label="Store replica"></svg></div>`).join("")}
+    <p class="slegend">Number = worker speed · cup above = drink in hand · faded = walking back · red ring = held back by the colleague ahead · ▲ = handover. Robots stay put; cups move. Both counters see the same customers.</p>`;
+  const play=$(body,".play"), slw=$(body,".slw input");
   const n=P.stations.length, XR=1060, XL=140, X=x=>XR-x*(XR-XL)/n, BW=(XR-XL)/n-10;
   const wood="#d9c3a0", woodDark="#b89870", ink="#23272f", mute="#6b7280", amber=css("--amber"), red=css("--red");
-  function fresh(){ st.S=Store.create(Sim,Pq(),st.setup,{surge:STORE_BUS.surge,seed:P.seed,walkBack:WB}); st.pos=new WeakMap(); }
-  const advance=(sec,dt=0.5)=>{ const S=st.S, end=S.t+sec; while(S.t<end-1e-9) S.step(Math.min(dt,end-S.t)); };
-  const minute=()=>(st.S.t-st.S.measureFrom)/60;
+  st.lanes.forEach((l,j)=>{ l.el=$(body,`.lane[data-j="${j}"]`); l.svg=$(l.el,"svg"); l.stats=$(l.el,".sstats"); l.sel=$(l.el,"select"); l.sel.value=l.key;
+    l.sel.onchange=()=>{ l.key=l.sel.value; fresh(l); advance(l,DATA.storePrintMinute*60); draw(l); }; });
+  function fresh(l){ const o=opt(l.key); l.S=Store.create(Sim,Pq(),o[2],{surge:STORE_BUS.surge,seed:P.seed,walkBack:WB,order:o[3]}); l.pos=new WeakMap(); }
+  const advance=(l,sec,dt=0.5)=>{ const S=l.S, end=S.t+sec; while(S.t<end-1e-9) S.step(Math.min(dt,end-S.t)); };
+  const minute=l=>(l.S.t-l.S.measureFrom)/60;
   const cupIcon=(x,y,c)=>`<path d="M${(x-5).toFixed(1)} ${(y-7).toFixed(1)}h10l-1.6 13h-6.8z" fill="${c}" stroke="#fff" stroke-width="1"/>`;
-  function cupAt(cup,tx,ty){                                       // cups slide to where they are now (robots: cups move, machines don't)
-    const p=st.pos.get(cup)||{x:tx,y:ty}; p.x+=(tx-p.x)*0.4; p.y+=(ty-p.y)*0.4; st.pos.set(cup,p); return cupIcon(p.x,p.y,"#8b6b43"); }
-  function draw(){
-    const S=st.S, m=minute();
-    let s=`<rect x="0" y="0" width="1180" height="196" rx="10" fill="#faf6ef"/><rect x="20" y="22" width="1140" height="60" rx="8" fill="#efe4d2"/>`;
-    const sign=(x,t)=>`<rect x="${x-46}" y="4" width="92" height="20" rx="10" fill="#fff" stroke="#d6cbb8"/>`+txt(x,18,t,`font-size="11" font-weight="700" fill="${ink}" text-anchor="middle" letter-spacing=".08em"`);
+  function draw(l){
+    const S=l.S, m=minute(l), cupAt=(cup,tx,ty)=>{ const p=l.pos.get(cup)||{x:tx,y:ty}; p.x+=(tx-p.x)*0.4; p.y+=(ty-p.y)*0.4; l.pos.set(cup,p); return cupIcon(p.x,p.y,"#8b6b43"); };
+    let s=`<rect x="0" y="0" width="1180" height="150" rx="10" fill="#faf6ef"/><rect x="20" y="20" width="1140" height="52" rx="8" fill="#efe4d2"/>`;
+    const sign=(x,t)=>`<rect x="${x-44}" y="3" width="88" height="18" rx="9" fill="#fff" stroke="#d6cbb8"/>`+txt(x,16,t,`font-size="10.5" font-weight="700" fill="${ink}" text-anchor="middle" letter-spacing=".08em"`);
     s+=sign(X(n)-10,"PICK UP")+sign(X(0)+40,"ORDER");
     S.stations.forEach((o,k)=>{ const cx=X(k+0.5), mach=o.machine, col=mach?COL.all_machine:woodDark;
-      s+=`<rect x="${cx-BW/2}" y="29" width="${BW}" height="46" rx="6" fill="#fff" stroke="${col}" stroke-width="${mach?2:1.4}"/>`;
-      if(o.id==="tea_milk") s+=[0,1,2].map(j=>`<rect x="${cx-20+j*16}" y="32" width="6" height="11" rx="2" fill="${woodDark}"/>`).join("");
-      s+=txt(cx,o.id==="tea_milk"?56:50,STATION_NAME[o.id]||o.id,`font-size="11.5" font-weight="700" fill="${ink}" text-anchor="middle"`);
-      s+=txt(cx,o.id==="tea_milk"?69:64,mach?`robot${o.units>1?" ×"+o.units:""} · ${Math.round(o.sec)} s`:`by hand · ${Math.round(o.sec)} s`,`font-size="9.5" fill="${mach?COL.all_machine:mute}" text-anchor="middle"`);
+      s+=`<rect x="${cx-BW/2}" y="26" width="${BW}" height="40" rx="6" fill="#fff" stroke="${col}" stroke-width="${mach?2:1.4}"/>`;
+      if(o.id==="tea_milk") s+=[0,1,2].map(j=>`<rect x="${cx-20+j*16}" y="28" width="6" height="9" rx="2" fill="${woodDark}"/>`).join("");
+      s+=txt(cx,o.id==="tea_milk"?50:45,STATION_NAME[o.id]||o.id,`font-size="11" font-weight="700" fill="${ink}" text-anchor="middle"`);
+      s+=txt(cx,o.id==="tea_milk"?61:58,mach?`robot${o.units>1?" ×"+o.units:""} · ${Math.round(o.sec)} s`:`by hand · ${Math.round(o.sec)} s`,`font-size="9" fill="${mach?COL.all_machine:mute}" text-anchor="middle"`);
       if(mach){
-        o.busy.forEach((b,j)=>{ s+=`<rect x="${cx-BW/2+6}" y="${70-j*4}" width="${(BW-12)*(1-Math.max(0,b.left)/o.sec)}" height="3" fill="${COL.all_machine}"/>`;
-          s+=cupAt(b.cup,cx+18-j*10,47); });
-        o.queue.slice(0,4).forEach((c,j)=>s+=cupAt(c,cx+BW/2-10-j*11,94));             // waiting to go in (upstream side)
-        o.ready.slice(0,4).forEach((c,j)=>s+=cupAt(c,cx-BW/2+10+j*11,94));            // finished, waiting for a person
-        if(o.queue.length>4) s+=txt(cx+BW/2-60,98,`+${o.queue.length-4}`,`font-size="9.5" fill="${mute}"`);
+        o.busy.forEach((b,j)=>{ s+=`<rect x="${cx-BW/2+6}" y="${62-j*4}" width="${(BW-12)*(1-Math.max(0,b.left)/o.sec)}" height="3" fill="${COL.all_machine}"/>`; s+=cupAt(b.cup,cx+18-j*10,42); });
+        o.queue.slice(0,4).forEach((c,j)=>s+=cupAt(c,cx+BW/2-10-j*11,84));
+        o.ready.slice(0,4).forEach((c,j)=>s+=cupAt(c,cx-BW/2+10+j*11,84));
+        if(o.queue.length>4) s+=txt(cx+BW/2-60,88,`+${o.queue.length-4}`,`font-size="9.5" fill="${mute}"`);
       }
     });
-    if(!S.stations[0].machine) S.stations[0].queue.slice(0,6).forEach((c,j)=>s+=cupAt(c,X(0)+14+j*11,94));   // orders waiting for the first worker
-    const recent=S.handovers.filter(h=>S.t-h.t<120);
-    recent.forEach(h=>s+=`<path d="M${X(h.x).toFixed(1)} 124l-4 6h8z" fill="${amber}" opacity="${(1-(S.t-h.t)/120).toFixed(2)}"/>`);
+    if(!S.stations[0].machine){ S.stations[0].queue.slice(0,6).forEach((c,j)=>s+=cupAt(c,X(0)+14+j*11,84)); }
+    S.handovers.filter(h=>S.t-h.t<120).forEach(h=>s+=`<path d="M${X(h.x).toFixed(1)} 108l-4 6h8z" fill="${amber}" opacity="${(1-(S.t-h.t)/120).toFixed(2)}"/>`);
     const slow=S.workers.length?Math.min(...S.workers.map(w=>w.v)):null;
-    S.workers.forEach(w=>{ const near=S.workers.filter(o=>o.i<w.i && Math.abs(o.x-w.x)<0.15).length;   // side by side, not on top
-      const x=X(w.x)+near*26, faded=w.mode!=="work";
+    S.workers.forEach(w=>{ const near=S.workers.filter(o=>o.i<w.i && Math.abs(o.x-w.x)<0.15).length, x=X(w.x)+near*26, faded=w.mode!=="work";
       s+=`<g opacity="${faded?0.45:1}">`;
-      if(w.cup) s+=cupAt(w.cup,x,98).replace('fill="#8b6b43"',`fill="${amber}"`);
-      s+=`<circle cx="${x.toFixed(1)}" cy="114" r="11" fill="${COL.all_human}"/>`;
-      if(w.blocked) s+=`<circle cx="${x.toFixed(1)}" cy="114" r="15" fill="none" stroke="${red}" stroke-width="3"/>`;
-      s+=txt(x,118,`${w.v.toFixed(1)}`,`font-size="10" font-weight="700" fill="#fff" text-anchor="middle"`)+`</g>`;
-      if(S.workers.length>1 && w.v===slow) s+=txt(x,138,"slowest",`font-size="9" fill="${mute}" text-anchor="middle"`);
+      if(w.cup) s+=cupAt(w.cup,x,84).replace('fill="#8b6b43"',`fill="${amber}"`);
+      s+=`<circle cx="${x.toFixed(1)}" cy="98" r="10.5" fill="${COL.all_human}"/>`;
+      if(w.blocked) s+=`<circle cx="${x.toFixed(1)}" cy="98" r="14.5" fill="none" stroke="${red}" stroke-width="3"/>`;
+      s+=txt(x,102,`${w.v.toFixed(1)}`,`font-size="9.5" font-weight="700" fill="#fff" text-anchor="middle"`)+`</g>`;
+      if(S.workers.length>1 && w.v===slow) s+=txt(x,121,"slowest",`font-size="8.5" fill="${mute}" text-anchor="middle"`);
     });
-    if(!S.workers.length) s+=txt(X(n)+40,118,"no staff at the line: an attendant restocks and handles exceptions",`font-size="10.5" fill="${mute}"`);
-    s+=`<rect x="120" y="142" width="960" height="18" rx="5" fill="${wood}"/>`+txt(600,155,"TEA BAR",`font-size="11" font-weight="700" fill="#7a5c36" text-anchor="middle" letter-spacing=".25em"`);
+    if(!S.workers.length) s+=txt(X(n)+40,101,"no staff at the line: an attendant restocks and handles exceptions",`font-size="10" fill="${mute}"`);
+    s+=`<rect x="120" y="124" width="960" height="14" rx="4" fill="${wood}"/>`+txt(600,135,"TEA BAR",`font-size="9.5" font-weight="700" fill="#7a5c36" text-anchor="middle" letter-spacing=".25em"`);
     const wait=S.stations[0].queue.length;
-    for(let k=0;k<Math.min(wait,9);k++) s+=`<circle cx="${1110-(k%3)*16}" cy="${170+Math.floor(k/3)*10}" r="4.5" fill="#9aa3af"/>`;
-    s+=txt(1160,192,`${wait} orders waiting`,`font-size="10" fill="${mute}" text-anchor="end"`);
-    s+=cupIcon(70,176,"#8b6b43")+txt(84,180,`${S.done.length} handed over`,`font-size="11" font-weight="700" fill="${ink}"`);
-    svg.innerHTML=s;
+    s+=txt(1160,146,`${wait} waiting to order`,`font-size="9.5" fill="${mute}" text-anchor="end"`)+cupIcon(30,141,"#8b6b43")+txt(42,146,`${S.done.length} handed over`,`font-size="10" font-weight="700" fill="${ink}"`);
+    l.svg.innerHTML=s;
     const T=Math.max(1,S.t-S.measureFrom);
-    stats.innerHTML=`<span><b>Minute ${Math.min(60,Math.max(0,m)).toFixed(0)}</b> of the peak hour</span>
-      <span>Handovers <b>${S.handovers.length}</b></span>
-      <span>${S.workers.length?S.workers.map(w=>`${w.v.toFixed(1)}× working <b>${pct(w.busyTime/T)}</b>${w.blockedTime>0.5?` · blocked <b>${pct(w.blockedTime/T)}</b>`:""}`).join(" &nbsp; "):"Robots busy <b>"+S.stations.map(o=>pct(o.busyTime/T)).join(" / ")+"</b>"}</span>
-      <span class="sanim">Animation of the movement; times and lost orders below come from the cost model.</span>`;
-    $$(body,".su button").forEach(b=>b.classList.toggle("on",b.dataset.s===st.setup));
+    l.stats.innerHTML=`<span><b>Minute ${Math.min(60,Math.max(0,m)).toFixed(0)}</b></span><span>Handovers <b>${S.handovers.length}</b></span>`+
+      (S.workers.length?S.workers.map(w=>`<span>${w.v.toFixed(1)}× working <b>${pct(w.busyTime/T)}</b> · held back <b>${pct(w.blockedTime/T)}</b></span>`).join("")
+                       :`<span>Robots busy <b>${S.stations.map(o=>pct(o.busyTime/T)).join(" / ")}</b></span>`);
+    $(l.el,".lname").textContent=opt(l.key)[1];
+  }
+  function drawAll(){ st.lanes.forEach(draw);
     $$(body,".sg button").forEach(b=>b.classList.toggle("on",b.dataset.g===STORE_BUS.surge));
     $$(body,".sp button").forEach(b=>b.classList.toggle("on",+b.dataset.v===st.speed));
-    $(body,".swv").textContent=S.workers.length>1?`${(1-st.spread).toFixed(2)}× (fastest ${(1+st.spread).toFixed(2)}×)`:`${(1-st.spread).toFixed(2)}× · one person on this counter`;
-    play.textContent=st.playing?"❚❚ Pause":"▶ Play";
-  }
+    $(body,".swv").textContent=`${(1-st.spread).toFixed(2)}× (fastest ${(1+st.spread).toFixed(2)}×)`;
+    play.textContent=st.playing?"❚❚ Pause":"▶ Play"; }
   let last=null;
   function frame(ts){                                               // Week 5: a continuous loop while the slide is on screen
     const here=typeof slides!=="undefined" && slides[cur]===root.closest(".slide");
     if(last!=null && st.playing && here){
-      advance(Math.min(0.1,(ts-last)/1000)*st.speed, 0.1);
-      if(minute()>=60) fresh();                                     // the hour starts again
-      draw();
+      const sec=Math.min(0.1,(ts-last)/1000)*st.speed;
+      st.lanes.forEach(l=>{ advance(l,sec,0.1); if(minute(l)>=60) fresh(l); });
+      drawAll();
     }
     last=ts; requestAnimationFrame(frame);
   }
-  const reset=atMin=>{ fresh(); advance(atMin*60); draw(); };
+  const reset=()=>{ st.lanes.forEach(l=>{ fresh(l); advance(l,DATA.storePrintMinute*60); }); drawAll(); };
   function liveServe(){                                            // the time-to-serve panel follows the slowest-worker slider
     if(Math.abs(st.spread-P.spread)<1e-9){ STORE_BUS.live=null; return; }
     const g=STORE_BUS.surge, N=RAW.validation.crossover_stability.value.seeds, Q=Pq(), out={};
     for(const [k] of STORE_SETUPS) out[k]={...Sim.serveTimes(Q,k,{surge:g,seeds:N}), staff:DATA.store[g][k].staff};
     STORE_BUS.live={surge:g, spread:st.spread, data:out};
   }
-  play.onclick=()=>{ st.playing=!st.playing; draw(); };
-  $$(body,".su button").forEach(b=>b.onclick=()=>{ st.setup=b.dataset.s; reset(DATA.storePrintMinute); });
+  play.onclick=()=>{ st.playing=!st.playing; drawAll(); };
   $$(body,".sg button").forEach(b=>b.onclick=()=>{ STORE_BUS.surge=b.dataset.g; liveServe(); storeSurge(b.dataset.g); });
-  $$(body,".sp button").forEach(b=>b.onclick=()=>{ st.speed=+b.dataset.v; draw(); });
-  slw.oninput=e=>{ st.spread=1-(+e.target.value); reset(DATA.storePrintMinute); };
+  $$(body,".sp button").forEach(b=>b.onclick=()=>{ st.speed=+b.dataset.v; drawAll(); });
+  slw.oninput=e=>{ st.spread=1-(+e.target.value); reset(); };
   slw.onchange=()=>{ liveServe(); storeSurge(STORE_BUS.surge); };
-  STORE_BUS.fns.push(()=>reset(DATA.storePrintMinute));
-  reset(DATA.storePrintMinute);                                     // first frame (and the printed one): minute 20, all-human
+  STORE_BUS.fns.push(reset);
+  reset();                                                          // first frame (and the printed one): minute 20
   requestAnimationFrame(frame);
 }
 
@@ -577,6 +584,9 @@ function serveWidget(root){
       s+=txt(R+40,y+16,int(d.servedPerHour),`font-size="11" font-weight="700" fill="#23272f" text-anchor="end"`)+txt(R+130,y+16,pct(d.lostShare),`font-size="11" font-weight="700" fill="${d.lostShare>0.05?css("--red"):"#23272f"}" text-anchor="end"`);
     });
     svg.innerHTML=s;
+    const sum=root.closest(".slide").querySelector(".ssum");
+    if(sum) sum.innerHTML=STORE_SETUPS.map(([k,nm])=>`<span><i style="background:${COL[k]}"></i>${nm} <b>${mmss(D[k].median)}</b> · ${mmss(D[k].p90)} · ${pct(D[k].lostShare)} lost</span>`).join("")+
+      `<span class="obs">Observed: not measured yet</span>`;
   }
   STORE_BUS.fns.push(draw); draw(STORE_BUS.surge);
 }

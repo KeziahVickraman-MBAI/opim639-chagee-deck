@@ -271,36 +271,29 @@ CONTENT = [
         kicker="Perform", chapter="perform",
         headline="In the peak hour, robots hand over a cup in about {{sim.st_med_all_machine|sec}}; a counter "
                  "like today's takes about {{sim.st_med_mixed|min1}}",
-        explainer_title="Store replica: one counter in the peak hour",
+        explainer_title="Store replica: two counters in the peak hour, side by side",
         caption="Illustrative layout after a Chagee tea bar: order right, brewing behind the counter, pick-up left. "
-                "People move as the Week 5 bucket brigade; times, staff and arrivals from the cost model.",
-        printnote="Printed at minute {{sim.store_print_minute|int}} of the peak hour: all-human counter, moderate "
-                  "surge.",
+                "Choose each counter; people move as the Week 5 bucket brigade; staff and arrivals from the cost "
+                "model.",
+        printnote="Printed at minute {{sim.store_print_minute|int}} of the peak hour, moderate surge: people slowest "
+                  "first (top) against fastest first (bottom).",
+        serve_summary="Time to serve, cost model (median · slowest tenth · lost):",
         serve_title="Time to serve: today versus simulated",
         serve_caption="From order to hand-over, waiting included. Cost model, peak hour, "
                       "{{validation.crossover_stability.seeds|int}} simulated days per bar.",
         serve_printnote="Printed at the moderate surge.",
-        points=[
-            ("route", "How the people move",
-             "Week 5 bucket brigade: carry a cup to pick-up, walk back, take over from the slower colleague "
-             "behind. Robots stay put; cups move."),
-            ("alert", "Where the numbers come from",
-             "Times and lost orders come from the cost model, so they match the next slide. Today's counter is "
-             "our reading, not measured."),
-        ],
         view_kicker="Our view",
         view_lead="Robots buy speed in the peak; whether it pays is the next slide.",
-        notes=("About 45 seconds. This is one counter laid out like a Chagee tea bar: customers order on the right, "
-               "drinks are made behind the counter, and pick-up is on the left. It plays on its own: this is the "
-               "Week 5 bucket brigade at a real counter. Each worker carries a cup towards pick-up; the last one "
-               "hands it over, walks back and takes over the cup of the slower colleague behind, so the slowest "
-               "worker stays at the order point and the line balances itself. Now switch to All-robot: nobody moves, the cups move from machine "
-               "to machine, and each robot waits between cups. Today's counter is our reading of public sources: "
-               "robots on the fixed steps and one person at the peak. The times below come from the cost model, so "
-               "they match the next slide: in the peak hour today's counter hands over a cup in about "
-               "{{sim.st_med_mixed|min1}} at the median, an all-robot counter in about "
-               "{{sim.st_med_all_machine|sec}}. None of these is measured; the empty row is where a timed store "
-               "visit would go. The next slide puts a price on each counter."),
+        notes=("About 45 seconds. Two counters laid out like a Chagee tea bar, seeing the same customers: order on "
+               "the right, brewing behind the counter, pick-up on the left. It plays on its own. Top: people as the "
+               "Week 5 bucket brigade, slowest first. Each worker carries a cup towards pick-up; the last hands it "
+               "over, walks back and takes over from the colleague behind, so the line balances itself. Bottom: the "
+               "same people, fastest first. The fast worker keeps catching the slow one and is held back, the red "
+               "ring, and fewer cups get out. Switch the bottom to All-robot: nobody moves, the cups move from "
+               "machine to machine. The times come from the cost model, in the line underneath: today's counter "
+               "hands over a cup in about {{sim.st_med_mixed|min1}} at the median, an all-robot counter in about "
+               "{{sim.st_med_all_machine|sec}}; open it for the chart. None of these is measured. The next slide "
+               "puts a price on each counter."),
         sources="Semi-automation (machine dispenses the formulation): L-unsw; Chagee Express semi-automated "
                 "machine: L-cyberrt. Layout: illustrative, after a Chagee tea-bar storefront (order right, pick-up "
                 "left). Animation: sim/store.js (Week 5 brigade rules, illustration.walk_back_speed). Times and lost "
@@ -520,29 +513,37 @@ CONTENT = [
     dict(
         key="s5", widget="benefit",
         kicker="Benefit, risks, next step", chapter="decide",
-        headline="Choosing each counter by trigger, instead of one standard, is worth about {{sim.bn_total|sgdm}} a "
-                 "year: small per store, and nothing where the standard already wins",
-        explainer_title="What choosing by trigger is worth",
-        comparator="Compared with: Chagee's semi-automated counter (our mixed setup) at every new store. This is a "
-                   "modelled avoided cost, not a demonstrated saving.",
-        caption="Per store per year: the standard's cost above the cheapest counter at that volume (default band, "
-                "moderate surge).",
-        printnote="Printed at our defaults: openings spread evenly over our volume range, so "
-                  "{{sim.bn_share|pct}} sit below the trigger.",
+        headline="Every opening passes four gates; choosing its counter by trigger, not one standard, is worth about "
+                 "{{sim.bn_total|sgdm}} a year",
+        explainer_title="Opening pipeline: what choosing by trigger is worth",
+        comparator="Compared with: Chagee's semi-automated counter (our mixed setup) at every new store. A modelled "
+                   "avoided cost, not a demonstrated saving.",
+        caption="Bar = openings at that volume × the standard's yearly cost above the cheapest counter (our defaults).",
+        printnote="Printed at our defaults: openings spread evenly over our volume range.",
+        gates_title="How each opening is decided",
+        gates=[
+            ("Before committing the site", "Predict", "Market-entry leads, Membership / CRM",
+             "Open the waitlist and read the demand band; back-test it on past openings.", "{{ref.s2|int}}"),
+            ("Before the first order", "Provision", "Supply chain / planning",
+             "Order milk at the best order, above the base forecast; that holds unless waste costs over "
+             "{{sim.milk_trigger|sgd}} a litre.", "{{ref.s3|int}}"),
+            ("Before fit-out", "Counter", "Store format / equipment, franchisee",
+             "Put the store's volume, wage and machine price into the playbook: all-human below every trigger, "
+             "mixed once any is crossed.", "{{ref.playbook|int}}"),
+            ("After opening", "Review", "Operations, market-entry leads",
+             "Measure steady volume once the opening hype fades; add the machine stations past about "
+             "{{sim.be_cupsPerDay_all_human_mixed|int}} cups a day, full automation only past about "
+             "{{sim.be_cupsPerDay_mixed_all_machine|int}}.", "{{ref.cost|int}}"),
+        ],
         risks=[
             ("Staff dependence and turnover",
-             "A people-based counter relies on trained staff, and new hires are slower. In our range turnover "
-             "did not flip the choice (slide {{ref.playbook|int}}), but real staffing data could (slide "
-             "{{ref.cost|int}})."),
+             "Keep SOP training and flexible roles."),
             ("Tourist and non-app demand is invisible",
-             "The member signal misses visitors, so the band sits too low in tourist areas. Widen it there and "
-             "log walk-up exceptions after opening."),
+             "Widen the band in tourist areas; log walk-ups."),
             ("Opening crowds read as steady demand",
-             "Sizing to opening-week queues overbuys machines and staff. Separate first orders from repeat orders "
-             "before committing capex."),
+             "Decide the counter on steady volume, after the hype."),
             ("Automation versus the premium teahouse",
-             "Heavy automation could undercut the premium experience. The mixed setup keeps people at the "
-             "customer-facing steps: finishing and handover."),
+             "Keep people at finishing and hand-over."),
         ],
         next_title="Next step with real Chagee data",
         next_items=[
@@ -551,20 +552,22 @@ CONTENT = [
             "Pilot all-human against mixed counters in paired new stores, timing real orders.",
         ],
         view_kicker="Our conclusion",
-        view_lead="The value is in choosing per store, not in one standard.",
-        view_body="Uncertainty did not decide the counter, so our starting claim fell. Read demand before opening "
-                  "for stock; choose the counter on measured volume, wage and machine cost. To our knowledge, "
-                  "simulating a store before it exists is new.",
-        notes=("About 1 minute. Be precise about the comparison: Chagee's semi-automated counter at every new store, "
-               "against choosing per store by the playbook. This is a modelled avoided cost, not a saving we have "
-               "shown. Below the volume trigger the standard costs about {{sim.bn_store|sgd0}} a store a year more "
-               "than the cheapest counter; above it, nothing, because the standard is already best. Across about "
-               "{{benefit.overseas_stores_per_year|int}} openings a year, with our illustrative spread of volumes, "
-               "that is about {{sim.bn_counter|sgdm}}, plus about {{sim.bn_stock|sgdm}} of opening stock if the "
-               "pre-launch signal works as assumed. Small per store; the case is the count of openings, and only if "
-               "the triggers are measured. Then the risks: click through each. Close with the next step: real "
-               "data, a back-test of the waitlist signal on recent openings such as Korea, and a paired pilot of "
-               "all-human against mixed counters."),
+        view_lead="Decide each opening at its gates, not by one standard.",
+        view_body="Uncertainty did not decide the counter, so our starting claim fell. Next, with Chagee's data: "
+                  "replace the assumptions, back-test the waitlist on recent openings such as Korea (Q2 2026), and "
+                  "pilot all-human against mixed in paired stores.",
+        notes=("About 1 minute. This is how an opening is actually decided: four gates. Before committing the site, "
+               "read the waitlist band. Before the first order, stock milk above the base forecast. Before fit-out, "
+               "put the store's volume, wage and machine price into the playbook and pick the counter. After "
+               "opening, measure steady volume and add machine stations at about "
+               "{{sim.be_cupsPerDay_all_human_mixed|int}} cups a day. On the left, what that is worth against one "
+               "standard counter everywhere, Chagee's semi-automated one: move the openings and the expected volume "
+               "range and the bars follow. Below the trigger the standard costs about {{sim.bn_store|sgd0}} a store a "
+               "year more than the cheapest counter; above it, nothing. Across about "
+               "{{benefit.overseas_stores_per_year|int}} openings that is about {{sim.bn_counter|sgdm}}, plus "
+               "{{sim.bn_stock|sgdm}} of stock if the signal works as assumed. A modelled avoided cost, not a "
+               "demonstrated saving. The risks are on the slide with one mitigation each. Close on the next step: "
+               "real data, a back-test on recent openings such as Korea, and a paired pilot."),
         sources="Overseas openings planned for 2026 and Korea launch: L-jiemian. Semi-automated counter as Chagee's "
                 "standard: L-unsw, L-cyberrt (our reading). Per-store cost: data.json volumeCurve and the cups-per-day "
                 "break-even, x open days. Share below the trigger: openings assumed evenly spread over the approved "
@@ -738,12 +741,17 @@ def benefit_values(d: dict) -> dict:
     best = lambda r: min(r[k]["cost"] for k in ("all_human", "mixed", "all_machine"))
     below = [(r["mixed"]["cost"] - best(r)) * r["cupsPerDay"] * days for r in vc if r["cupsPerDay"] < be]
     full = [(r["all_machine"]["cost"] - best(r)) * r["cupsPerDay"] * days for r in vc]
-    share = (be - vc[0]["cupsPerDay"]) / (vc[-1]["cupsPerDay"] - vc[0]["cupsPerDay"])
+    lo, hi = vc[0]["cupsPerDay"], vc[-1]["cupsPerDay"]
+    share = (be - lo) / (hi - lo)
     stores = A["benefit"]["overseas_stores_per_year"]["value"]
     per = sum(below) / len(below)
+    # openings spread evenly over [lo, hi]; each curve point stands for the volumes within half a step of it
+    step = vc[1]["cupsPerDay"] - vc[0]["cupsPerDay"]
+    frac = [(min(hi, r["cupsPerDay"] + step / 2) - max(lo, r["cupsPerDay"] - step / 2)) / (hi - lo) for r in vc]
+    counter = stores * sum(f * (r["mixed"]["cost"] - best(r)) * r["cupsPerDay"] * days for f, r in zip(frac, vc))
     stock = stores * (d["provision"]["none"]["optTotal"] - d["provision"]["def"]["optTotal"])
-    return {"bn_store": per, "bn_share": share, "bn_counter": stores * share * per, "bn_stock": stock,
-            "bn_total": stores * share * per + stock, "bn_full_lo": min(full), "bn_full_hi": max(full)}
+    return {"bn_store": per, "bn_share": share, "bn_counter": counter, "bn_stock": stock,
+            "bn_total": counter + stock, "bn_full_lo": min(full), "bn_full_hi": max(full)}
 
 
 def lookup(path: str, simv: dict):
@@ -1021,21 +1029,72 @@ TRADE_LABEL = {"wage": "Wage per hour", "cupsPerDay": "Steady volume", "machineM
                "newShare": "New-hire share", "machineMult": "Machine time"}
 
 
+def cost_split() -> dict:
+    """Cost per cup by setup at the default band and surge, split into labour, machines and lost sales (sim/ sweep)."""
+    d, g = DATA_CACHE, A["surge"]["surge_default"]["value"]
+    rows, u = d["sweeps"][g]["rows"], d["defaults"]["u"]
+    for r0, r1 in zip(rows, rows[1:]):
+        if r0["u"] <= u <= r1["u"]:
+            t = (u - r0["u"]) / (r1["u"] - r0["u"])
+            return {k: {f: r0[k][f] + t * (r1[k][f] - r0[k][f]) for f in ("cost", "machine", "labour", "lost")}
+                    for k in ("all_human", "mixed", "all_machine")}
+    return {k: rows[-1][k] for k in ("all_human", "mixed", "all_machine")}
+
+
+def price_tip(lever: str, kind: str, a: str = "all_human", b: str = "mixed") -> str:
+    """Hover text explaining how a price in the trigger tables is derived. Empty for non-price levers."""
+    if lever not in ("wage", "machineMonth"):
+        return ""
+    c, d = cost_split(), DATA_CACHE
+    cpd = A["store"]["cups_per_store_per_year"]["value"] / A["store"]["open_days_per_year"]["value"]
+    days, util = A["store"]["open_days_per_year"]["value"], d["util"][A["surge"]["surge_default"]["value"]]
+    split = lambda k: (f"{SETUP_NAME[k]}: labour S${c[k]['labour']:.3f} + machines S${c[k]['machine']:.3f} + lost sales "
+                       f"S${c[k]['lost']:.3f} = S${c[k]['cost']:.3f} a cup")
+    V = A["validation"]["breakeven"]["value"]
+    how = (f"Found by sim/ breakEven: {V['grid_points']} points scanned across the approved range, then bisection to "
+           f"{V['tol_x_share_of_range'] * 100:g}% of the range; every other input at our defaults.")
+    if lever == "wage" and kind == "now":
+        return "How S$15.06 is built (assumptions.json):\n" + A["costs"]["labour_cost_per_hour"]["rationale"].split(". ", 1)[1]
+    if lever == "machineMonth" and kind == "now":
+        m = A["costs"]["machine_cost_per_unit_per_month"]
+        return (f"Approved as USD {m['value_usd']:,.0f} a month per machine unit, converted at "
+                f"{A['_meta']['fx_sgd_per_usd']['value']} SGD per USD (L-xrates) = S${m['value']:,.2f}. "
+                + m["rationale"].split(" Converted")[0])
+    if kind == "none":
+        r = next(x for x in d["breakEven"] if (x["lever"], x["a"], x["b"]) == (lever, a, b))
+        f = LEVER_FMT[lever]
+        return (f"No break-even: across {f(r['range'][0])} to {f(r['range'][1])}, {SETUP_NAME[r[r['cheaper']]]} stays "
+                f"cheaper.\nAt our defaults:\n{split(a)}\n{split(b)}\n{how}")
+    if lever == "wage":
+        return (f"The wage at which {SETUP_NAME[a]} and {SETUP_NAME[b]} cost the same per cup.\nAt our defaults:\n"
+                f"{split(a)}\n{split(b)}\nA higher wage raises labour per cup in proportion, and the counter with more "
+                f"staff hours per cup rises faster (peak staff: all-human {util['all_human']['staff']}, mixed "
+                f"{util['mixed']['staff']} plus {util['mixed']['machineUnits']} machines).\n{how}")
+    units = util[b]["machineUnits"]
+    per100 = units * 100 * 12 / days / cpd
+    return (f"The machine price at which {SETUP_NAME[a]} and {SETUP_NAME[b]} cost the same per cup.\nAt our defaults:\n"
+            f"{split(a)}\n{split(b)}\n{SETUP_NAME[b].capitalize()} carries {units} machine units: each S$100 a month per "
+            f"unit adds {units} × S$100 × 12 ÷ {days} days ÷ {cpd:.0f} cups a day = about S${per100:.3f} a cup.\n{how}")
+
+
 def trigger_rows(a: str, b: str, levers: list, now: dict) -> list:
     """(sort key, row html) per lever: when setup b beats setup a, from sim/ breakEven at our defaults."""
     rows = []
     for lever in levers:
         r = next(x for x in DATA_CACHE["breakEven"] if (x["lever"], x["a"], x["b"]) == (lever, a, b))
         f = LEVER_FMT[lever]
+        tx = price_tip(lever, "none" if r["kind"] == "none_in_range" else "x", a, b)
+        tn = price_tip(lever, "now", a, b)
+        tip = lambda t: f' class="ptip" data-tip="{esc(t)}" tabindex="0"' if t else ""
         if r["kind"] == "none_in_range":
-            rows.append((9e9, f'<tr class="none"><th>{TRADE_LABEL[lever]}</th><td colspan="3">none in '
+            rows.append((9e9, f'<tr class="none"><th>{TRADE_LABEL[lever]}</th><td colspan="3"{tip(tx)}>none in '
                               f'{f(r["range"][0])} to {f(r["range"][1])}: {SETUP_NAME[r[r["cheaper"]]]} cheaper '
                               f'throughout</td></tr>'))
             continue
         b_above = r[r["below"]] == a
         dist = (r["x"] - now[lever]) / now[lever]
-        rows.append((abs(dist), f'<tr><th>{TRADE_LABEL[lever]}</th><td>{"above" if b_above else "below"} '
-                                f'<b>{f(r["x"])}</b>{" · step" if r["step"] else ""}</td><td>{f(now[lever])}</td>'
+        rows.append((abs(dist), f'<tr><th>{TRADE_LABEL[lever]}</th><td{tip(tx)}>{"above" if b_above else "below"} '
+                                f'<b>{f(r["x"])}</b>{" · step" if r["step"] else ""}</td><td{tip(tn)}>{f(now[lever])}</td>'
                                 f'<td>{dist * 100:+.0f}%</td></tr>'))
     rows.sort(key=lambda t: t[0])
     return rows
@@ -1050,7 +1109,13 @@ def render_playbook(s: dict) -> str:
         parts.append(f'<tr class="grp"><th colspan="4">{esc(title)} <span>· {esc(who)}</span></th></tr>{rows}')
     m = DATA_CACHE["milkTrigger"]
     title, who = s["stock_group"]
-    milk = (f'<tr><th>Milk waste per litre</th><td colspan="3">'
+    mt = (f"Waste cost per litre at which the best opening order falls to the base forecast: a lost cup costs "
+          f"S${m['stockoutCost']:.2f} (provision.stockout_cost_per_cup: {A['provision']['stockout_cost_per_cup']['rationale']}) "
+          f"and uses {m['milkPerCup']:g} L of milk (provision.milk_litres_per_cup), so a litre short loses "
+          f"S${m['stockoutCost']:.2f} ÷ {m['milkPerCup']:g} = S${m['value']:.2f}. Our waste cost is "
+          f"S${A['provision']['milk_waste_cost_per_litre']['value']:.2f} a litre "
+          f"({A['provision']['milk_waste_cost_per_litre']['rationale']}).")
+    milk = (f'<tr><th>Milk waste per litre</th><td colspan="3" class="ptip" data-tip="{esc(mt)}" tabindex="0">'
             + (f'none in S${m["range"][0]:.2f} to S${m["range"][1]:.2f}/L: order above base throughout '
                f'(flips at S${m["value"]:.2f}/L = S${m["stockoutCost"]:.2f} per lost cup ÷ {m["milkPerCup"]:g} L)'
                if m["kind"] == "none_in_range" else f'above <b>S${m["value"]:.2f}/L</b>') + '</td></tr>')
@@ -1221,8 +1286,11 @@ def render_slide(page: int, s: dict, n: int = 0, total: int = 0) -> str:
     elif s["widget"] == "storefront":
         serve = dict(key=f"{k}t", widget="serve", explainer_title=s["serve_title"], caption=s["serve_caption"],
                      printnote=s["serve_printnote"])
-        grid = (f'{render_explainer(s)}<div class="grid gstore"><div class="left">{render_explainer(serve)}</div>'
-                f'<div class="right"><div class="points">{render_points(s)}</div>{render_view(s)}</div></div>')
+        summary = (f'<summary><span class="slab">{esc(s["serve_summary"])}</span><span class="ssum"></span>'
+                   f'<span class="sopen screenonly">open the chart ▸</span><span class="sclose screenonly">close ▾</span></summary>')
+        grid = (f'{render_explainer(s)}<div class="grid gstore"><div class="left"><details class="servebox">{summary}'
+                f'<div class="servepop">{render_explainer(serve)}</div></details></div>'
+                f'<div class="right">{render_view(s)}</div></div>')
     elif s["widget"] == "playbook":
         grid = render_playbook(s)
     elif s["widget"] in ("a1", "a2", "a3"):
@@ -1232,8 +1300,17 @@ def render_slide(page: int, s: dict, n: int = 0, total: int = 0) -> str:
         grid = (f'<div class="grid gcost"><div class="left">{render_explainer(s)}</div>'
                 f'<div class="right">{render_tradeoff(s)}{conf}</div></div>')
     elif s["widget"] == "benefit":
-        grid = (f'<div class="grid g5"><div class="left">{render_explainer(s)}</div>'
-                f'<div class="right">{render_risks(s)}{render_view(s)}</div></div>')
+        gates = "".join(
+            f'<div class="gate"><span class="gn">{i + 1}</span><div><p class="gh"><b>{esc(when)}</b> · {esc(what)} '
+            f'<span class="gref">slide {esc(ref)}</span></p>{ed(f"{k}.g{i}", body, "p", "gb")}'
+            f'<p class="gw">{esc(who)}</p></div></div>'
+            for i, (when, what, who, body, ref) in enumerate(s["gates"]))
+        risks = "".join(f'<div class="rk"><b>{esc(t)}</b>{ed(f"{k}.r{i}.b", b, "span")}</div>'
+                        for i, (t, b) in enumerate(s["risks"]))
+        grid = (f'<div class="grid g5"><div class="left">{render_explainer(s)}'
+                f'<div class="rkgrid"><h4>Risks and how we would manage them</h4>{risks}</div></div>'
+                f'<div class="right"><div class="gates"><h4>{esc(s["gates_title"])}</h4>{gates}</div>'
+                f'{render_view(s)}</div></div>')
     else:
         grid = (f'<div class="grid"><div class="points">{render_points(s)}</div>'
                 f'<div class="right">{render_explainer(s)}{render_view(s)}</div></div>')

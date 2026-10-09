@@ -77,3 +77,16 @@ test("replica: cups are conserved (ordered = served in time + lost)", () => {
     assert.equal(r.times.length + r.lost, r.arrived, s);
   }
 });
+
+test("replica: Week 5's lesson - fastest-first serves fewer cups and blocks more than slowest-first", () => {
+  const Q = { ...P, targetWait: 1e9 };
+  const sat = order => {
+    const S = St.create(Sim, Q, "all_human", { warm: false, walkBack, order });
+    S.lam = Sim.nominalCap(Sim.plan(Q, "all_human"), S.staff) * 1.5 / 60;
+    while (S.t < 4 * 3600) S.step(0.5);
+    return { thr: S.handed / S.t, blocked: S.workers.reduce((a, w) => a + w.blockedTime, 0) };
+  };
+  const slow = sat("slow_first"), fast = sat("fast_first");
+  assert.ok(fast.thr < slow.thr, `${fast.thr} vs ${slow.thr}`);
+  assert.ok(fast.blocked > slow.blocked, `${fast.blocked} vs ${slow.blocked}`);
+});
