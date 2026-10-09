@@ -74,6 +74,92 @@ data.defaults = { signal: sig, removeHype: noHype, u: b0.u, band: b0 };
 data.provision = { none: prov(P0.uNone), def: prov(b0.u), strong: prov(P0.uStrong) };
 for (const k in data.provision) delete data.provision[k].curve;
 
+// ---------------- brief-v2: break-even triggers, volume curve, machine-speed dependency ----------------
+const u0 = S.defaultU(P0);
+const PAIRS = [
+  ["u", "mixed", "all_machine"], ["u", "all_human", "mixed"],
+  ["wage", "all_human", "mixed"], ["wage", "mixed", "all_machine"],
+  ["machineMonth", "all_human", "mixed"], ["machineMonth", "mixed", "all_machine"],
+  ["cupsPerDay", "all_human", "mixed"], ["cupsPerDay", "mixed", "all_machine"],
+  ["newShare", "all_human", "mixed"],
+  ["machineMult", "mixed", "all_machine"], ["machineMult", "all_human", "mixed"],
+  ["coordHuman", "all_human", "mixed"], ["coordMixed", "all_human", "mixed"],
+];
+const slim = r => { const { grid, ...rest } = r; return { ...rest, grid: grid.map(([x, g]) => [x, +g.toFixed(4)]) }; };
+data.breakEven = PAIRS.map(([lever, a, b]) => slim(S.breakEven(P0, lever, a, b, { u: u0 })));
+data.milkTrigger = S.milkTrigger(P0);
+data.leverNow = Object.fromEntries(Object.entries(S.LEVERS).map(([k, L]) => [k, L.now(P0)]));
+
+// Cost per cup against cups/day over the approved cups range (cost charts keep 278-833).
+const [c0, c1] = P0.ranges.cupsPerDay, NV = RAW.validation.breakeven.value.grid_points;
+data.volumeCurve = [...Array(NV)].map((_, i) => {
+  const cpd = c0 + (c1 - c0) * i / (NV - 1), r = S.runPoint({ ...P0, cupsYear: cpd * P0.days }, u0, surge0, P0.seed, P0.draws);
+  return { cupsPerDay: cpd, ...Object.fromEntries(S.SETUPS.map(k => [k, { cost: r[k].costPerCup, busy: r[k].machineBusy, lostShare: r[k].lostShare }])) };
+});
+
+// Machine-speed dependency: how busy the automated line is, and the costs, across the approved range.
+const [m0, m1] = P0.ranges.machineMult;
+data.machineSpeed = [...Array(NV)].map((_, i) => {
+  const mult = m0 + (m1 - m0) * i / (NV - 1), Q = { ...P0, machineMult: mult }, r = S.runPoint(Q, u0, surge0, P0.seed, P0.draws);
+  const slowest = Math.max(...Object.values(P0.machineSec)) * mult;
+  return { mult, slowestSec: slowest, units: S.plan(Q, "all_machine").machineUnits,
+           ...Object.fromEntries(S.SETUPS.map(k => [k, { cost: r[k].costPerCup, busy: r[k].machineBusy }])) };
+});
+
+// Slide 5 "as sized in our cost model": machine line rate / crew rate, read from peak capacities.
+const pu = data.util[surge0];
+data.mechanism = { asSizedRatio: pu.all_machine.capacityPerMin / pu.mixed.capacityPerMin, surge: surge0 };
+
+// Time to serve in the peak hour, per surge and setup: a read-out of the cost model (sim.js serveTimes),
+// so it matches the costs and lost orders on the cost slide. The replica (store.js) only animates.
+const St = require("./store.js"), NS = RAW.validation.crossover_stability.value.seeds;
+data.store = {};
+for (const g of Object.keys(P0.surgeMult)) {
+  data.store[g] = {};
+  for (const s of S.SETUPS) {
+    const r = S.serveTimes(P0, s, { surge: g, seeds: NS });
+    data.store[g][s] = { ...r, staff: s === "all_machine" ? 0 : S.plan(P0, s).rosterPlan[St.peakHour(P0)] };
+  }
+}
+
+// Sensitivity (appendix A2): the mixed minus all-human cost per cup at each ranged assumption's low and high,
+// one at a time, everything else at its default (default band, default surge, full draws). Station-time tables
+// are varied through the simulator's multipliers.
+{
+  const gapAt = P => { const r = S.runPoint(P, S.defaultU(P), surge0, P.seed, P.draws); return r.mixed.costPerCup - r.all_human.costPerCup; };
+  const base = gapAt(P0), rows = [];
+  for (const [sec, o] of Object.entries(RAW)) {
+    if (sec.startsWith("_")) continue;
+    for (const [key, a] of Object.entries(o)) {
+      if (!a || typeof a !== "object" || !Array.isArray(a.range) || a.range.length !== 2 || typeof a.range[0] !== "number") continue;
+      const at = x => {
+        if (typeof a.value === "number") {
+          const R2 = JSON.parse(JSON.stringify(RAW)); R2[sec][key].value = x; return gapAt(S.params(R2));
+        }
+        if (key === "machine_seconds_per_cup") return gapAt({ ...P0, machineMult: x });
+        if (key === "human_seconds_per_cup") return gapAt({ ...P0, humanMult: x });
+        return null;
+      };
+      const lo = at(a.range[0]), hi = at(a.range[1]);
+      if (lo == null) continue;
+      rows.push({ key: `${sec}.${key}`, value: a.value, range: a.range, unit: a.unit, gapLo: lo, gapHi: hi });
+    }
+  }
+  rows.sort((x, y) => Math.abs(y.gapHi - y.gapLo) - Math.abs(x.gapHi - x.gapLo));
+  data.tornado = { base, surge: surge0, rows };
+}
+
+// Replica capacity against the cost model's nominal capacity (saturated, no lost orders): the gap is walking.
+data.storeCap = {};
+for (const s of S.SETUPS) {
+  const Q = { ...P0, targetWait: 1e9 }, X = St.create(S, Q, s, { warm: false, walkBack: RAW.illustration.walk_back_speed.value });
+  const cap = S.nominalCap(S.plan(Q, s), X.staff);
+  X.lam = cap * 1.5 / 60;                                  // keeps the line full without an endless queue
+  while (X.t < 4 * 3600) X.step(0.5);
+  data.storeCap[s] = { replica: X.handed / (X.t / 60), nominal: cap };
+}
+data.storePrintMinute = 20;   // static frame of the replica: a third into the peak hour
+
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(out, JSON.stringify(data));
 console.log(`precompute: wrote ${out} in ${((Date.now() - t0) / 1000).toFixed(0)} s`);

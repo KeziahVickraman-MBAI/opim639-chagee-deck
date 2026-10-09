@@ -1,4 +1,4 @@
-// Tests for sim.js. Run: node --test sim/
+// Tests for sim.js. Run: node --test sim/*.test.js
 // Written before sim.js; tolerances and pass rules come from assumptions.json "validation".
 
 const test = require("node:test");
@@ -140,4 +140,86 @@ test("crossover follows the pre-registered definition", () => {
   assert.equal(S.crossover(mk([0.1, 0.1, 0.1, 0.1])).kind, "machine_cheaper_everywhere");
   assert.equal(S.crossover(mk([-0.1, 0.1, 0.2, 0.3])).kind, "reverse");          // mixed wins only at low u
   assert.equal(S.crossover(mk([0.1, -0.1, 0.1, -0.1])).kind, "crossover");        // last sign change counts
+});
+
+// ---------------------------------------------------------------- breakEven (brief-v2 section 6)
+const BE = RAW.validation.breakeven.value;
+
+test("breakEven core: a smooth crossing is found inside the range and the gap is ~0 there", () => {
+  const r = S.breakEvenFn(x => x - 3.3, [0, 10], BE);
+  assert.equal(r.kind, "value");
+  assert.ok(r.x >= 0 && r.x <= 10);
+  assert.ok(Math.abs(r.x - 3.3) <= BE.tol_x_share_of_range * 10);
+  assert.equal(r.step, false);
+});
+
+test("breakEven core: a jump is returned as a 'step' with a narrow bracket and a sign change", () => {
+  const g = x => (x < 2.5 ? -0.2 : 0.2);
+  const r = S.breakEvenFn(g, [0, 10], BE);
+  assert.equal(r.kind, "value");
+  assert.equal(r.step, true);
+  assert.ok(r.bracket[1] - r.bracket[0] <= BE.tol_x_share_of_range * 10 + 1e-12);
+  assert.ok(Math.sign(g(r.bracket[0])) !== Math.sign(g(r.bracket[1])));
+});
+
+test("breakEven core: no sign change gives none_in_range and names the cheaper side", () => {
+  assert.deepEqual(
+    (({ kind, cheaper }) => ({ kind, cheaper }))(S.breakEvenFn(x => -1 - x, [0, 10], BE)),
+    { kind: "none_in_range", cheaper: "a" });
+  assert.equal(S.breakEvenFn(x => 1 + x, [0, 10], BE).cheaper, "b");
+});
+
+test("breakEven core: every crossing is listed, the first is primary", () => {
+  const r = S.breakEvenFn(x => Math.sin(x), [0.5, 7], BE);
+  assert.equal(r.crossings.length, 2);
+  assert.ok(Math.abs(r.x - Math.PI) < 0.05);
+});
+
+test("breakEven on the simulator: wage, all-human vs mixed, passes the pre-registered rule", () => {
+  const P = { ...S.params(RAW), draws: 100 };
+  const r = S.breakEven(P, "wage", "all_human", "mixed");
+  const [lo, hi] = P.ranges.wage;
+  if (r.kind === "none_in_range") return;
+  assert.ok(r.x >= lo && r.x <= hi);
+  const g = S.leverGap(P, "wage", "all_human", "mixed");
+  const equal = Math.abs(g(r.x)) <= BE.tol_cost_sgd_per_cup;
+  const stepOk = r.bracket[1] - r.bracket[0] <= BE.tol_x_share_of_range * (hi - lo) + 1e-9 &&
+                 Math.sign(g(r.bracket[0])) !== Math.sign(g(r.bracket[1]));
+  assert.ok(equal || stepOk, `gap ${g(r.x)} at ${r.x}`);
+  assert.equal(r.step, !equal);
+});
+
+test("every lever's range comes from assumptions.json", () => {
+  const P = S.params(RAW);
+  assert.deepEqual(P.ranges.wage, RAW.costs.labour_cost_per_hour.range);
+  assert.deepEqual(P.ranges.cupsPerDayTrigger, RAW.triggers.volume_trigger_range_cups_per_day.value);
+  assert.deepEqual(P.ranges.cupsPerDay, RAW.store.cups_per_store_per_year.range.map(c => c / RAW.store.open_days_per_year.value));
+});
+
+// ---------------------------------------------------------------- slide 4 trigger: milk cost
+test("milk trigger: at the returned waste cost per litre the best order equals the base forecast", () => {
+  const P = S.params(RAW), daily = S.dailyBase(P), t = S.milkTrigger(P, 0.325, daily);
+  assert.ok(Math.abs(t.value - P.stockoutCost / P.milkPerCup) < 1e-9, "unit conversion");
+  const r = S.provision({ ...P, wasteCost: t.value }, 0.325, 3, daily);
+  assert.ok(Math.abs(r.optDays - P.shelfLife) / P.shelfLife < 0.01, `optDays ${r.optDays}`);
+  const inRange = t.value >= P.ranges.milkWaste[0] && t.value <= P.ranges.milkWaste[1];
+  assert.equal(t.kind, inRange ? "value" : "none_in_range");
+});
+
+// ---------- time to serve (read-out; must not change any cost result) ----------
+test("serveTimes: tracing a day changes none of its results", () => {
+  const P = S.params(RAW);
+  for (const s of S.SETUPS) {
+    const a = S.simulateDay(P, s, { surge: "moderate", seed: 3 }), b = S.simulateDay(P, s, { surge: "moderate", seed: 3, trace: true });
+    assert.deepEqual({ ...a, trace: null }, { ...b, trace: null });
+  }
+});
+
+test("serveTimes: no cup is faster than its make time, and the robot counter loses no orders in the peak", () => {
+  const P = S.params(RAW);
+  for (const s of S.SETUPS) {
+    const r = S.serveTimes(P, s, { surge: "moderate", seeds: 5 });
+    assert.ok(r.median >= r.make - 1e-9 && r.p90 >= r.median, s);
+  }
+  assert.equal(S.serveTimes(P, "all_machine", { surge: "moderate", seeds: 5 }).lostShare, 0);
 });

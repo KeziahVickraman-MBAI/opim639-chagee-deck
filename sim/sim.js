@@ -64,6 +64,21 @@
       wasteCost: v("provision", "milk_waste_cost_per_litre"),
       shelfLife: v("provision", "milk_shelf_life_days"),
       stockoutCost: v("provision", "stockout_cost_per_cup"),
+      breakeven: raw.validation.breakeven.value,
+      signalDefault: raw.predict.signal_strength_default.value,
+      surgeDefault: raw.surge.surge_default.value,
+      ranges: {                                  // lever ranges for breakEven(), all from assumptions.json
+        u: [raw.demand.uncertainty_sweep.value.from, raw.demand.uncertainty_sweep.value.to],
+        wage: raw.costs.labour_cost_per_hour.range,
+        machineMonth: raw.costs.machine_cost_per_unit_per_month.range,
+        newShare: raw.people.new_staff_share.range,
+        machineMult: raw.stations.machine_seconds_per_cup.range,
+        cupsPerDay: raw.store.cups_per_store_per_year.range.map(c => c / v("store", "open_days_per_year")),
+        cupsPerDayTrigger: raw.triggers.volume_trigger_range_cups_per_day.value,
+        milkWaste: raw.provision.milk_waste_cost_per_litre.range,
+        coordHuman: raw.people.coordination_loss_human.range,
+        coordMixed: raw.people.coordination_loss_mixed.range,
+      },
     };
   }
 
@@ -160,7 +175,7 @@
     const pl = plan(P, setup), roster = pl.roster(m), sh = surgeHourSet(P), mult = P.surgeMult[surge];
     const base = dailyBase(P), RA = rng(hash(seed, 2));
     let B = 0, arrivals = 0, served = 0, lost = 0, peakArr = 0, peakLost = 0;
-    const tr = trace ? { served: [], cap: [] } : null;
+    const tr = trace ? { served: [], cap: [], wait: [], accepted: [], lost: [], hour: [] } : null;
     for (let t = 0; t < P.hours * 60; t++) {
       const h = Math.floor(t / 60), n = roster[h];
       const lam = base * P.share[h] * m * (sh.has(h) ? mult : 1) / 60;
@@ -177,6 +192,7 @@
         capReal = setup === "mixed" ? Math.min(pl.machineCap, human) : human;
       }
       let a, l = 0;
+      const B0 = B;                                          // work already ahead of this minute's orders
       if (deterministic) {
         a = lam;
         if (B / capNom > P.targetWait) l = a; else B += a;
@@ -186,6 +202,7 @@
       }
       arrivals += a; lost += l;
       if (sh.has(h)) { peakArr += a; peakLost += l; }
+      if (tr) { tr.wait.push(B0 / capReal); tr.accepted.push(a - l); tr.lost.push(l); tr.hour.push(h); }   // minutes of work ahead of this minute's orders
       const s = Math.min(B, capReal); B -= s; served += s;
       if (tr) { tr.served.push(s); tr.cap.push(capReal); }
     }
@@ -199,6 +216,34 @@
     const machineBusy = pl.machineUnits ? served / (pl.machineCap * P.hours * 60) : null;
     return { setup, m, arrivals, served, lost, peakArr, peakLost, labourHours, machineUnits: pl.machineUnits,
              machineCap: pl.machineCap, machineBusy, cost, trace: tr };
+  }
+
+  /* ---------------- time to serve (read-out of simulateDay; changes no cost result) ----------------
+   * For the peak hour (the busiest hourly_demand_share hour) of a base-demand day (m = 1):
+   *   time to serve = wait (work already ahead, plus earlier orders that minute, / capacity) + make time,
+   *   make time = sum over stations of machine seconds, or human seconds / (coordination x experience).
+   * Weighted by the orders accepted each minute; seeds = validation.crossover_stability.seeds. */
+  function makeSeconds(P, setup) {
+    const m = setup === "all_machine" ? P.stations : setup === "mixed" ? P.mixedMachine : [];
+    const exp = expFactor(P);
+    return P.stations.reduce((a, s) => a + (m.includes(s) ? P.machineSec[s] * P.machineMult
+                                                          : P.humanSec[s] * P.humanMult / (P.coord[setup] * exp)), 0);
+  }
+  function serveTimes(P, setup, { surge = P.surgeDefault, seeds = 20, seed = P.seed } = {}) {
+    const ph = P.share.indexOf(Math.max(...P.share)), make = makeSeconds(P, setup), times = [];
+    let arr = 0, lost = 0, served = 0;
+    for (let k = 0; k < seeds; k++) {
+      const tr = simulateDay(P, setup, { m: 1, surge, seed: hash(seed + k, 9), trace: true }).trace;
+      tr.hour.forEach((h, t) => {
+        if (h !== ph) return;
+        for (let j = 0; j < tr.accepted[t]; j++) times.push((tr.wait[t] + j / tr.cap[t]) * 60 + make);   // j-th order of the minute waits behind j more
+        served += tr.served[t]; arr += tr.accepted[t] + tr.lost[t]; lost += tr.lost[t];
+      });
+    }
+    times.sort((a, b) => a - b);
+    const q = p => times[Math.min(times.length - 1, Math.floor(p * times.length))];
+    return { setup, surge, make, median: q(0.5), p90: q(0.9), servedPerHour: served / seeds, ordersPerHour: arr / seeds,
+             lostShare: arr ? lost / arr : 0 };
   }
 
   /* ---------------- Monte Carlo over stores ---------------- */
@@ -303,9 +348,66 @@
     return pick(rows[rows.length - 1]);
   }
 
-  const api = { band, provision, atU, SETUPS, params, rng, hash, normInv, poisson, dailyBase, drawMultipliers, surgeHourSet,
+  /* ---------------- break-even triggers (brief-v2 section 6) ---------------- */
+  // Levers: how each moves the model. "u" is the uncertainty passed to runPoint; the rest set P.
+  const LEVERS = {                               // now: the current (default) value, for "how far from the trigger"
+    u:            { range: "u",            set: (P, x) => P,                          now: P => defaultU(P) },
+    wage:         { range: "wage",         set: (P, x) => ({ ...P, wage: x }),         now: P => P.wage },
+    machineMonth: { range: "machineMonth", set: (P, x) => ({ ...P, machineMonth: x }), now: P => P.machineMonth },
+    newShare:     { range: "newShare",     set: (P, x) => ({ ...P, newShare: x }),     now: P => P.newShare },
+    machineMult:  { range: "machineMult",  set: (P, x) => ({ ...P, machineMult: x }),  now: P => P.machineMult },
+    cupsPerDay:   { range: "cupsPerDayTrigger", set: (P, x) => ({ ...P, cupsYear: x * P.days }), now: P => P.cupsYear / P.days },
+    coordHuman:   { range: "coordHuman",   set: (P, x) => ({ ...P, coord: { ...P.coord, all_human: x } }), now: P => P.coord.all_human },
+    coordMixed:   { range: "coordMixed",   set: (P, x) => ({ ...P, coord: { ...P.coord, mixed: x } }),     now: P => P.coord.mixed },
+  };
+
+  // Core: scan a gap function on an even grid, refine every sign change by bisection.
+  // gap(x) = cost(a) - cost(b): negative means a is cheaper.
+  function breakEvenFn(gap, [lo, hi], tol) {
+    const n = tol.grid_points, xs = [...Array(n)].map((_, i) => lo + (hi - lo) * i / (n - 1)), gs = xs.map(gap);
+    const width = tol.tol_x_share_of_range * (hi - lo), crossings = [];
+    gs.forEach((g, i) => { if (g === 0) crossings.push({ x: xs[i], bracket: [xs[i], xs[i]], gap: 0, step: false, below: null }); });
+    for (let i = 0; i < n - 1; i++) {
+      if (gs[i] === 0 || gs[i + 1] === 0 || Math.sign(gs[i]) === Math.sign(gs[i + 1])) continue;
+      let x0 = xs[i], x1 = xs[i + 1];
+      while (x1 - x0 > width) { const m = (x0 + x1) / 2; if (Math.sign(gap(m)) === Math.sign(gs[i])) x0 = m; else x1 = m; }
+      const x = (x0 + x1) / 2, g = gap(x);
+      crossings.push({ x, bracket: [x0, x1], gap: g, step: Math.abs(g) > tol.tol_cost_sgd_per_cup, below: gs[i] < 0 ? "a" : "b" });
+    }
+    crossings.sort((p, q) => p.x - q.x);
+    if (!crossings.length) return { kind: "none_in_range", range: [lo, hi], cheaper: gs.every(g => g < 0) ? "a" : "b", grid: xs.map((x, i) => [x, gs[i]]) };
+    const c = crossings[0];
+    return { kind: "value", range: [lo, hi], x: c.x, bracket: c.bracket, step: c.step, gap: c.gap, below: c.below, crossings, grid: xs.map((x, i) => [x, gs[i]]) };
+  }
+
+  const defaultU = P => P.uNone - P.signalDefault * (P.uNone - P.uStrong);   // slide 2's default band
+
+  function leverGap(P, lever, a, b, { u = defaultU(P), surge = P.surgeDefault, seed = P.seed, draws = P.draws } = {}) {
+    const L = LEVERS[lever];
+    return x => {
+      const Q = L.set(P, x), r = runPoint(Q, lever === "u" ? x : u, surge, seed, draws);
+      return r[a].costPerCup - r[b].costPerCup;
+    };
+  }
+
+  // Which value of `lever` makes setups a and b cost the same per cup (others at P's values).
+  function breakEven(P, lever, a, b, opts = {}) {
+    const range = opts.range || P.ranges[LEVERS[lever].range];
+    return { lever, a, b, ...breakEvenFn(leverGap(P, lever, a, b, opts), range, P.breakeven) };
+  }
+
+  // Slide 4: the milk waste cost at which the best opening order falls to the base forecast.
+  // provision() orders at the critical ratio under/(under+over); with a band centred on the base,
+  // the order equals the base when the ratio is 1/2, i.e. waste cost per litre = stockout cost per cup / litres per cup.
+  function milkTrigger(P) {
+    const value = P.stockoutCost / P.milkPerCup, [lo, hi] = P.ranges.milkWaste;
+    return { kind: value >= lo && value <= hi ? "value" : "none_in_range", value, range: [lo, hi],
+             stockoutCost: P.stockoutCost, milkPerCup: P.milkPerCup };
+  }
+
+  const api = { defaultU, LEVERS, breakEvenFn, leverGap, breakEven, milkTrigger, band, provision, atU, SETUPS, params, rng, hash, normInv, poisson, dailyBase, drawMultipliers, surgeHourSet,
                 brigadeRate, workerSpeeds, plan, nominalCap, simulateDay, runPoint, uGrid, sweep, crossover,
-                peakUtilisation };
+                peakUtilisation, makeSeconds, serveTimes };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.ChageeSim = api;
 })(typeof window !== "undefined" ? window : globalThis);
