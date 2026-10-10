@@ -158,6 +158,21 @@ CONTENT = [
              [("Sourcing", "Flexes with local suppliers", 2), ("Distribution", "Shorter, local", 1),
               ("Opening stock", "Less exposed", 1), ("Counter speed", "Still exposed", 3)]),
         ],
+        logic=[
+            ("A supply chain is a chain of buffers",
+             "Goods flow from suppliers through warehouses to stores. When demand misses the forecast, the miss is "
+             "absorbed wherever something can still change in time."),
+            ("Rigid: fixed upstream, so the miss lands in the store",
+             "Chagee sources tea and milk directly and distributes from HQ for its domestic stores (L-prn); we read "
+             "overseas sourcing as standardised too. Origin and routes are set long before opening, so in the first "
+             "weeks only the store can react: its opening stock and its counter speed."),
+            ("Localised: suppliers nearby can top up",
+             "A local supplier can resend stock quickly, so part of a stock miss is absorbed upstream. The counter "
+             "still has to serve the queue on the day, so it stays exposed."),
+            ("So our slice",
+             "We take sourcing as given and work on the two buffers a new store controls: opening stock (Topic 4, "
+             "Provision) and counter speed (Topic 5, Perform)."),
+        ],
         where_caption="Why this slice: with sourcing fixed, a demand miss lands in the store, on its opening stock "
                       "or its counter speed (our reading, not a Chagee statement).",
         printnote="Printed: every tile shows its status and reason; both sourcing columns are shown.",
@@ -170,8 +185,10 @@ CONTENT = [
                "fulfilment-service choice and no channel conflict. Topics 6 and 7 are simply outside our question, "
                "which stops at the counter. Topics 3, 4 and 5 are where a new store's risk sits: predicting demand, "
                "planning the opening stock, and choosing people or robots at the counter. Use the toggle: because "
-               "Chagee's sourcing is fixed, a demand miss can only be absorbed in the store. That is why we chose "
-               "this slice."),
+               "Chagee's sourcing is fixed, a demand miss can only be absorbed in the store. If asked why, open "
+               "How the logic works: goods flow from suppliers through warehouses to stores, and a miss is absorbed "
+               "wherever something can still change in time; with origin and routes fixed long before opening, "
+               "only the store's opening stock and counter speed can react. That is why we chose this slice."),
         sources="Topic names and content: OPIM639 course outline (AY2026-27), weekly lesson plans. Closed channel, "
                 "no third-party sellers: brief.md section 3, our reading; app ordering rests on I-leeyen (INFORMAL). "
                 "Direct sourcing and HQ distribution: L-prn. Franchise revenue share: out of scope, no figure "
@@ -863,6 +880,35 @@ def render_view(s: dict) -> str:
             f'{ed(f"{k}.vl", s["view_lead"], "p", "vl")}{body}</div>')
 
 
+def sourcing_svg() -> str:
+    """Two small networks: rigid (origin -> HQ -> stores) and localised (local suppliers <-> stores)."""
+    ink, mute, amb, blue = "#23272f", "#6b7280", "#e8a33d", "#2563eb"
+    box = lambda x, y, w, t: (f'<rect x="{x}" y="{y}" width="{w}" height="26" rx="5" fill="#fff" stroke="#9aa3af"/>'
+                              f'<text x="{x + w / 2}" y="{y + 17}" font-size="10.5" fill="{ink}" text-anchor="middle">{t}</text>')
+    store = lambda x, y: (f'<rect x="{x}" y="{y}" width="34" height="22" rx="4" fill="{amb}" opacity=".9"/>'
+                          f'<text x="{x + 17}" y="{y + 15}" font-size="9" fill="#fff" text-anchor="middle" font-weight="700">store</text>')
+    arrow = lambda x1, y1, x2, y2, c=blue: (f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{c}" stroke-width="1.6" '
+                                            f'marker-end="url(#ah)"/>')
+    g = ['<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">'
+         f'<path d="M0 0L8 4L0 8z" fill="{blue}"/></marker></defs>']
+    g.append(f'<text x="0" y="12" font-size="11" font-weight="700" fill="{ink}">Rigid sourcing</text>')
+    g.append(box(0, 22, 92, "Origin suppliers") + box(124, 22, 92, "HQ distribution"))
+    g.append(arrow(92, 35, 122, 35))
+    for i, y in enumerate((14, 34, 54)):
+        g.append(arrow(216, 35, 246, y + 11) + store(248, y))
+    g.append(f'<text x="0" y="66" font-size="9.5" fill="{mute}">fixed long before opening</text>')
+    g.append(f'<text x="244" y="90" font-size="9.5" font-weight="700" fill="#9a6b1e" text-anchor="end">the miss lands '
+             f'here, in the store →</text>')
+    g.append(f'<text x="0" y="118" font-size="11" font-weight="700" fill="{ink}">Localised sourcing</text>')
+    g.append(box(0, 128, 92, "Local suppliers"))
+    for y in (120, 140, 160):
+        g.append(arrow(92, 141, 246, y + 11) + store(248, y))
+    g.append(f'<path d="M246 186 C 170 200, 110 190, 60 156" fill="none" stroke="{blue}" stroke-dasharray="3 3" '
+             f'stroke-width="1.4" marker-end="url(#ah)"/>')
+    g.append(f'<text x="96" y="204" font-size="9.5" fill="{mute}">top-ups come back quickly</text>')
+    return f'<svg viewBox="0 0 290 210" class="lsvg" role="img" aria-label="Rigid versus localised sourcing">{"".join(g)}</svg>'
+
+
 def render_where(s: dict) -> str:
     k, cols = s["key"], []
     for j, (sid, name, sub, steps) in enumerate(s["scenarios"]):
@@ -877,7 +923,14 @@ def render_where(s: dict) -> str:
                       for j, (sid, name, _, _) in enumerate(s["scenarios"]))
     legend = ('<div class="dlegend"><span><span class="dots"><i class=on></i><i></i><i></i></span> low</span>'
               '<span><span class="dots"><i class=on></i><i class=on></i><i class=on></i></span> high exposure to a demand miss</span></div>')
-    return (f'<div class="variants">{buttons}</div><div class="scens">{"".join(cols)}</div>{legend}')
+    logic = ""
+    if s.get("logic"):
+        pts = "".join(f'<li><b>{esc(t)}.</b> {esc(b)}</li>' for t, b in s["logic"])
+        logic = (f'<details class="logicbox screenonly"><summary>How the logic works ▸</summary>'
+                 f'<div class="logicpop"><div class="lgrid"><div>{sourcing_svg()}</div><ul>{pts}</ul></div>'
+                 f'<p class="tnote">Network view after the course\'s supply-chain diagrams; our reading, not a Chagee '
+                 f'statement.</p></div></details>')
+    return (f'<div class="variants">{buttons}</div><div class="scens">{"".join(cols)}</div>{legend}{logic}')
 
 
 def render_aimap(s: dict) -> str:
@@ -995,7 +1048,7 @@ def render_scope(s: dict) -> str:
                 f'{ed(f"{k}.ex", s["explainer_title"], "span", "ex-title")}</div><div class="topics">{tiles}</div>'
                 f'<div class="tdetails screenonly">{details}</div></div>')
     where = dict(key=f"{k}w", widget="where", explainer_title=s["where_title"], caption=s["where_caption"],
-                 scenarios=s["scenarios"], printnote=s["printnote"])
+                 scenarios=s["scenarios"], printnote=s["printnote"], logic=s.get("logic"))
     return (f'{scope_ex}<div class="grid gsc"><div class="left">{render_explainer(where)}</div>'
             f'<div class="right">{render_view(s)}</div></div>')
 
